@@ -1,5 +1,6 @@
 'use strict';
 
+
 QUnit.module('Тестируем функцию roman', function () {
 	QUnit.test('roman правильно переводит из римской системы счисления', function (assert) {
 		assert.strictEqual(roman('I'), 1);
@@ -36,5 +37,16 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
+	});
+
+	QUnit.test('Свои тесты', function (assert) {
+		assert.strictEqual(roman('4000'), 'Error');
+		assert.strictEqual(roman('1990'), 'MCMXC');
+		assert.strictEqual(roman(2017), 'MMXVII');
+		assert.strictEqual(roman(0), 'Error');
+		assert.strictEqual(roman(20), 'XX');
+		assert.strictEqual(roman('VK-Park'), "Error");
+
+
 	});
 });
