@@ -1,7 +1,7 @@
 'use strict';
-function letters(str, flag) 
+function letters(input, flag) 
 {
-    const str = str.split('');
+    const str = input.split('');
     if(flag)
     {
         return str.filter((item, index) =>
