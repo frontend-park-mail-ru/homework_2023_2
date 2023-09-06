@@ -95,4 +95,35 @@ QUnit.module('Тестируем функцию set', function () {
 
 		assert.deepEqual(set({}, '.deep.nested.field', null), object);
 	});
+
+	QUnit.test('set работает правильно на пустом объекте', function (assert) {
+		const emptyObj = {};
+		const newObj = set(emptyObj, 'foo.bar', 'baz');
+
+		const expected = {
+			foo: {
+				bar: 'baz'
+			}
+		};
+
+		assert.deepEqual(newObj, expected)
+	})
+
+	QUnit.test('set игнорирует пустые ключи', function (assert) {
+		const obj = {
+			foo: {
+				bar: 'baz'
+			}
+		};
+
+		const newObj = set(obj, 'foo..bar', 'lux');
+
+		const expected = {
+			foo: {
+				bar: 'lux'
+			}
+		};
+
+		assert.deepEqual(newObj, expected)
+	})
 });
