@@ -53,4 +53,20 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
+
+	QUnit.test('Тест на пустую строку, возвращает пустую строку', function (assert) {
+		assert.strictEqual(letters(''), '');
+		assert.strictEqual(letters('', true), '');
+		assert.strictEqual(letters('', false), '');
+	});
+
+	QUnit.test('Тест на регистр, удаляет только повторяющиеся символы одного регистра', function (assert) {
+		assert.strictEqual(letters('aaAaBBbB'), 'Ab');
+		assert.strictEqual(letters('ClockwerK'), 'ClockwerK');
+		assert.strictEqual(letters('AncienT Apparition'), 'ceT arto');
+	});
+
+	QUnit.test('Тест на мультсимвольность', function (assert) {
+		assert.strictEqual(letters('abcabcabc'), '');
+	});
 });
