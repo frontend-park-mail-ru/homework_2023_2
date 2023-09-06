@@ -1,16 +1,81 @@
 'use strict';
 
 QUnit.module('Тестируем функцию anagram', function () {
-	QUnit.test('Функция работает правильно', function (assert) {
+
+	QUnit.test('Функция работает с пустым входным массивом', function (assert) {
+		const input = [];
+		const output = [];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает с одним словом', function (assert) {
+		const input = ['кот'];
+		const output = [];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает с анаграмами в разных порядках', function (assert) {
+		const input = ['кот', 'ток'];
+		const output = [['кот', 'ток']];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает с разными длинами слов', function (assert) {
+		const input = ['кот', 'то', 'ток'];
+		const output = [['кот', 'ток']];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает правильно тест-1', function (assert) {
 		const input = [
-			'кот', 'пила', 'барокко',
-			'стоп', 'ток', 'кошка',
-			'липа', 'коробка', 'пост'
+			'мольба', 'рано', 'карета',
+			'ракета', 'ток', 'просо',
+			'опрос', 'нора', 'альбом',
+			'ответ', 'прилив' , 'клавиатура'
 		];
 
 		const output = [
-			[ 'барокко', 'коробка' ],
-			[ 'кот', 'ток' ],
+			[ 'альбом', 'мольба' ],
+			[ 'карета', 'ракета' ],
+			[ 'нора', 'рано' ],
+			[ 'опрос', 'просо' ]
+		];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает правильно тест-2', function (assert) {
+		const input = [
+			'кулон', 'клоун', 'фарш',
+			'карма', 'марка', 'числа',
+			'число', 'мода', 'дома',
+			'шарф' , 'логика', 'помощь'
+		];
+
+		const output = [
+			[ 'дома', 'мода' ],
+			[ 'карма', 'марка' ],
+			[ 'клоун', 'кулон' ],
+			[ 'фарш', 'шарф' ]
+		];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает правильно тест-3', function (assert) {
+		const input = [
+			'кабан', 'мышка', 'телефон',
+			'стоп', 'банка', 'кошка',
+			'липа', 'камыш', 'пост', 'пила'
+		];
+
+		const output = [
+			[ 'банка', 'кабан' ],
+			[ 'камыш', 'мышка' ],
 			[ 'липа', 'пила' ],
 			[ 'пост', 'стоп' ]
 		];
