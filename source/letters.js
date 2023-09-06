@@ -34,3 +34,5 @@ const letters = (words, op = null) => {
 
     return words.join('')
 }
+
+console.log(letters(1332432))

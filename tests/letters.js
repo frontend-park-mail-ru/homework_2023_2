@@ -53,4 +53,12 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
+
+	QUnit.test('Корректно реагирует на пустую строку', function (assert) {
+		assert.strictEqual(letters(''), '');
+	});
+
+	QUnit.test('Корректно реагирует на неправильные данные', function (assert) {
+		assert.strictEqual(letters(234567890), '');
+	});
 });
