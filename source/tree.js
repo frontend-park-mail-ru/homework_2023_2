@@ -21,7 +21,7 @@ arguments или eval.
 //Контекст выполнения в данном случае не обязывает меня пользоваться тем или иным объявлением. this нигде не применяется
 /**
  * Функция проверяет, является ли высота дерева невалидной.
- * @param {number} height - высота дерева.
+ * @param {number|string} height - высота дерева.
  * @returns {boolean} - true, если высота некорректна, иначе false.
  */
 const invalidHeight = height => !height || height<3 || !isFinite(height) || isNaN(height);
@@ -98,7 +98,7 @@ const myRepeat = function(line, repeats)
 
 /**
  * Функция, которая создает дерево заданной высоты и возвращает строку с этим деревом
- * @param {number} height - высота дерева.
+ * @param {number|string} height - высота дерева.
  * @returns {string|null} - строка, представляющая дерево, или null, если высота некорректна.
  */
 const tree = function(height){
