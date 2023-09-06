@@ -1,9 +1,21 @@
 //Дмитриев Александр Web-22
 'use strict';
 
-function roman(input) {
+/**
+ * Перевод из римских цифр в арабские и наоборот.
+ * @param {number} number - Арабское число
+ * @param {string} number - Римское число
+ * @returns {number} - Вернет результат перевода из римского числа
+ * @returns {string} - Вернет результат перевода из арабского числа
+ */
 
-    if (Number(input)) {
+function roman(input) {
+    //Проверка символов
+    if (!/^[IVXLCDMivxlcdm0123456789]+$/.test(input)) {
+        return "Error";
+    }
+
+    if (Number(input) || input == 0) {
         // Arabic to Roman
 
         if (input <= 0 || input >= 3999) {
@@ -28,19 +40,18 @@ function roman(input) {
 
         let out = '';
 
-        for (const num of romanNum) {
-            while (input >= num.value) {
-                out += num.symbol;
-                input -= num.value
+        romanNum.forEach(
+            function (num){
+                while (input >= num.value) {
+                    out += num.symbol;
+                    input -= num.value
+                }
             }
-        }
+        )
 
         return out
     } else {
         //Roman to Arabic
-        if (!/^[IVXLCDMivxlcdm]+$/.test(input)) {
-            return "Error";
-        }
 
         input = input.toUpperCase()
 
@@ -57,14 +68,7 @@ function roman(input) {
         let out = 0;
 
         for (let i = 0; i < input.length; i++) {
-            const curRomanVal = romanNum[input[i]];
-            const nextRomanVal = romanNum[input[i+1]];
-
-            if (nextRomanVal && curRomanVal < nextRomanVal) {
-                out -= curRomanVal;
-            } else {
-                out += curRomanVal
-            }
+            romanNum[input[i+1]] && romanNum[input[i]] < romanNum[input[i+1]] ? out -= romanNum[input[i]] : out += romanNum[input[i]];
         }
 
         return out
