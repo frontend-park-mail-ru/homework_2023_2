@@ -42,4 +42,38 @@ QUnit.module('Тестируем функцию plainify', function () {
 
 		assert.deepEqual(plainify(nested2), plain2);
 	});
+
+	QUnit.test('plainify работает правильно с null вместо объекта', function (assert) {
+		assert.deepEqual(plainify(null), null);
+	});
+
+	QUnit.test('plainify работает правильно с array вместо объекта', function (assert) {
+		assert.deepEqual(plainify([1, 2, 3]), [1, 2, 3]);
+	});
+	
+	QUnit.test('plainify работает правильно с undefined вместо объекта', function (assert) {
+		assert.deepEqual(plainify(undefined), undefined);
+	});
+
+	QUnit.test('plainify работает правильно с NaN вместо объекта', function (assert) {
+		assert.deepEqual(plainify(NaN), NaN);
+	})
+
+	QUnit.test('plainify работает правильно с null и array', function (assert) {
+		const nested = {
+			a: {
+				b: [1, 2, 3],
+				c: {
+					'd': null
+				}
+			}
+		};
+
+		const plain = {
+			'a.b': [1, 2, 3],
+			'a.c.d': null
+		};
+
+		assert.deepEqual(plainify(nested), plain);
+	})
 });
