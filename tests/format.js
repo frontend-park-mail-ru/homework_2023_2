@@ -51,4 +51,39 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 		assert.strictEqual(format(input, 3), expected3);
 	});
+
+	QUnit.test('format работает...', function (assert) {
+		const input = [ 0, 123, 321, 332, 32, 1, 0, -12938, -234 ];
+
+		const expected =
+			'     0\n' +
+			'   123\n' + 
+			'   321\n' + 
+			'   332\n' + 
+			'    32\n' + 
+			'     1\n' +
+			'     0\n' +
+			'-12938\n' +
+			'  -234'
+
+		const expected2 =
+			'   0    123\n' +
+			' 321    332\n' +
+			'  32      1\n' +
+			'   0 -12938\n' +
+			'-234'
+
+		assert.strictEqual(format(input, 1), expected);
+		assert.strictEqual(format(input, 2), expected2);
+	});
+
+	QUnit.test("format работает с пустым массивом", function (assert) {
+		const input = [];
+
+		const expected = '';
+
+		assert.strictEqual(format(input, 1), expected);
+		assert.strictEqual(format(input, 2), expected);
+		assert.strictEqual(format(input, 3), expected);
+	});
 });
