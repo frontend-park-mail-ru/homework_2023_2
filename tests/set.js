@@ -126,4 +126,44 @@ QUnit.module('Тестируем функцию set', function () {
 
 		assert.deepEqual(newObj, expected)
 	})
+
+	QUnit.test('set игнорирует некорректный тип пути', function (assert) {
+		const obj = {
+			foo: {
+				bar: 'baz'
+			}
+		};
+		let obj1 = {
+			foo: {
+				bar: 'baz'
+			}
+		};
+
+		obj1 = set(obj1, 123, 0)
+
+		assert.deepEqual(obj, obj1)
+	})
+
+	QUnit.test('set и undefined', function (assert) {
+		const obj = {
+			foo: {
+				bar: undefined
+			}
+		};
+		assert.deepEqual(obj, set({}, '.foo.bar', undefined))
+	})
+
+	QUnit.test('set и обьект', function (assert) {
+		let obj = {
+			foo: {
+				bar: {
+					zoo: {
+						array: [1,2,3],
+						string: 'string'
+					}
+				}
+			}
+		};
+		assert.deepEqual(obj, set({}, 'foo', obj.foo))
+	})
 });
