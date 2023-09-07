@@ -28,4 +28,18 @@ QUnit.module('Тестируем функцию euclid', function () {
 		const temp = [ 80325, 55275, 8746650, 3000000, 45672375, 225, 54675 ];
 		assert.strictEqual(euclid(...[ ...temp, ...temp, ...temp, ...temp, ...temp ]), euclid(...temp));
 	});
+
+	QUnit.test('Функция должна правильно обрабатывать отсутствие аргументов', function (assert) {
+		assert.deepEqual(euclid(), NaN, "euclid() должна вернуть NaN");
+	});
+
+	QUnit.test('Функция должна правильно работать с аргументами, которые не являются целыми числами', function (assert) {
+		assert.deepEqual(euclid(2.23, 3.3), NaN, "euclid(2.23, 3.3) должна вернуть NaN");
+		assert.deepEqual(euclid(NaN, 3.3), NaN, "euclid(NaN, 3.3) должна вернуть NaN");
+		assert.deepEqual(euclid(4, 4, 5, 1324, 124, NaN, 66), NaN, "euclid(4, 4, 5, 1324, 124, NaN, 66) должна вернуть NaN");
+		assert.deepEqual(euclid(4, "asdf"), NaN, "euclid(4, \"asdf\") должна вернуть NaN");
+		assert.deepEqual(euclid( "1234"), NaN, "euclid(\"1234\") должна вернуть NaN");
+		assert.deepEqual(euclid( {a: "adsf"}), NaN, "euclid({a: \"adsf\"}) должна вернуть NaN");
+		assert.deepEqual(euclid( Infinity, 2, 42), NaN, "euclid( Infinity, 2, 42) должна вернуть NaN");
+	});
 });
