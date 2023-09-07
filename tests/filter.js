@@ -25,4 +25,25 @@ QUnit.module('Проверка работы функции filter', function () 
 		assert.strictEqual(filter(`<script>alert('1');</script>`, [ 'strong', 'em' ]), '&lt;script&gt;alert(&#39;1&#39;);&lt;/script&gt;');
 		assert.strictEqual(filter(`<img src="bad" onerror="alert('1');">`, [ 'strong', 'em' ]), '&lt;img src=&quot;bad&quot; onerror=&quot;alert(&#39;1&#39;);&quot;&gt;');
 	});
+
+	QUnit.test('filter экранирует символы, в случае отсуствия валидных html-тэги', function (assert) {
+		const input = '<strong>Hello, <em>World!</em></strong> 1 + 2 < 4!';
+
+		const output = filter(input);
+
+		const expected = "&lt;strong&gt;Hello, &lt;em&gt;World!&lt;/em&gt;&lt;/strong&gt; 1 + 2 &lt; 4!";
+
+		assert.strictEqual(output, expected);
+	});
+
+	QUnit.test('filter корректно экранирует символы, в случае совпадения префиксов или постфиксов html-тэгов', function (assert) {
+		const input = '<strong>Hello, <str>World!</str></strong> 1 + 2 < 4!';
+
+		const output = filter(input, [ "str", "ong" ]);
+
+		const expected = "&lt;strong&gt;Hello, <str>World!</str>&lt;/strong&gt; 1 + 2 &lt; 4!";
+
+		assert.strictEqual(output, expected);
+	});
+	
 });
