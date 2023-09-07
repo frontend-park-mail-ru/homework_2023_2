@@ -1,30 +1,12 @@
 
-/*По поводу strict mode. Я не до конца понимаю, зачем он даже в примере используется.
-На случайное объявление глобальных переменных код проверил, а также здесь я не работаю с сущностями по типу NaN или 
-arguments или eval.
-С объектами я тут не работаю, поэтому удаление неудаляемого свойства или, например, добавление свойств с одинаковыми именами тут
-невозможно, также я нигде не задал аргументы с одинаковым именем в функцию
-
-Но тут потенциально можно использовать директиву 'use struct' т.к. это общепринятый стандарт
-
-Суммарно:
-Нельзя использовать переменные до их объявления.
-Нельзя называть параметры функций, свойства объекта одинаково
-Зарезервированными словами js тоже нельзя пользоваться
-Также нельзя присваивать значение сущностям, предназначенным для чтения
-
-*/
-
-
-
-//Валидатор сделал через стрелочную функцию просто для удобства записи. Здесь не нужно писать алгоритм
+//Стрелочные функции - более современный стиль создания функций. Поэтому стоит использовать их
 //Контекст выполнения в данном случае не обязывает меня пользоваться тем или иным объявлением. this нигде не применяется
 /**
- * Функция проверяет, является ли высота дерева невалидной.
- * @param {number|string} height - высота дерева.
+ * Функция проверяет, является ли число невалидным.
+ * @param {number} value - длина строки, либо высота дерева.
  * @returns {boolean} - true, если высота некорректна, иначе false.
  */
-const invalidHeight = height => !height || height<3 || !isFinite(height) || isNaN(height);
+const invalidNumberValue = value => !value || !isFinite(value) || isNaN(value);
 
 
 
@@ -35,12 +17,11 @@ const invalidHeight = height => !height || height<3 || !isFinite(height) || isNa
  * @param {string} [symbolToAdd=' '] - символ для добавления в начало строки. По дефолту - ' '
  * @returns {string} - строка с добавленными символами в начале.
  */
-const myPadStart = function(line, finalLength, symbolToAdd=' ')
+const myPadStart = (line, finalLength, symbolToAdd=' ') =>
 {
-    //Не вижу смысла в проверке т.к.  функция tree гарантирует правильный вызов
+    if(invalidNumberValue(finalLength) || typeof line !== 'string')
+        return line;
 
-    if(line.length>=finalLength)
-    return line;
 
     while(line.length<finalLength)
     {
@@ -60,12 +41,10 @@ const myPadStart = function(line, finalLength, symbolToAdd=' ')
  * @param {string} [symbolToAdd=' '] - символ для добавления в конец строки. По дефолту - ' '
  * @returns {string} - строка с добавленными символами в конце.
  */
-const myPadEnd = function(line, finalLength, symbolToAdd=' ')
+const myPadEnd = (line, finalLength, symbolToAdd=' ') =>
 {
-    //Не вижу смысла в проверке т.к.  функция tree гарантирует правильный вызов
-
-    if(line.length>=finalLength)
-    return line;
+    if(invalidNumberValue(finalLength)||typeof line !== 'string')
+        return line;
 
     while(line.length<finalLength)
     {
@@ -84,8 +63,11 @@ const myPadEnd = function(line, finalLength, symbolToAdd=' ')
  * @param {number} repeats - количество повторений строки.
  * @returns {string} - строка, состоящая из повторений заданной строки.
  */
-const myRepeat = function(line, repeats)
+const myRepeat = (line, repeats) =>
 {
+
+    if(invalidNumberValue(repeats)||typeof line!=='string')
+        return line;
 
     let repeatedString = '';
     for(let i = 0;i<repeats;++i)
@@ -101,9 +83,9 @@ const myRepeat = function(line, repeats)
  * @param {number|string} height - высота дерева.
  * @returns {string|null} - строка, представляющая дерево, или null, если высота некорректна.
  */
-const tree = function(height){
+const tree = height =>{
 
-    if (invalidHeight(height)) return null;
+    if (invalidNumberValue(height)||height<3) return null;
 
     height=Math.floor(height);
 
