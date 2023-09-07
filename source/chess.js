@@ -21,8 +21,7 @@ let chess = size => {
     let desk = ""
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-            let symb = (i+j) % 2 == 0 ? '*' : ' '
-            desk = desk + symb
+            desk = (i+j) % 2 == 0 ? desk + '*' : desk + ' '
         }
         desk = desk + '\n'
     }
