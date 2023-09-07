@@ -66,7 +66,7 @@ QUnit.module('Тестируем функцию euclid', function () {
   QUnit.test('Функция должна правильно обрабатывать некорректные данные(доп)', function (assert) {
     assert.strictEqual(euclid(1, 1.5, "abc"), null, 'euclid(1, 1.5, "abc") должна вернуть null');
     assert.strictEqual(euclid(1, "123", "abc"), null, 'euclid(1, "123", "abc") должна вернуть null');
-    assert.strictEqual(euclid(1, "123", 1), null, 'euclid(1, 1.5, 1) должна вернуть null');
+    assert.strictEqual(euclid(1, "123", 1), null, 'euclid(1, "123", 1) должна вернуть null');
   });
 
 });
