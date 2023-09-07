@@ -1,7 +1,5 @@
 'use strict';
 
-const max = numbers => Math.max(...numbers);
-
 const zip = (...objects) => {
     let resultObject = {}
     objects.map((object) => {
