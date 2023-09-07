@@ -45,6 +45,8 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(2017), 'MMXVII');
 		assert.strictEqual(roman(0), 'Error');
 		assert.strictEqual(roman(20), 'XX');
+		assert.strictEqual(roman(9.7), 'Error');
+		assert.strictEqual(roman("9.7"), 'Error');
 		assert.strictEqual(roman('VK-Park'), "Error");
 
 

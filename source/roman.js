@@ -9,16 +9,16 @@
  * @returns {string} - Вернет результат перевода из арабского числа
  */
 
-function roman(input) {
+let roman = input => {
     //Проверка символов
     if (!/^[IVXLCDMivxlcdm0123456789]+$/.test(input)) {
         return "Error";
     }
 
-    if (Number(input) || input == 0) {
+    if (Number(input) || input === 0) {
         // Arabic to Roman
 
-        if (input <= 0 || input >= 3999) {
+        if (input <= 0 || input >= 3999 || !Number.isInteger(Number(input))) {
             return "Error";
         }
 
@@ -41,7 +41,7 @@ function roman(input) {
         let out = '';
 
         romanNum.forEach(
-            function (num){
+            num => {
                 while (input >= num.value) {
                     out += num.symbol;
                     input -= num.value
@@ -73,6 +73,4 @@ function roman(input) {
 
         return out
     }
-
-
 }
