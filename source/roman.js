@@ -1,17 +1,28 @@
 'use strict'
 
-//determine the type of input expression
-function checkTheCorrectnessOfNumber(s) {
+/* Get type of input expression and validate roman and int numbers
+*
+* @param {string} s - user string expression
+* @returns {string|NaN} - returns a string if the input expression is roman, int, or an empty string, and returns NaN in other cases
+*/
+function getNumberType(s) {
     //validate roman and int number
-    if (s.trim().match(/^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$/i)) {
-        return ["roman", s.toUpperCase()];
+    if (s === "") {
+        return "empty";
+    } else if (s.trim().match(/^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$/i)) {
+        return "roman";
     } else if (s.trim().match(/^[1-9]\d*$/)) {
-        return ["int", Number(s)];
+        return "int";
     }
-    return [NaN, s];
+    return NaN;
 }
 
-let roman = function (s) {
+/* Convert roman to int and vice versa
+*
+* @param {*} s - user expression
+* @returns {string|number}  returns a number if the input expression is a Roman number, and returns a string if the input expression is incorrect or an int number
+*/
+function roman (s) {
     //define the const like hashtable
     const ROMAN_DIGITS = {
         "M": 1000,
@@ -28,36 +39,37 @@ let roman = function (s) {
         "IV": 4,
         "I": 1
     };
-
-    //validate number and also treat undefined expression
-    let result = checkTheCorrectnessOfNumber(String(s));
-
-    let numberType = result[0];
-    let number = result[1];
+    //get type of number and also treat undefined expression
+    const numberType = getNumberType(String(s));
 
     if (numberType === "roman") {
-        let value = 0;
-        //iterate all symbols in roman number except last
-        for (let i = 0; i < number.length - 1; i++) {
-            if (ROMAN_DIGITS[number[i]] < ROMAN_DIGITS[number[i + 1]]) {
-                value -= ROMAN_DIGITS[number[i]];
+        const upperSymbolsOfInputString = s.trim().toUpperCase().split('');
+        return upperSymbolsOfInputString.reduce(function (result, currentRomanDigit, index) {
+            if (index !== upperSymbolsOfInputString.length - 1) {
+                if (ROMAN_DIGITS[currentRomanDigit] < ROMAN_DIGITS[upperSymbolsOfInputString[index + 1]]) {
+                    result -= ROMAN_DIGITS[currentRomanDigit];
+                } else {
+                    result += ROMAN_DIGITS[currentRomanDigit];
+                }
             } else {
-                value += ROMAN_DIGITS[number[i]];
+                result += ROMAN_DIGITS[currentRomanDigit];
             }
-        }
-        //process last character and avoid the undefined value when going out of bounds of array
-        return value + ROMAN_DIGITS[number[number.length - 1]];
+            return result;
+        }, 0);
     } else if (numberType === "int") {
-        let value = "";
+        let result = "";
+        let number = Number(s);
         for (let i in ROMAN_DIGITS) {
             //define min roman number that more than current number
             while (number >= ROMAN_DIGITS[i]) {
-                value += i;
+                result += i;
                 number -= ROMAN_DIGITS[i];
             }
         }
-        return value;
+        return result;
+    } else if (numberType === "empty") {
+        return 'Your input is empty!';
     }
 
-    return `Your number ${number} is incorrect or it is not a number!`;
-};
+    return `Your number ${String(s)} is incorrect or it is not a number!`;
+}
