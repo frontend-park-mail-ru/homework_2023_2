@@ -28,4 +28,31 @@ QUnit.module('Тестируем функцию euclid', function () {
 		const temp = [ 80325, 55275, 8746650, 3000000, 45672375, 225, 54675 ];
 		assert.strictEqual(euclid(...[ ...temp, ...temp, ...temp, ...temp, ...temp ]), euclid(...temp));
 	});
+
+  QUnit.test('Функция должна правильно работать с отрицательными числами(доп)', function (assert) {
+    assert.strictEqual(euclid(-1, -1), 1, 'euclid(-1, -1) === 1');
+    assert.strictEqual(euclid(-2, -2), 2, 'euclid(-2, -2) === 2');
+    assert.strictEqual(euclid(-13, -13, -26), 13, 'euclid(-13, -13, -26) === 13');
+    assert.strictEqual(euclid(-3, -7, -1), 1, 'euclid(-3, -7, -1) === 1');
+    assert.strictEqual(euclid(-7, -7, -13), 1, 'euclid(-7, -7, -13) === 1');
+    assert.strictEqual(euclid(-2, -14, -16), 2, 'euclid(-2, -14, -16) === 2');
+    assert.strictEqual(euclid(-7, -14, -21), 7, 'euclid(-7, -14, -21) === 7');
+    assert.strictEqual(euclid(-6006, -3738735, -51051), 3003, 'euclid(-6006, -3738735, -51051) === 3003');
+  });
+
+  QUnit.test('Функция должна правильно обрабатывать нулевые аргументы(доп)', function (assert) {
+    assert.strictEqual(euclid(0, 0), 0, 'euclid(0, 0) === 0');
+    assert.strictEqual(euclid(0, 5), 5, 'euclid(0, 5) === 5');
+    assert.strictEqual(euclid(5, 0), 5, 'euclid(5, 0) === 5');
+    assert.strictEqual(euclid(0, 0, 0), 0, 'euclid(0, 0, 0) === 0');
+    assert.strictEqual(euclid(0, 0, 5), 5, 'euclid(0, 0, 5) === 5');
+    assert.strictEqual(euclid(0, 5, 0), 5, 'euclid(0, 5, 0) === 5');
+    assert.strictEqual(euclid(5, 0, 0), 5, 'euclid(5, 0, 0) === 5');
+  });
+
+  QUnit.test('Функция должна правильно обрабатывать одинаковые числа(доп)', function (assert) {
+    assert.strictEqual(euclid(5, 5), 5, 'euclid(5, 5) === 5');
+    assert.strictEqual(euclid(13, 13, 13), 13, 'euclid(13, 13, 13) === 13');
+    assert.strictEqual(euclid(2, 2, 2, 2), 2, 'euclid(2, 2, 2, 2) === 2');
+  });
 });
