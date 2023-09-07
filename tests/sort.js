@@ -5,7 +5,8 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('яяя'), 'Яяя', 'Работает с русским алфавитом');
 		assert.strictEqual(sort('Бббббб'), 'Бббббб');
 		assert.strictEqual(sort('zzzzzz'), 'Zzzzzz', 'Работает с английским алфавитом');
-		//assert.strictEqual(sort('Rrrrrrrr'), 'rrrrrrrr'); // "Первую букву каждого слова она сделает прописной, остальные — строчными" + см. тест на 27 строке
+		//assert.strictEqual(sort('Rrrrrrrr'), 'rrrrrrrr'); // 
+		// не уд. условию "Первую букву каждого слова она сделает прописной, остальные — строчными"
 
 		assert.strictEqual(sort('Rrrrrrrr'), 'Rrrrrrrr');
 	});
@@ -38,6 +39,8 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('мама мыла раму'), 'Аамм Алмы Амру');
 		//assert.strictEqual(sort('космический корабль летит на марс'), 'Абклорь Амрс Aн Еиийккмоссч Еилтт'); 
 		// в условии не написано про то, по какому принципу сортировать(и сортировать ли вообще предложения, состоящие и из русских и из английских символов)
+		// (тут одна "a" английская) 
+
 		assert.strictEqual(sort('i love frontend'), 'Defnnort Elov I');
 		assert.strictEqual(sort('hello world'), 'Dlorw Ehllo');
 	});
