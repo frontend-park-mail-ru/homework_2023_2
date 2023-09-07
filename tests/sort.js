@@ -45,4 +45,22 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('i LOVE fRonTend'), 'Defnnort Elov I');
 		assert.strictEqual(sort('hello world'), 'Dlorw Ehllo');
 	});
+
+	QUnit.test('Функция работает со спец. символами', function (assert) {
+		assert.strictEqual(sort('word123 @#&'), '@&# 123dorw');
+	});
+
+	QUnit.test('Функция работает с пустым вводом', function (assert) {
+		assert.strictEqual(sort(''), '');
+		assert.strictEqual(sort('   '), '   ');
+	});
+
+	QUnit.test('Функция обрабатывает некоректный ввод', function (assert) {
+		assert.throws(function() {
+			sort([]);
+		}, 'Входной аргумент должен быть строкой');
+		assert.throws(function() {
+			sort(123);
+		}, 'Входной аргумент должен быть строкой');
+	});
 });
