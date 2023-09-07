@@ -13,7 +13,7 @@ let roman = input => {
         return "Error";
     }
 
-    if (Number.isInteger(Number(input)) || input === 0 ) {
+    if (Number.isInteger(Number(input))) {
         // Arabic to Roman
 
         if (input <= 0 || input >= 3999) {
