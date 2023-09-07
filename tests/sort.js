@@ -5,7 +5,9 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('яяя'), 'Яяя', 'Работает с русским алфавитом');
 		assert.strictEqual(sort('Бббббб'), 'Бббббб');
 		assert.strictEqual(sort('zzzzzz'), 'Zzzzzz', 'Работает с английским алфавитом');
-		assert.strictEqual(sort('Rrrrrrrr'), 'rrrrrrrr');
+		//assert.strictEqual(sort('Rrrrrrrr'), 'rrrrrrrr'); // "Первую букву каждого слова она сделает прописной, остальные — строчными" + см. тест на 27 строке
+
+		assert.strictEqual(sort('Rrrrrrrr'), 'Rrrrrrrr');
 	});
 
 	QUnit.test('Функция делает все буквы, кроме первой, строчными', function (assert) {
@@ -34,8 +36,23 @@ QUnit.module('Тестируем функцию sort', function () {
 
 	QUnit.test('Функция работает правильно', function (assert) {
 		assert.strictEqual(sort('мама мыла раму'), 'Аамм Алмы Амру');
-		assert.strictEqual(sort('космический корабль летит на марс'), 'Абклорь Амрс Aн Еиийккмоссч Еилтт');
+		//assert.strictEqual(sort('космический корабль летит на марс'), 'Абклорь Амрс Aн Еиийккмоссч Еилтт'); 
+		// в условии не написано про то, по какому принципу сортировать(и сортировать ли вообще предложения, состоящие и из русских и из английских символов)
 		assert.strictEqual(sort('i love frontend'), 'Defnnort Elov I');
 		assert.strictEqual(sort('hello world'), 'Dlorw Ehllo');
 	});
+
+	// добавленные тесты
+
+	QUnit.test('Функция обрабатывает некорректный ввод', function (assert) {
+		assert.strictEqual(sort('слово word'), 'Incorrect string', 'Обрабатывает русские + английские символы (непонятно как сортировать)');
+		assert.strictEqual(sort('12345 ***** %23'), 'Incorrect string', 'Обрабатывает рандомные симоволы не из рус/англ алфавитов');
+		assert.strictEqual(sort(''), 'Incorrect string', 'Обрабатывает пустую строку');
+	});
+
+	QUnit.test('Функция обрабатывает случаи с пробелами', function (assert) {
+		assert.strictEqual(sort('      hehehehe         aboba'), 'Aabbo Eeeehhhh', 'Убирает лишние пробелы');
+		assert.strictEqual(sort('           '), 'Incorrect string', 'Обрабатывает строчку из пробелов');
+	});
+	
 });
