@@ -36,4 +36,25 @@ QUnit.module('Тестируем функцию plain', function () {
 	QUnit.test('Работает с элементами разных типов', function (assert) {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
 	});
+
+	QUnit.test('Работает с пустыми массивами', function (assert) {
+		assert.deepEqual(plain([ [], [], [] ]), []);
+		assert.deepEqual(plain([ [ [ [ [] ] ] ] ]), []);
+		assert.deepEqual(plain([ [ [] ], [ [] ] ]), []);
+	});
+
+	QUnit.test('Вложенные массивы из одного элемента', function (assert) {
+		assert.deepEqual(plain([ [ 1 ], [ 2 ], [ 3 ] ]), [ 1, 2, 3 ]);
+		assert.deepEqual(plain([ [ [] ], [ NaN ], [ 's' ] ]), [ NaN, 's' ]);
+	});
+
+	QUnit.test('Сохраняет порядок в вложенных массивах', function (assert) {
+		assert.deepEqual(plain([ [ [ [ [ [ 1 ], 2 ], 3 ], 4 ], 5 ], 6 ]), [ 1, 2, 3, 4, 5, 6 ]);
+		assert.deepEqual(plain([ [ [ [ [ [ 1 ], NaN ], Infinity ], -Infinity ], Math.max ], true ]), [ 1, NaN, Infinity, -Infinity, Math.max, true ]);
+	});
+
+	QUnit.test('Сохраняет порядок в вложенных массивах (другой порядок обхода)', function (assert) {
+		assert.deepEqual(plain([ [1, 2, 3, [4, 5, 6, [7, 8, 9, [10] ] ] ] ]), [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
+		assert.deepEqual(plain([ [NaN, Infinity, -Infinity, [true, false, null, [undefined, 8, 9, ["string"] ] ] ] ]), [ NaN, Infinity, -Infinity, true, false, null, undefined, 8, 9, "string" ]);
+	});
 });
