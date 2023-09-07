@@ -59,4 +59,12 @@ QUnit.module('Тестируем функцию solve', function () {
 			'Error thrown'
 		);
 	});
+
+	QUnit.test('solve выкидывает ошибку, если выражение не зависит от "x"', function (assert) {
+		assert.throws(() =>
+			{solve('1 + 1', 2); },
+			new Error('Error: expression must depend on "x"'),
+			'Error thrown'
+		);
+	});
 });
