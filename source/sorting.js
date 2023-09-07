@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Устойчивая сортировка массива plain-объектов в порядке воззрастания по элементам массива имён свойств
+ * @param objects - массив plain-объектов
+ * @param keys - массив имён свойств
+ * @returns {array} - отсортированный массив
+ */
 const sorting = function (objects, keys) {
     return objects.sort((a, b) => {
         for (let key of keys) {
