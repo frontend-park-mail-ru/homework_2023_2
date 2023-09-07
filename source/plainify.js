@@ -26,4 +26,10 @@ const plainifyWithPrefix = (obj, prefix) => {
 }
 
 
+/**
+ * Returns whether the given object is an object. Null is not considered as an object.
+ * 
+ * @param {object} obj 
+ * @returns {boolean}
+ */
 const isObj = (obj) => { return typeof obj === 'object' && obj !== null }
