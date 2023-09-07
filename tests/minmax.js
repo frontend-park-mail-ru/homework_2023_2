@@ -46,4 +46,8 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax('1 2 3 4 100буквы_после 100ещебуквы'), [ 1, 4 ]);
 		assert.deepEqual(minmax('1 2 3 4 буквы_до100 100и_после'), [ 1, 4 ]);
 	});
+	
+	QUnit.test('minmax работает с разными знаками препинания и другими символами', function (assert) {
+		assert.deepEqual(minmax('3:-434.e2~~11 !^^Infinity()}()**24 323 40,5,64+ ,74 822||,,%%%,2229&( @@== 1.1e-5, ``|\\-.1e-5$#$'), [ -434.e2, Infinity ]);
+	});
 });
