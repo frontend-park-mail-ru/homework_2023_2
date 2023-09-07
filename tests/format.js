@@ -63,9 +63,11 @@ QUnit.module('Тестируем функцию format', function () {
 	QUnit.test('format работает правильно c некорректным количеством колонок', function (assert) {
 		const input = [];
 	
-		const expected ='';
+		const expected0 ='';
+		const expectedNegative ='';
 	
-		assert.strictEqual(format(input, 0), expected);
+		assert.strictEqual(format(input, 0), expected0);
+		assert.strictEqual(format(input, -3), expectedNegative);
 	});
 	
 	QUnit.test('format работает правильно c одинаковыми по длине числами', function (assert) {

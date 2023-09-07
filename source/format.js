@@ -1,6 +1,9 @@
 'use strict';
 
 const format = function (numbers, columns) {
+    if(columns<0){
+        return ''
+    }
     let maxNumInColumns = [];
     maxNumInColumns.length=columns;
     maxNumInColumns.fill(0);
