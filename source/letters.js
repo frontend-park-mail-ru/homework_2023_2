@@ -10,6 +10,11 @@
  * @return {string} words, строка, из которой удалены неуникальные символы.
  */
 const letters = (words, parameter = null) => {
+    if (words == null) {
+        console.log("incorrect type of param words")
+        return ''
+    }
+
     let array = Array.from(words)
 
     switch (parameter) {
@@ -28,6 +33,10 @@ const letters = (words, parameter = null) => {
         case false:
             array = array.filter((word, index) => array.lastIndexOf(word) === index);
             break;
+
+        default:
+            console.log("incorrect type of param parameter")
+            return ''
     }
 
     return array.join('')
