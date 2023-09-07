@@ -3,7 +3,7 @@
 
 /**
  * Перевод из римских цифр в арабские и наоборот.
- * @param {number|string} number - Изначальеное число
+ * @param {number|string} input - Изначальное число
  * @returns {number|string} - Вернет результат перевода
  */
 
