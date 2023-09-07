@@ -74,4 +74,16 @@ QUnit.module('Тестируем функцию zip', function () {
 		};
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
 	});
+
+	QUnit.test('Функция правильно работает с непустыми объектами, между которыми находятся пустые объекты', function (assert) {
+		assert.deepEqual(zip({node: 1, object: 2}, {}, {node: 2, ob: 1, object: 3}), {node: 1, object: 2, ob: 1});
+		assert.deepEqual(zip({value: 72}, {}, {}, {value: 40}), {value: 72});
+		assert.deepEqual(zip({value: 71}, {}, {value: 72}), {value: 71});
+	});
+
+	QUnit.test('Функция правильно работает с непустыми объектами, которые стоят в конце среди пустых объектов', function (assert) {
+		assert.deepEqual(zip({}, {}, {node: 1, object: 2, ob: 1}), {node: 1, object: 2, ob: 1});
+		assert.deepEqual(zip({}, {}, {}, {index: 5}), {index: 5});
+		assert.deepEqual(zip({}, {}, {}, {}, {length: 199}), {length: 199});
+	});
 });
