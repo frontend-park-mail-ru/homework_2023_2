@@ -69,4 +69,17 @@ QUnit.module('Тестируем функцию letters', function () {
 	QUnit.test('Тест на мультсимвольность', function (assert) {
 		assert.strictEqual(letters('abcabcabc'), '');
 	});
+
+	QUnit.test('Тест на неверно переданные параметры', function (assert) {
+		assert.strictEqual(letters(132, "fake"), 'Wrong input type, must be (string, boolean)');
+		assert.strictEqual(letters(333, 32), 'Wrong input type, must be (string, boolean)');
+		assert.strictEqual(letters("aaAaBBbB", "fake"), 'Wrong input type, must be (string, boolean)');
+	});
+
+	QUnit.test('Тест на полную строку с флагом', function (assert) {
+		assert.strictEqual(letters("nyx assasin", true), 'nyx asi');
+		assert.strictEqual(letters("nyx assasin", false), 'yx asin');
+		assert.strictEqual(letters("Yo hablas espanol un poquito", true), 'Yo hablsepnuqit');
+		assert.strictEqual(letters("Buenas noches mi familia.", false), 'Bunoches fmlia.');
+	});
 });
