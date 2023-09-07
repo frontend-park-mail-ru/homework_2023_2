@@ -3,22 +3,20 @@
 
 /**
  * Перевод из римских цифр в арабские и наоборот.
- * @param {number} number - Арабское число
- * @param {string} number - Римское число
- * @returns {number} - Вернет результат перевода из римского числа
- * @returns {string} - Вернет результат перевода из арабского числа
+ * @param {number|string} number - Изначальеное число
+ * @returns {number|string} - Вернет результат перевода
  */
 
 let roman = input => {
     //Проверка символов
-    if (!/^[IVXLCDMivxlcdm0123456789]+$/.test(input)) {
+    if (!/^[IVXLCDMivxlcdm0123456789]+$/.test(input) || typeof input !== 'number' && typeof input !== 'string') {
         return "Error";
     }
 
-    if (Number(input) || input === 0) {
+    if (Number(input) || input === 0 || Number.isInteger(Number(input))) {
         // Arabic to Roman
 
-        if (input <= 0 || input >= 3999 || !Number.isInteger(Number(input))) {
+        if (input <= 0 || input >= 3999) {
             return "Error";
         }
 
