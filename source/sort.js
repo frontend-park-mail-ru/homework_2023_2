@@ -12,13 +12,12 @@ const sort = (inputString) => {
         throw new Error('Входной аргумент должен быть строкой');
 
     return inputString.split(' ')
-        .map((element) => {
-            const sortedWord = element.split('')
+        .map(element => element.split('')
                 .sort((a, b) => a.localeCompare(b, 'ru'))
                 .join('')
-                .toLowerCase();
-            return sortedWord.charAt(0).toUpperCase() + sortedWord.slice(1);
-        })
+                .toLowerCase()
+                .replace(/^[^ ]/g, letter => (letter.toUpperCase()))
+        )
         .sort((a, b) => a.localeCompare(b, 'ru'))
         .join(' ')
 };
