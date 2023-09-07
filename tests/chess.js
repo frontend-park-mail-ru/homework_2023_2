@@ -37,4 +37,19 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('8'), expected);
 	});
 
+	QUnit.test('Число с плавающей точкой', function (assert) {
+		const expected = chess(666.666); 
+		assert.strictEqual(expected, null);
+	  });
+
+	  QUnit.test('Отрицательное число', function (assert) {
+		const expected = chess(-89); 
+		assert.strictEqual(expected, null);
+	  });
+
 });
+
+// QUnit.test('Строку нельзя использовать как входные данные', function (assert) {
+// 	const result = chess('ABRAKADABRA'); 
+// 	assert.strictEqual(result, null, 'Строка не пройдёт, только числа');
+//   });
