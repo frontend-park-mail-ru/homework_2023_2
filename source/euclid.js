@@ -6,20 +6,20 @@
  * @returns {number|null} - Наибольший общий делитель переданных чисел или null, если переданы некорректные аргументы.
  */
 const euclid = (...args) => {
-  const isValid = args.every(arg => typeof arg === 'number' && !isNaN(arg));
-  
-  if (!isValid) {
+  if (!args.every((arg) => typeof arg === 'number' && !isNaN(arg) && arg !== Infinity && arg !== Number.MAX_VALUE)) {
     return null;
   }
   
   if (args.length === 0) {
     return null;
   }
-
+  
   const gcd = args.slice(1).reduce((acc, num) => calculateGCD(acc, num), args[0]);
   
   return Math.abs(gcd);
 };
+
+
 
 /**
 * Вычисляет наибольший общий делитель для двух чисел.
