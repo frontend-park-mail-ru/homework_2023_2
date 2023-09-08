@@ -9,10 +9,10 @@
 const sorting = function (objects, keys) {
     return objects.sort((a, b) => {
         for (let key of keys) {
-            let propertyA = a[key];
-            let propertyB = b[key];
+            const propertyA = a[key];
+            const propertyB = b[key];
             if (typeof propertyA == "string") {
-                let compare = propertyA.localeCompare(propertyB);
+                const compare = propertyA.localeCompare(propertyB);
                 if (compare !== 0) {
                     return compare;
                 }
