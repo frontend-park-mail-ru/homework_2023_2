@@ -10,7 +10,6 @@
  * @throws {InvalidArgumentException}
  */
 const set = (obj, path, value) => {
-
     if (typeof obj !== 'object' || typeof path !== 'string') {
         throw new Error("No correct parametr's");
     }
@@ -20,13 +19,14 @@ const set = (obj, path, value) => {
     const keys = lineSplit.split('.');
     const lastKey = keys.pop();
 
-    keys.reduce((current, key) => {
+    const lastProperty = keys.reduce((current, key) => {
         if (!current[key]) {
             current[key] = {};
         }
 
         return current[key];
-    }, obj)[lastKey] = value;
+    }, obj)
 
+    lastProperty[lastKey] = value;
     return obj;
 }
