@@ -5,14 +5,13 @@
     и возвращает значение этого свойства (или undefined, если свойства не существует)
 */
 
-let get = (object, pathToProperty) => {
+const get = (object, pathToProperty) => {
     if (pathToProperty === '.') {
         return object;
     }
 
-    let propertyNames = pathToProperty.slice(1).split('.');
-    let propertyValue = propertyNames.reduce((previous, propertyName) =>
-        previous === undefined ? undefined : previous[propertyName], object);
+    const propertyNames = pathToProperty.slice(1).split('.');
 
-    return propertyValue;
+    return propertyNames.reduce((previous, propertyName) =>
+        previous === undefined ? undefined : previous[propertyName], object);
 };
