@@ -7,14 +7,16 @@
  * @param {string} path - property path.
  * @param {*} value - The value to be set.
  * @returns {object}
+ * @throws {InvalidArgumentException);
+    }}
  */
 const set = (obj, path, value) => {
-
-    const lineSplit = (typeof path === 'string' && path.startsWith('.')) ? path.slice(1) : path;
 
     if (typeof obj !== 'object' || typeof path !== 'string') {
         throw new Error("No correct parametr's");
     }
+
+    const lineSplit = (typeof path === 'string' && path.startsWith('.')) ? path.slice(1) : path;
 
     const keys = lineSplit.split('.');
     const lastKey = keys.pop();
@@ -29,4 +31,3 @@ const set = (obj, path, value) => {
 
     return obj;
 }
-
