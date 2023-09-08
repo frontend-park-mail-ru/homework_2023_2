@@ -38,6 +38,10 @@ QUnit.module('Тестируем функцию minmax', function () {
 
 	QUnit.test('minmax корректно работает с разными типами данных', function (assert) {
 		assert.deepEqual(minmax('" " 1 1e-2 2 3.4 [7]'), [ 1e-2 , 3.4] );
-		assert.deepEqual(minmax('undefined NaN'), [ undefined, undefined ]);
+		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
+		assert.deepEqual(minmax(NaN), [ undefined, undefined ]);
+		assert.deepEqual(minmax({}), [ undefined, undefined ]);
+		assert.deepEqual(minmax([1, 2, 3, 4]), [ undefined, undefined ]);
+		assert.deepEqual(minmax(new Date()), [ undefined, undefined ]);
 	});
 });

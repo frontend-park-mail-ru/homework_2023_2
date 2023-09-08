@@ -1,15 +1,22 @@
 'use strict';
 
 /**
- * @param inputLine //  Input string
- * @returns {*[]|number[]} //  Array in which the first element is the minimum number, the second element is the maximum
+ * the function finds the minimum and maximum values in a string
+ * @param {string} inputLine - The string of numbers from where it finds minimum and maximum values.
+ * @returns {Array} - An array containing the minimum and maximum values.
+ * If the input is empty or contains no numbers, returns [undefined, undefined].
  */
 
-const minmax = inputLine => {
-    const numbersLine = inputLine.split(' ').map(Number).filter(word => !isNaN(word));
+const minmax = (inputLine) => {
+    if (!inputLine || typeof inputLine !== "string") {
+        return [undefined, undefined]
+    }
+    const numbersLine = inputLine.split(' ').reduce((accumulator, word) => {
+            if (!isNaN(word)) {
+                accumulator.push(Number(word));
+            }
+            return accumulator;
+        }, []);
 
-    const minValue = Math.min(...numbersLine);
-    const maxValue = Math.max(...numbersLine);
-
-    return (!inputLine || numbersLine.length === 0) ? [undefined, undefined] : [minValue, maxValue];
+    return numbersLine.length == 0 ? [undefined, undefined] : [Math.min(...numbersLine), Math.max(...numbersLine)];
 }
