@@ -1,12 +1,6 @@
 //Дмитриев Александр Web-22
 'use strict';
 
-/**
- * Перевод из римских цифр в арабские и наоборот.
- * @param {number|string} input - Изначальное число
- * @returns {number|string} - Вернет результат перевода
- */
-
 const romanNum = [
     {value: 1000, symbol: 'M'},
     {value: 900, symbol: 'CM'},
@@ -23,6 +17,11 @@ const romanNum = [
     {value: 1, symbol: 'I'},
 ];
 
+/**
+ * Перевод из римских цифр в арабские.
+ * @param {string} input - Изначальное число
+ * @returns {number} - Вернет результат перевода
+ */
 const romanToNumber = input => {
     let out = 0;
 
@@ -40,6 +39,11 @@ const romanToNumber = input => {
     return out;
 }
 
+/**
+ * Перевод из арабских цифр в римские.
+ * @param {number} input - Изначальное число
+ * @returns {string} - Вернет результат перевода
+ */
 const numberToRoman = input => {
     return romanNum.reduce((res, num) => {
         while (input >= num.value) {
@@ -50,6 +54,11 @@ const numberToRoman = input => {
     }, '');
 }
 
+/**
+ * Перевод из римских цифр в арабские и наоборот.
+ * @param {number|string} input - Изначальное число
+ * @returns {number|string} - Вернет результат перевода
+ */
 const roman = input => {
     //Проверка символов
     if (!/^[IVXLCDM\d]+$/i.test(input) || typeof input !== 'number' && typeof input !== 'string') {
