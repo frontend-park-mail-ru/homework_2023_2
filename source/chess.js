@@ -15,3 +15,4 @@ const chess = (N) => {
   }
   return chessboard;
 };
+
