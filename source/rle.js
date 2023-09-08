@@ -1,19 +1,28 @@
 'use strict';
 
-const rle = (input) => {
-    let result = '';
-    let count = 0;
+/**
+ * This functions performs Run Length Encoding compression on the input string
+ * @param {string} input 
+ * @returns {string}
+ */
+
+const rle = input => {
+    let count = 1;
     let currChar = '';
-    for (let i = 0; i < input.length; i++) {
-        if (input.charAt(i) == currChar)
-            count++;
-        else {
-            result += (count > 1 ? String(count) : '');
-            currChar = input.charAt(i);
-            result += currChar;
-            count = 1;
-        }
-    }
+    let result = input.split('').reduce(
+        (accumulator, currentValue) => {
+            if (currentValue === currChar) {
+                count++;
+            }
+            else {
+                accumulator += ((count > 1) ? String(count) : '') + currentValue;
+                currChar = currentValue;
+                count = 1;
+            }
+            return accumulator;
+        },
+        ''
+    )
     result += (count > 1 ? String(count) : '');
     return result;
 };
