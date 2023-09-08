@@ -97,9 +97,9 @@ QUnit.module('Тестируем функцию set', function () {
 	});
 
 	QUnit.test('set работает правильно на некорректных данных', function (assert) {
-		var err = new Error("No correct ")
-		assert.deepEqual(set({}, 12, 32), err);
-		assert.deepEqual(set('', ".func.fd", 32), err);
+		var err = new Error("No correct parametr's")
+		assert.throws(function() { set({}, 12, 32); }, err);
+		assert.throws(function() { set('', ".func.fd", 32); }, err);
 	});
 	
 	QUnit.test('set работает правильно с path без точки', function (assert) {

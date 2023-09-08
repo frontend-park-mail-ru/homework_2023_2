@@ -6,31 +6,26 @@
  * @param {object} obj - given object.
  * @param {string} path - property path.
  * @param {*} value - The value to be set.
- * @returns {Error|object}
+ * @returns {object}
  */
 const set = (obj, path, value) => {
 
+    const lineSplit = (typeof path === 'string' && path.startsWith('.')) ? path.slice(1) : path;
+
     if (typeof obj !== 'object' || typeof path !== 'string') {
-        return new Error("No correct parametr's")
+        throw new Error("No correct parametr's");
     }
 
-    if (path.startsWith('.')) {
-        path = path.slice(1)
-    }
+    const keys = lineSplit.split('.');
+    const lastKey = keys.pop();
 
-    const keys = path.split('.');
-    
-    keys.reduce((current, key, index) => {
+    keys.reduce((current, key) => {
         if (!current[key]) {
-            current[key] = {}
-        }
-
-        if (index === keys.length - 1) {
-            current[key] = value
+            current[key] = {};
         }
 
         return current[key];
-    }, obj);
+    }, obj)[lastKey] = value;
 
     return obj;
 }
