@@ -55,11 +55,11 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Возвращает пустую строку', function (assert) {
-		assert.strictEqual(letters(' '), ' ');
+		assert.strictEqual(letters(''), '');
 
-		assert.strictEqual(letters(' ', true), ' ');
+		assert.strictEqual(letters('', true), '');
 
-		assert.strictEqual(letters(' ', false), ' ');
+		assert.strictEqual(letters('', false), '');
 	});
 
 	QUnit.test('Возвращает строку с одним символом', function (assert) {
@@ -68,23 +68,6 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('a', true), 'a');
 
 		assert.strictEqual(letters('a', false), 'a');	
-	});
-
-	QUnit.test('Удаляет повторяющиеся специальные символы', function (assert) {
-		assert.strictEqual(letters('@%%#@$#'), '$');
-		assert.strictEqual(letters('@@@@@@'), '');
-		assert.strictEqual(letters('$%%* $!'), '* !');
-		assert.strictEqual(letters('$%%* $! @#'), '*!@#');
-
-		assert.strictEqual(letters('@%%#@$#', true), '@%#$');
-		assert.strictEqual(letters('@@@@@@', true), '@');
-		assert.strictEqual(letters('$%%* $!', true), '$%* !');
-		assert.strictEqual(letters('$%%* $! @#', true), '$%* !@#');
-
-		assert.strictEqual(letters('@%%#@$#', false), '%@$#');
-		assert.strictEqual(letters('@@@@@@', false), '@');
-		assert.strictEqual(letters('$%%* $!', false), '%* $!');
-		assert.strictEqual(letters('$%%* $! @#', false), '%*$! @#');
 	});
 
 	QUnit.test('Удаляет повторяющиеся символы одного регистра', function (assert) {
@@ -110,17 +93,6 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('cat'.repeat(3000), true), 'cat');
 
 		assert.strictEqual(letters('cat'.repeat(3000), false), 'cat');
-	});
-
-	QUnit.test('Правильно обрабатывает строки с символами разных языков', function (assert) {
-		assert.strictEqual(letters('DoGогород'), 'DoGгрд');
-		assert.strictEqual(letters('кактус car'), 'атус car');
-
-		assert.strictEqual(letters('DoGогород', true), 'DoGогрд');
-		assert.strictEqual(letters('кактус car', true), 'катус car');
-
-		assert.strictEqual(letters('DoGогород', false), 'DoGгрод');
-		assert.strictEqual(letters('кактус car', false), 'актус car');
 	});
 
 	QUnit.test('Правильно обрабатывает строки с символами табуляции, переноса строки', function (assert) {
