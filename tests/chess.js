@@ -1,6 +1,31 @@
 'use strict';
 
 QUnit.module('Тестируем функцию chess', function () {
+
+	QUnit.test('Передача в качестве длины шахматной доски null', function (assert) {
+		assert.strictEqual(chess(null), null);
+		assert.strictEqual(chess('null'), null);
+	});
+
+	QUnit.test('Передача в качестве длины шахматной доски NaN', function (assert) {
+		assert.strictEqual(chess(NaN), null);
+		assert.strictEqual(chess('NaN'), null);
+	});
+
+	QUnit.test('Передача в качестве длины шахматной доски bool', function (assert) {
+		assert.strictEqual(chess(true), null);
+		assert.strictEqual(chess('true'), null);
+	});
+
+	QUnit.test('Передача в качестве длины шахматной доски массив', function (assert) {
+		assert.strictEqual(chess([1, 2]), null);
+	});
+
+	QUnit.test('Передача в качестве длины шахматной доски undefined', function (assert) {
+		let x
+		assert.strictEqual(chess(x), null);
+	});
+
 	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {
 		assert.strictEqual(chess(1), null);
 		assert.strictEqual(chess('1'), null);
