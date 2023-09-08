@@ -158,7 +158,7 @@ QUnit.module('Тестируем функцию set', function () {
 			foo: {
 				bar: {
 					zoo: {
-						array: [1,2,3],
+						array: [1, 2, 3],
 						string: 'string'
 					}
 				}
@@ -166,4 +166,17 @@ QUnit.module('Тестируем функцию set', function () {
 		};
 		assert.deepEqual(obj, set({}, 'foo', obj.foo))
 	})
+
+	QUnit.test('set работает правильно, когда одно из вложенных свойств не объект', function (assert) {
+		const obj = {
+			lol: () => null,
+		};
+		const newObj = set(obj, 'lol.kek', 'value');
+		const expected = {
+			lol: {
+				kek: 'value',
+			}
+		};
+		assert.deepEqual(newObj, expected);
+	});
 });

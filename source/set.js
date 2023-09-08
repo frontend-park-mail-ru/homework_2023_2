@@ -8,33 +8,24 @@
  */
 const set = (object, path, value) => {
 
-    if (object === null || object === undefined || typeof object !== 'object' || typeof path !== 'string') {
+    if (!object || typeof object !== 'object' || typeof path !== 'string') {
         return object;
     }
 
-    const keys = path.split('.').filter(key => key)
+    const keys = path.split('.').filter(key => key);
+    const lastKey = keys.pop(); // Удаляем последний элемент и сохраняем его
 
-    if (keys.length === 0) {
+    if (!keys.length) {
+        object[lastKey] = value;
         return object;
     }
-    else if (keys.length === 1) {
-        object[keys[0]] = value;
-        return object;
-    }
-    else {
-        /**
-         * Использование ссылки current на object нужно для того,
-         * чтобы я мог последовательно двигаться по исходному объекту
-         */
-        let current = object;
-        keys.forEach((key, i) => {
-            if (i === keys.length - 1) {
-                current[key] = value;
-            } else if (!current[key] || typeof current[key] !== 'object') {
-                current[key] = {};
-            }
-            current = current[key];
-        })
-    }
+
+    keys.reduce((acc, key) => {
+        if (!acc[key] || typeof acc[key] !== 'object') {
+            acc[key] = {};
+        }
+        return acc[key];
+    }, object)[lastKey] = value;
+
     return object;
 };
