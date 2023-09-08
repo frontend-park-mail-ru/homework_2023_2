@@ -71,7 +71,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 	QUnit.test('Функция работает с пустыми строками', function (assert) {
 		const input = ['кот', '', 'ток', '', ' ', ' '];
-		const output = [];
+		const output = [['кот', 'ток']];
 
 		assert.deepEqual(anagram(input), output);
 	});
