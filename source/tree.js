@@ -20,7 +20,7 @@ const invalidNumberValue = value => !value || !isFinite(value) || isNaN(value);
 const myPadStart = (line, finalLength, symbolToAdd=' ') =>
 {
     if(invalidNumberValue(finalLength) || typeof line !== 'string')
-        return line;
+        return '';
 
 
     while(line.length<finalLength)
@@ -44,7 +44,7 @@ const myPadStart = (line, finalLength, symbolToAdd=' ') =>
 const myPadEnd = (line, finalLength, symbolToAdd=' ') =>
 {
     if(invalidNumberValue(finalLength)||typeof line !== 'string')
-        return line;
+        return '';
 
     while(line.length<finalLength)
     {
@@ -67,7 +67,7 @@ const myRepeat = (line, repeats) =>
 {
 
     if(invalidNumberValue(repeats)||typeof line!=='string')
-        return line;
+        return '';
 
     let repeatedString = '';
     for(let i = 0;i<repeats;++i)
