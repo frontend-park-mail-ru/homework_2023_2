@@ -17,7 +17,7 @@ const sorting = function (objects, keys) {
                     return compare;
                 }
             }
-            if (typeof propertyA === 'number' && keys.includes(key)) {
+            if (typeof propertyA === 'number') {
                 if (propertyA !== propertyB) {
                     return propertyA - propertyB;
                 }
