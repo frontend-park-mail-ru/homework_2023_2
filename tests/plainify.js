@@ -42,4 +42,101 @@ QUnit.module('Тестируем функцию plainify', function () {
 
 		assert.deepEqual(plainify(nested2), plain2);
 	});
+
+	QUnit.test('plainify работает правильно с массивами', function (assert) {
+		const nested1 = {
+			deep: {
+				array: [7, 17, 28, 3, 5],
+				object: {
+					'isInvented': null
+				}
+			}
+		};
+
+		const plain1 = {
+			'deep.array.0': 7,
+			'deep.array.1': 17,
+			'deep.array.2': 28,
+			'deep.array.3': 3,
+			'deep.array.4': 5,
+			'deep.object.isInvented': null
+		};
+
+		assert.deepEqual(plainify(nested1), plain1);
+
+		const nested2 = {
+			deep: {
+				array: [
+					{
+						types: {
+							first: 'Number',
+							second: 'String'
+						}
+					},
+					{
+						test: {
+							task1: {
+								isCorrect: true
+							},
+							task2: {
+								availableMarks: [4, 5]
+							}
+						}
+					}			
+				],
+				nested: {
+					deeper: {
+						length: 2,
+						width: 5,
+						description: 'pool'
+					},
+					size: 5
+				}
+			}
+		};
+
+		const plain2 = {
+			'deep.array.0.types.first': 'Number',
+			'deep.array.0.types.second': 'String',
+			'deep.array.1.test.task1.isCorrect': true,
+			'deep.array.1.test.task2.availableMarks.0': 4,
+			'deep.array.1.test.task2.availableMarks.1': 5,
+			'deep.nested.deeper.length': 2,
+			'deep.nested.deeper.width': 5,
+			'deep.nested.deeper.description': 'pool',
+			'deep.nested.size': 5
+		};
+
+		assert.deepEqual(plainify(nested2), plain2);
+	});
+
+	QUnit.test('plainify работает правильно с undefined, Nan, null', function (assert) {
+		const nested = {
+			options: {
+				name: undefined,
+				size: NaN,
+				isAvailable: {
+					'forAdmin': true,
+					'forUser': null
+				}
+			},
+		};
+
+		const plain = {
+			'options.name': undefined,
+			'options.size': NaN,
+			'options.isAvailable.forAdmin': true,
+			'options.isAvailable.forUser': null
+		};
+
+		assert.deepEqual(plainify(nested), plain);
+	});
+
+	QUnit.test('plainify возвращает ошибку, если аргумент - не объект', function (assert) {
+		assert.deepEqual(plainify(5), TypeError);
+		assert.deepEqual(plainify('notAnObject'), TypeError);
+		assert.deepEqual(plainify(undefined), TypeError);
+		assert.deepEqual(plainify(NaN), TypeError);
+		assert.deepEqual(plainify(null), TypeError);
+	});
 });
