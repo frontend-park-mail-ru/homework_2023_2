@@ -10,7 +10,7 @@
  * @return {string} words, строка, из которой удалены неуникальные символы.
  */
 const letters = (words, parameter = null) => {
-    if (typeof words !== "string") {
+    if (typeof words !== "string" || words instanceof String) {
         console.log("incorrect type of param words");
         return '';
     }
