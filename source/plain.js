@@ -6,19 +6,17 @@
  * @returns {Array} Результирующий одномерный массив, содержащий в себе все элементы вложенных
  */
 const plain = function (array) {
-    if (!(array instanceof Array)) {
+    if (!Array.isArray(array)) {
         return array;
     }
 
-    const res = [];
-
-    array.forEach((elm) => {
-        if (elm instanceof Array) {
-            res.push(...plain(elm));
+    const res = array.reduce((cur, elm) => {
+        if (Array.isArray(elm)) {
+            return [...cur, ...plain(elm)];
         } else {
-            res.push(elm);
+            return [...cur, elm];
         }
-    })
+    }, []);
 
     return res;
 };
