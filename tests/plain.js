@@ -13,6 +13,12 @@ QUnit.module('Тестируем функцию plain', function () {
         assert.deepEqual(plain([[1, 2, 3, 4]]), [1, 2, 3, 4]);
     });
 
+    QUnit.test('Работает с единственным массивом', function (assert) {
+        assert.deepEqual(plain([[[[[[]]]]]]), []);
+        assert.deepEqual(plain([[[42]]]), [42]);
+        assert.deepEqual(plain([[[[1, 2, 3, 4]]]]), [1, 2, 3, 4]);
+    });
+
     QUnit.test('Работает со смешанными значениями', function (assert) {
         assert.deepEqual(plain([[], 42]), [42]);
         assert.deepEqual(plain([[42], 0]), [42, 0]);
