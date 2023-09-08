@@ -23,6 +23,26 @@ const romanNum = [
     {value: 1, symbol: 'I'},
 ];
 
+const romanToNumber = (input, romNum) => {
+    let out = 0;
+
+    for (let i = 0; i < input.length; i++) {
+        romNum[input[i+1]] && romNum[input[i]] < romNum[input[i+1]] ? out -= romNum[input[i]] : out += romNum[input[i]];
+    }
+
+    return out;
+}
+
+const numberToRoman = input => {
+    return romanNum.reduce((res, num) => {
+        while (input >= num.value) {
+            res += num.symbol;
+            input -= num.value;
+        }
+        return res;
+    }, '');
+}
+
 const roman = input => {
     //Проверка символов
     if (!/^[IVXLCDM\d]+$/i.test(input) || typeof input !== 'number' && typeof input !== 'string') {
@@ -36,32 +56,20 @@ const roman = input => {
             throw "Error";
         }
 
-        return romanNum.reduce((res, num) => {
-            while (input >= num.value) {
-                res += num.symbol;
-                input -= num.value;
-            }
-            return res;
-        }, '');
+        return numberToRoman(input);
 
     } else {
         //Roman to Arabic
 
-        input = input.toUpperCase()
-
-        let out = 0;
+        input = input.toUpperCase();
 
         const romNum = romanNum.reduce(function (result, romanNum) {
             return {
                 ...result,
                 [romanNum.symbol]:romanNum.value,
             }
-        }, {})
+        }, {});
 
-        for (let i = 0; i < input.length; i++) {
-            romNum[input[i+1]] && romNum[input[i]] < romNum[input[i+1]] ? out -= romNum[input[i]] : out += romNum[input[i]];
-        }
-
-        return out
+        return romanToNumber(input, romNum);
     }
 }
