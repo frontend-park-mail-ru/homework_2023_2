@@ -1,6 +1,8 @@
 'use strict';
 
 QUnit.module('Тестируем функцию inverse', function () {
+
+	
 	QUnit.test('Функция работает с пустым массивом', function (assert) {
 		assert.deepEqual(inverse([]), []);
 	});
@@ -32,5 +34,27 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -2), [ 3, 2, 1, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -5), [ 1, 2, 3, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
+	});
+
+/*
+Дополнительные тесты
+*/
+
+	QUnit.test('Все элементы функции должны быть инициализированы', function (assert) {
+		assert.deepEqual(inverse([undefined, 2, 3, 4, 5 ]), []);
+		assert.deepEqual(inverse([1, 2, 3, 4, undefined]), []);
+
+	});
+
+	QUnit.test('Функция работает правильно с повторяющимися элементами', function (assert) {
+		assert.deepEqual(inverse([1, 1, 1, 1, 1]), [1, 1, 1, 1, 1]);
+		assert.deepEqual(inverse([1, 1, 1, 1, 2]), [2, 1, 1, 1, 1]);
+		assert.deepEqual(inverse([1, 1, 1, 2, 2]), [2, 2, 1, 1, 1]);
+	});
+
+	QUnit.test('Функция работает правильно с отрицательными элементами', function (assert) {
+		assert.deepEqual(inverse([ -1, -2, -3, -4, -5 ]),[ -5, -4, -3, -2, -1 ]);
+		assert.deepEqual(inverse([ -1, -2, -3, -3, -3 ]),[ -3, -3, -3, -2, -1 ]);
+
 	});
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 QUnit.module('Тестируем функцию max', function () {
-	QUnit.test('Возвращает максимальное из трёх положительных чисел', function (assert) {
+	QUnit.test('Возвращает максимальное из трёх положительных чисел1s', function (assert) {
 		assert.strictEqual(max([ 1, 2, 3 ]), 3, 'max([1, 2, 3]) === 3');
 		assert.strictEqual(max([ 3, 2, 1 ]), 3, 'max([3, 2, 1]) === 3');
 	});
