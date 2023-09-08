@@ -136,4 +136,56 @@ QUnit.module("Тестируем функцию zip", function () {
       );
     }
   );
+
+  QUnit.test("Функция правильно работает с методами", function (assert) {
+    function func() {
+      return 0;
+    }
+    assert.deepEqual(zip({ func }), { func });
+    const obj1 = {
+      func() {
+        return 0;
+      },
+    };
+    assert.deepEqual(zip(obj1), obj1);
+
+    function func1() {
+      return this.name;
+    }
+    function func2() {
+      return this.value;
+    }
+    const obj2 = {
+      name: "age",
+      func1,
+    };
+    const obj3 = {
+      value: 4,
+      func2,
+    };
+    const obj23 = {
+      name: "age",
+      func1,
+      value: 4,
+      func2,
+    };
+    assert.deepEqual(zip(obj2, obj3), obj23);
+
+    function func3() {
+      return 0;
+    }
+    function func4() {
+      return 1;
+    }
+    const obj4 = {
+      func: func3,
+    };
+    const obj5 = {
+      func: func4,
+    };
+    const obj45 = {
+      func: func3,
+    };
+    assert.deepEqual(zip(obj4, obj5), obj45);
+  });
 });
