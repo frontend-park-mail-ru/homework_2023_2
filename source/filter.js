@@ -1,11 +1,17 @@
 'use strict';
 
+/** @function */
 const filter = (input, validTags) => {
-    const tags = validTags?.join('|');
+    if (!Array.isArray(validTags)) {
+        console.error("Error: input data is not array");
+        return;
+    }
 
-    const ltRegExp = new RegExp(`\<(?!(\/?)(${tags})[\s\>]+)`, "g"),
-          gtRegExp = new RegExp(`(?<!(\/?)[</]+(${tags}))\>`, "g");
-          
+    const tags = validTags.join('|');
+
+    const ltRegExp = new RegExp(`\<(?!(\/?)(${tags})[\\>]+)`, "gi"),
+          gtRegExp = new RegExp(`(?<!(\/?)[</]+(${tags}))\>`, "gi");
+
     return input
         .replaceAll(`&`, "&amp;")
         .replaceAll(`"`, "&quot;")
