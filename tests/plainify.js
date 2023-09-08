@@ -1,23 +1,22 @@
 'use strict';
 
 QUnit.module('Тестируем функцию plainify', function () {
-	QUnit.test('plainify работает правильно', function (assert) {
+	QUnit.test('работает правильно c простыми объектами', function (assert) {
 		assert.deepEqual(plainify({foo: 'bar', baz: 42}), {'foo': 'bar', 'baz': 42});
-
 		assert.deepEqual(plainify({}), {});
+	});
 
+	QUnit.test('работает правильно с вложенными объектами', function (assert) {
 		const nested1 = {
 			deep: {
 				foo: 'bar',
 				baz: 42
 			}
 		};
-
 		const plain1 = {
 			'deep.foo': 'bar',
 			'deep.baz': 42
 		};
-
 		assert.deepEqual(plainify(nested1), plain1);
 
 		const nested2 = {
@@ -34,66 +33,75 @@ QUnit.module('Тестируем функцию plainify', function () {
 				}
 			}
 		};
-
 		const plain2 = {
 			'deep.foobar': 0,
 			'deep.nested.object.fields.foo': 42,
 			'deep.nested.object.fields.bar': 42,
 			'deep.nested.object.fields.baz': 42
 		};
-
 		assert.deepEqual(plainify(nested2), plain2);
+	});
 
-		const nested3 = {
+	QUnit.test('работает правильно с вложенными массивами', function (assert) {
+		const nested1 = {
 			foo: {
-				bar: {
-					arr: [0, 0, -5, 17],
-					word: 'home',
-					foo: 'have'
-				},
-				word: 'door' 
-			},
-			word: 'apple',
+				arr: [0, 0, -5, 17],
+				word: 'apple'
+			}
 		};
-
-		const plain3 = {
-			'foo.bar.arr.0': 0,
-			'foo.bar.arr.1': 0,
-			'foo.bar.arr.2': -5,
-			'foo.bar.arr.3': 17,
-			'foo.bar.word': 'home',
-			'foo.bar.foo': 'have',
-			'foo.word': 'door',
-			'word': 'apple'
+		const plain1 = {
+			'foo.arr.0': 0,
+			'foo.arr.1': 0,
+			'foo.arr.2': -5,
+			'foo.arr.3': 17,
+			'foo.word': 'apple',
 		};
-
-		assert.deepEqual(plainify(nested3), plain3);
-
-		const nested4 = {
+		assert.deepEqual(plainify(nested1), plain1);
+		
+		const nested2 = {
 			lists: [
 				{
 					text: {
-						count: 2,
 						words: ['green', 'blue']
 					}
 				},
 				{
 					text: {
-						count: 1,
 						words: ['class']
 					}
 				}
 			]
 		};
-
-		const plain4 = {
-			'lists.0.text.count': 2,
+		const plain2 = {
 			'lists.0.text.words.0': 'green',
 			'lists.0.text.words.1': 'blue',
-			'lists.1.text.count': 1,
 			'lists.1.text.words.0': 'class'
 		};
+		assert.deepEqual(plainify(nested2), plain2);
+	});
 
-		assert.deepEqual(plainify(nested4), plain4);
+	QUnit.test('работает правильно при повторении свойсв вложенными объектами', function (assert) {
+		const nested = {
+			foo: {
+				foo: {
+					foo: {
+						foo: 1
+					}
+				}
+			}
+		};
+		const plain = {
+			'foo.foo.foo.foo': 1
+		};
+		assert.deepEqual(plainify(nested), plain);
+	});
+
+	QUnit.test('выбрасывает исключение при передаче в функцию не объекта', function (assert) {
+		assert.throws(()=>{plainify('row')}, TypeError);
+		assert.throws(()=>{plainify(0)}, TypeError);
+		assert.throws(()=>{plainify(null)}, TypeError);
+		assert.throws(()=>{plainify(undefined)}, TypeError);
+		assert.throws(()=>{plainify(Infinity)}, TypeError);
+		assert.throws(()=>{plainify(NaN)}, TypeError);
 	});
 });
