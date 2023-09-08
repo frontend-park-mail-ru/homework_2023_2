@@ -48,4 +48,18 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.baz.length'), undefined);
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
 	});
+
+	QUnit.test('get правильно работает с невалидными символами', function (assert) {
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+
+		assert.strictEqual(get(object, ' '), undefined);
+		assert.strictEqual(get(object, '   '), undefined);
+		assert.strictEqual(get(object, '...'), undefined);
+		assert.strictEqual(get(object, '.^.^.^'), undefined);
+		assert.strictEqual(get(object, '.foo.*'), undefined);
+	});
 });
