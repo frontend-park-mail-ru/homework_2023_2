@@ -1,6 +1,6 @@
 'use strict';
 
-/* This is a function to compress a string using the RLE algorithm */
+/** This is a function to compress a string using the RLE algorithm */
 const rle = (string='') => {
     let result = '';
     let count = 1;
