@@ -19,7 +19,7 @@ function getNumberType(s) {
 
 /* Convert roman to int and vice versa
 *
-* @param {*} s - user expression
+* @param {string|number} s - string expression roman and int to convert roman to int and int to roman or numeric expression int only to convert int to roman
 * @returns {string|number}  returns a number if the input expression is a Roman number, and returns a string if the input expression is incorrect or an int number
 */
 function roman (s) {
