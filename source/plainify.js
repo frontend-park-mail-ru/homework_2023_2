@@ -4,6 +4,7 @@
  * The function of adding a prefix to the properties of an object.
  * @param {Object} obj - Source object.
  * @param {string} prefix - Prefix to add to object properties.
+ * @returns {Object} The plain object whose properties all have the specified prefix.
  */
 const rec_build = (obj, prefix) => {
     return Object.entries(obj).reduce((res_obj, [key, val]) => {
@@ -15,9 +16,10 @@ const rec_build = (obj, prefix) => {
 /**
  * Converting an object to plain.
  * @param {Object} object - Source object.
+ * @returns {Object} The plain object.
  */
 const plainify = object => {
-    if (!(object instanceof Object)) {
+    if (Object.prototype.toString.call(object) !== '[object Object]') {
         throw new TypeError('expected Object');
     }
     return rec_build(object, '');

@@ -96,6 +96,27 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.deepEqual(plainify(nested), plain);
 	});
 
+	QUnit.test('работает правильно при специальных значениях вложенных свойств', function (assert) {
+		const nested = {
+			foo: {
+				field1: null,
+				field2: undefined,
+				field3: Infinity,
+				field4: 'string',
+				field5: {}
+			},
+			word: 'car'
+		};
+		const plain = {
+			'foo.field1': null,
+			'foo.field2': undefined,
+			'foo.field3': Infinity,
+			'foo.field4': 'string',
+			'word': 'car'
+		};
+		assert.deepEqual(plainify(nested), plain);
+	});
+
 	QUnit.test('выбрасывает исключение при передаче в функцию не объекта', function (assert) {
 		assert.throws(()=>{plainify('row')}, TypeError);
 		assert.throws(()=>{plainify(0)}, TypeError);
@@ -103,5 +124,8 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.throws(()=>{plainify(undefined)}, TypeError);
 		assert.throws(()=>{plainify(Infinity)}, TypeError);
 		assert.throws(()=>{plainify(NaN)}, TypeError);
+		assert.throws(()=>{plainify(new String())}, TypeError);
+		assert.throws(()=>{plainify(new Array())}, TypeError);
+		assert.throws(()=>{plainify(Math)}, TypeError);
 	});
 });
