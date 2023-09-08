@@ -1,11 +1,23 @@
-const rle = function (s) {
-    for (var i = 0, a = 0, b = ''; i <= s.length; i++) {
-        if (s.charAt(i) == s.charAt(i + 1))
-            a++;
-        else {
-            b += s.charAt(i) + (a ? a + 1 : '');
-            a = 0;
-        }
+'use strict';
+
+/**
+ * Возвращает строку, сжатую по методу кодирования длин серий
+ *
+ * @param {string} stringToCompress Строку, которую надо сжать
+ * @return {string} сжатая строка 
+ */
+function rle(stringToCompress) {
+    // Проверка на тип, единственный вариант который работал
+    if (!(typeof stringToCompress === 'string')){
+        return null
     }
-    return b;
+    // RegExpr, обозначающее все группы повторяющихся символов
+    const regex = new RegExp(/(.)\1+/, 'g')
+
+    // Функция, заменяющая найденные группы их первым символом и длиной группы
+    const replacementFunc = function(match, symbol1) {
+        return symbol1 + match.length;
+    }
+
+    return stringToCompress.replaceAll(regex, replacementFunc);
 }
