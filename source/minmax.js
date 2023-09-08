@@ -8,7 +8,7 @@
  */
 
 const minmax = (inputLine) => {
-    if (!inputLine || typeof inputLine !== "string") {
+    if (!inputLine || typeof inputLine !== "string" || inputLine instanceof String) {
         return [undefined, undefined]
     }
     const numbersLine = inputLine.split(' ').reduce((accumulator, word) => {
@@ -18,5 +18,5 @@ const minmax = (inputLine) => {
             return accumulator;
         }, []);
 
-    return numbersLine.length == 0 ? [undefined, undefined] : [Math.min(...numbersLine), Math.max(...numbersLine)];
+    return !numbersLine.length ? [undefined, undefined] : [Math.min(...numbersLine), Math.max(...numbersLine)];
 }
