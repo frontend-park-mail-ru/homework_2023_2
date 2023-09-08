@@ -23,11 +23,18 @@ const romanNum = [
     {value: 1, symbol: 'I'},
 ];
 
-const romanToNumber = (input, romNum) => {
+const romanToNumber = input => {
     let out = 0;
 
+    const romNum = romanNum.reduce(function (result, romanNum) {
+        return {
+            ...result,
+            [romanNum.symbol]: romanNum.value,
+        }
+    }, {});
+
     for (let i = 0; i < input.length; i++) {
-        romNum[input[i+1]] && romNum[input[i]] < romNum[input[i+1]] ? out -= romNum[input[i]] : out += romNum[input[i]];
+        romNum[input[i + 1]] && romNum[input[i]] < romNum[input[i + 1]] ? out -= romNum[input[i]] : out += romNum[input[i]];
     }
 
     return out;
@@ -63,13 +70,6 @@ const roman = input => {
 
         input = input.toUpperCase();
 
-        const romNum = romanNum.reduce(function (result, romanNum) {
-            return {
-                ...result,
-                [romanNum.symbol]:romanNum.value,
-            }
-        }, {});
-
-        return romanToNumber(input, romNum);
+        return romanToNumber(input);
     }
 }
