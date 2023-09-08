@@ -7,6 +7,9 @@
  */
 
 const rle = input => {
+    if (typeof input != "string") {
+        throw new TypeError(`Improper value type provided! (Must be 'string', ${typeof input} provided instead`);
+    }
     let count = 1;
     let currChar = '';
     let result = input.split('').reduce(
