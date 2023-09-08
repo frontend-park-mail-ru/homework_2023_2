@@ -60,7 +60,7 @@ QUnit.module('Тестируем функцию letters', function () {
 
 	QUnit.test('Корректно реагирует на неправильные данные', function (assert) {
 		assert.strictEqual(letters(234567890), '');
-		assert.strictEqual(letters(['pr', 'r', 'o', 't', 'o', 't', 'y', 'p', 'e']), 'rye');
+		assert.strictEqual(letters(['p', 'r', 'o', 't', 'o', 't', 'y', 'p', 'e']), '');
 		assert.strictEqual(letters(null), '');
 		assert.strictEqual(letters(NaN), '');
 		assert.strictEqual(letters(undefined), '');
