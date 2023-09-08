@@ -12,8 +12,7 @@ let get = (object, pathToProperty) => {
 
     let propertyNames = pathToProperty.slice(1).split('.');
     let propertyValue = propertyNames.reduce(function(previous, propertyName) {
-        if (previous === undefined) return undefined;
-        return previous[propertyName];
+        return previous === undefined ? undefined : previous[propertyName];
     }, object);
 
     return propertyValue;
