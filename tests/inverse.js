@@ -34,19 +34,19 @@ QUnit.module('Тестируем функцию inverse', function () {
         assert.deepEqual(inverse([1, 2, 3, 4, 5], -15), [1, 2, 3, 4, 5]);
     });
 
-    QUnit.test('Функция корректно обрабатывает некорректный ввод массива', function (assert) {
-        assert.strictEqual(inverse(null), "Arg1 is not an Array");
-        assert.strictEqual(inverse({ a: 1, b: 2 }), "Arg1 is not an Array");
-        assert.strictEqual(inverse(22), "Arg1 is not an Array");
-        assert.strictEqual(inverse("abc"), "Arg1 is not an Array");
-        assert.strictEqual(inverse(false), "Arg1 is not an Array");
+    QUnit.test('Функция бросает TypeError на некорректный ввод массива', function (assert) {
+        assert.throws(() => inverse(null), new TypeError('Arg1 is not an Array'));
+        assert.throws(() => inverse({ a: 1, b: 2 }), new TypeError('Arg1 is not an Array'));
+        assert.throws(() => inverse(22), new TypeError('Arg1 is not an Array'));
+        assert.throws(() => inverse("abc"), new TypeError('Arg1 is not an Array'));
+        assert.throws(() => inverse(false), new TypeError('Arg1 is not an Array'));
     });
 
-    QUnit.test('Функция корректно обрабатывает некорректный ввод отступа', function (assert) {
-        assert.strictEqual(inverse([1, 2, 3], null), "Arg2 is not an Integer");
-        assert.strictEqual(inverse([1, 2, 3], { a: 1, b: 2 }), "Arg2 is not an Integer");
-        assert.strictEqual(inverse([14], Infinity), "Arg2 is not an Integer");
-        assert.strictEqual(inverse([42, 21], "abc"), "Arg2 is not an Integer");
-        assert.strictEqual(inverse(['a', 'b'], false), "Arg2 is not an Integer");
+    QUnit.test('Функция бросает TypeError на некорректный ввод отступа', function (assert) {
+        assert.throws(() => inverse([1, 2, 3], null), new TypeError("Arg2 is not an Integer"));
+        assert.throws(() => inverse([1, 2, 3], { a: 1, b: 2 }), new TypeError("Arg2 is not an Integer"));
+        assert.throws(() => inverse([14], Infinity), new TypeError("Arg2 is not an Integer"));
+        assert.throws(() => inverse([42, 21], "abc"), new TypeError("Arg2 is not an Integer"));
+        assert.throws(() => inverse(['a', 'b'], false), new TypeError("Arg2 is not an Integer"));
     });
 });
