@@ -46,6 +46,10 @@ QUnit.module('Тестируем функцию chess', function () {
 		const expected = chess(-89); 
 		assert.strictEqual(expected, null);
 	  });
+	 QUnit.test('Строку нельзя использовать как входные данные', function (assert) {
+		const result = chess('ABRAKADABRA'); 
+		assert.strictEqual(result, null, 'Строка не пройдёт, только числа');
+  	});
 
 });
 
