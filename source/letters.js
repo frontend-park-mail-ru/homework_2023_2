@@ -10,34 +10,29 @@
  * @return {string} words, строка, из которой удалены неуникальные символы.
  */
 const letters = (words, parameter = null) => {
-    if (words == null) {
-        console.log("incorrect type of param words")
-        return ''
+    if (typeof words === 'string') {
+        console.log("incorrect type of param words");
+        return '';
     }
 
-    let array = Array.from(words)
+    const array = Array.from(words);
 
     switch (parameter) {
         case null:
-            let countEntries = new Map();
+            const countEntries = new Map();
             array.forEach(word => countEntries.has(word) ?
-                countEntries.set(word, countEntries.get(word) + 1) : countEntries.set(word, 1))
+                countEntries.set(word, countEntries.get(word) + 1) : countEntries.set(word, 1));
 
-            array = array.filter(word => countEntries.get(word) === 1)
-            break;
+            return array.filter(word => countEntries.get(word) === 1).join('');
 
         case true:
-            array = array.filter((word, index) => array.indexOf(word) === index);
-            break;
+            return array.filter((word, index) => array.indexOf(word) === index).join('')
 
         case false:
-            array = array.filter((word, index) => array.lastIndexOf(word) === index);
-            break;
+            return array.filter((word, index) => array.lastIndexOf(word) === index).join('')
 
         default:
-            console.log("incorrect type of param parameter")
-            return ''
+            console.log("incorrect type of param parameter");
+            return '';
     }
-
-    return array.join('')
 }
