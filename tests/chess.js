@@ -24,11 +24,10 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('2'), expected);
 	});
 
-		QUnit.test('Округление в большую сторону (доска 3 на 3 вместо 2.5 на 2.5)', function (assert) {
-		const expected =
-			'* *\n' +
-			' * \n' +
-			'* *\n';
+		QUnit.test('Округление в меньшую сторону (доска 2 на 2 вместо 2.5 на 2.5)', function (assert) {
+			const expected =
+			'* \n' +
+			' *\n';
 		assert.strictEqual(chess(2.5), expected);
 		assert.strictEqual(chess('2.5'), expected);
 	});

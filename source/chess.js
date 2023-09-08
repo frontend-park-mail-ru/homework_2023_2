@@ -1,24 +1,26 @@
-'use strict';
-
-const chess = function (size) {
+//'use strict';
+/**
+Функция рисует рисует ASCII-шахматрую доску размером N*N символов из звёздочек 
+(в левом верхнем углу всегда стоит звёздочка)
+@param {number} size - размер доски
+*/
+const BLACK_FIELD = ' ';
+const WHITE_FIELD = '*'
+const chess = (size) => {
     if (size <= 1) return null;
-    let firstField = '*';
-    let secondField = ' ';
-    let oddLine = '';
-    let evenLine = '';
     let field = '';
-    for (let i = 0; i < size; i++) {
-        evenLine += firstField;
-        oddLine += secondField;
-        let tmp = firstField;
-        firstField = secondField;
-        secondField = tmp;
-    }
-    oddLine += '\n';
-    evenLine += '\n';
-    for (let i = 0; i < size; i++) {
-        if (i % 2 == 0) field += evenLine;
-        else field += oddLine;
+    let i = 0;
+    oddLine = Array.from({ length : size }, (size, i) => { if (i++ % 2) return WHITE_FIELD; else return BLACK_FIELD; } )
+    evenLine = Array.from({ length : size }, (size, i) => { if (i++ % 2) return BLACK_FIELD; else return WHITE_FIELD; } )
+    oddLine.push('\n');
+    evenLine.push('\n');
+    for (let i = 1; i <= size; i++) {
+        if (i % 2) { 
+            field += evenLine.join(""); 
+        }
+        else {
+            field += oddLine.join("");
+        }
     }
     return field;
 };
