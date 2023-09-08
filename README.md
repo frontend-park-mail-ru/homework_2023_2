@@ -1,3 +1,5 @@
+Молдованов Алексей WEB-22
+
 # frontend-homework, вариант №9
 > Introductory homework for the course "Frontend-development"
 
