@@ -1,9 +1,14 @@
 'use strict';
 
-/** @function */
-const filter = (input, validTags) => {
+/** 
+ * @function - Escapes special characters with exception of valid http-tags
+ * @param {string} input - String whose characteres need to be escaped
+ * @param {Array} validTags - Valid http-tags
+ * @return {string} - String with escaped special characters
+ */
+const filter = (input, validTags = []) => {
     if (!Array.isArray(validTags)) {
-        console.error("Error: input data is not array");
+        console.error("Error: input data is not Array");
         return;
     }
 
