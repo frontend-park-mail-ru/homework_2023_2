@@ -7,6 +7,12 @@
 
 const PATH_START_INDEX = 1;
 
+/**
+ * Get property value of given object.
+ * @param {Object} object - Object to get property value from.
+ * @param {String} pathToProperty - Sequence of property names, each beginning with a dot.
+ * @returns {Object|undefined} - Property value or undefined if property does not exist.
+*/
 const get = (object, pathToProperty) => {
     if (pathToProperty === '.') {
         return object;
