@@ -24,3 +24,4 @@ const chess = (size) => {
     }
     return field;
 };
+
