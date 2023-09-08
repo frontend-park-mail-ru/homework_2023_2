@@ -11,5 +11,6 @@ QUnit.module('Тестируем функцию rle', function () {
 		assert.throws(() => {rle(['ABCDE'])});
 		assert.throws(() => {rle(null)});
 		assert.throws(() => {rle(undefined)});
+		assert.throws(() => {rle(true)});
 	});
 });
