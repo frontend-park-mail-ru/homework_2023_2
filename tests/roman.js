@@ -40,16 +40,26 @@ QUnit.module('Тестируем функцию roman', function () {
 	});
 
 	QUnit.test('Свои тесты', function (assert) {
-		assert.strictEqual(roman('4000'), 'Error');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman(2017), 'MMXVII');
-		assert.strictEqual(roman(0), 'Error');
 		assert.strictEqual(roman(20), 'XX');
-		assert.strictEqual(roman(9.7), 'Error');
-		assert.strictEqual(roman("9.7"), 'Error');
-		assert.strictEqual(roman([1]), 'Error');
-		assert.strictEqual(roman('VK-Park'), "Error");
 
-
+		assert.throws(function() {roman('VK-Park')});
+		assert.throws(function() {roman('4000')});
+		assert.throws(function() {roman(0)});
+		assert.throws(function() {roman(9.7)});
+		assert.throws(function() {roman("9.7")});
+		assert.throws(function() {roman([1])});
+		assert.throws(function() {roman(null)});
+		assert.throws(function() {roman(-123)});
+		assert.throws(function() {roman("")});
+		assert.throws(function() {roman()});
+		assert.throws(function() {roman(undefined)});
+		assert.throws(function() {roman(NaN)});
+		assert.throws(function() {roman(125/32)});
+		assert.throws(function() {roman("Привет мир!!")});
+		assert.throws(function() {roman("    ")});
+		assert.throws(function() {roman(":)")});
+		assert.throws(function() {roman("-123")});
 	});
 });
