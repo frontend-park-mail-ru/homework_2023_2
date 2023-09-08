@@ -14,5 +14,6 @@ const chess = (N) => {
       chessboard += '\n';
   }
   return chessboard;
+  
 };
 
