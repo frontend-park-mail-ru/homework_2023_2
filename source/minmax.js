@@ -25,12 +25,8 @@ const minmax = (numbers) => {
     let max = Number.NEGATIVE_INFINITY;
 
     numbersArr.forEach((element) => {
-      if (element < min) {
-        min = element;
-      }
-      if (element > max) {
-        max = element;
-      }
+      min = element < min ? element : min;
+      max = element > max ? element : max;
     });
 
     return [min, max];
