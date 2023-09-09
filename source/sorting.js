@@ -24,7 +24,7 @@ const sorting = function (objects, keys) {
                     }
                     break;
                 default:
-                    return 0;
+                    break;
             }
         }
         return 0;
