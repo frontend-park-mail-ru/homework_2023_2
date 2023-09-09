@@ -4,22 +4,23 @@
  * function create a tree 
  * @param  {Number} arg contain height of the tree
  * @returns {String} tree
- * @throws Will throw an error if the type of height is wrong
+ * @throws Will throw an error if the value of height is invalid
  */
 
 const tree = height => {
-    if (typeof height != "number" && !(typeof height == "string" && !isNaN(height))) {
-        throw new Error('Error: incorrect type of height');
+    if (isNaN(height) || height === Infinity || height === "") {
+        throw new Error("Error: invalid value of height");
     }
 
     if (height < 3) {
         return null;
     }
 
-    let result = " ".repeat(height - 2) + "|" + " ".repeat(height - 2) + "\n";
+    const baseOfTree = 2 * height - 3;
+    let result = " ".repeat((baseOfTree - 1) / 2) + "|" + " ".repeat((baseOfTree - 1) / 2) + "\n";
 
-    for(let i = 0; i < height - 1; ++i) {
-        result = " ".repeat(i) + "*".repeat(2 * height - 3 - 2 * i) + " ".repeat(i) + "\n" + result;
+    for(let padding = 0; padding < height - 1; ++padding) {
+        result = " ".repeat(padding) + "*".repeat(baseOfTree - 2 * padding) + " ".repeat(padding) + "\n" + result;
     }
     
     return result;

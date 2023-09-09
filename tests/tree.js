@@ -88,21 +88,23 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree('12'), expected);
 	});
 
-	QUnit.test('Непрвильный тип входных данных', function (assert) {
-		assert.throws(() => 
-			tree(false),
-			new Error('Error: incorrect type of height'),
-			"Wrong type"
-	    );
+	QUnit.test('Невалидные входные данные', function (assert) {
 		assert.throws(() => 
 			tree("purpur"),
-			new Error('Error: incorrect type of height'),
-			"Wrong type"
+			new Error("Error: invalid value of height"),
+			"Invalid value"
 	    );
+
 		assert.throws(() => 
-			tree(null),
-			new Error('Error: incorrect type of height'),
-			"Wrong type"
+			tree(Infinity),
+			new Error("Error: invalid value of height"),
+			"Invalid value"
+	    );
+
+		assert.throws(() => 
+			tree(""),
+			new Error("Error: invalid value of height"),
+			"Invalid value"
 	    );
 	});
 });
