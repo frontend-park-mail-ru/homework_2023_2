@@ -6,14 +6,15 @@
  *
  * @param {string} inputString - Входная строка, подлежащая сортировке.
  * @returns {string} - Отсортированная строка с заглавными первыми буквами каждого слова.
- * @throws Выкинет ошибку, если тип переданного параметнра не String.
+ * @throws {InvalidArgumentException} - Выкинет ошибку, если тип переданного параметнра не String.
  */
 const sort = (inputString) => {
     if (typeof inputString !== 'string')
         throw new Error('Входной аргумент должен быть строкой');
 
-    return inputString.split(' ')
-        .map(element => element.split('')
+    return inputString === '' ? inputString :
+        inputString.split(' ')
+        .map((element) => element.split('')
                 .sort((a, b) => a.localeCompare(b, 'ru'))
                 .join('')
                 .toLowerCase()
