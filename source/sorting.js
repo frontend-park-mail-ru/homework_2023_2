@@ -7,9 +7,11 @@
  * @returns {Array.<Object>} - отсортированный массив
  */
 const sorting = function (objects, keys) {
-    return objects.sort((a, b) => {
+    const sortedObjects = objects.slice(); 
+    
+    return sortedObjects.sort((a, b) => {
         for (let key of keys) {
-            if (!objects.some(object => object.hasOwnProperty(key))) {
+            if (!sortedObjects.some(object => object.hasOwnProperty(key))) {
                 return 0;
             }
 
