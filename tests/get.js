@@ -48,4 +48,12 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.baz.length'), undefined);
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
 	});
+
+	QUnit.test('get работает правильно без передачи аргументов', function (assert) {
+		assert.strictEqual(get(), undefined);
+	});
+
+	QUnit.test('get работает правильно с undefined аргументами', function (assert) {
+		assert.strictEqual(get(undefined, undefined), undefined);
+	});
 });
