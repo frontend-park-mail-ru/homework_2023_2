@@ -1,21 +1,26 @@
 'use strict';
 
-const filter = (text, tags) => {
-    if (!Array.isArray(tags))
-        throw new Error("expected Array");
+const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
 
-    var map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-      };
-    let symbolPoses =  [...text.matchAll(/[&"<>']/g)];
-    let resArr = Array();
+const filter = (text, tags = []) => {
+    if(!(typeof text === "string")){
+        throw new Error("expected String");
+    }
+    if (!Array.isArray(tags)){
+        throw new Error("expected Array");
+    }
+
+    const symbolPoses =  [...text.matchAll(/[&"<>']/g)];
+    let resArr = [];
     let prevCut = 0;
     for(let i = 0; i < symbolPoses.length; i++){
-        if(symbolPoses[i] == "<" && (i + 1 != symbolPoses.length ? (symbolPoses[i+1] == ">") : false)){
+        if(symbolPoses[i] == "<" && symbolPoses[i+1] == ">"){
             let posibleTag = text.slice(symbolPoses[i].index + 1, symbolPoses[i+1].index);
             if( posibleTag.startsWith("/"))
                 posibleTag = posibleTag.slice(1);
