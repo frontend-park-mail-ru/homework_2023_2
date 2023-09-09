@@ -1,17 +1,34 @@
-const get = (obj, path) => {
-    if (path == '')
+'use strict'
+
+/**
+ * Функция get
+ * @param {Object} object исходный объект со свойствами
+ * @param {string} pathToProperty абсолютный путь до свойства
+ * @returns {any} 
+ * @throws Неверный тип object, Неверный тип pathToProperty
+ */
+const get = (object, pathToProperty) => {
+    if (typeof object !== 'object')
+        throw new Error("Неверный тип object")
+    
+    if (typeof pathToProperty !== 'string')
+        throw new Error("Неверный тип pathToProperty")
+    
+    if (pathToProperty === '')
         return undefined;
 
-    if (path == '.')
-        return obj;
+    if (pathToProperty === '.')
+        return object;
     
-    let pieces = path.split('.').slice(1);
-    let new_obj = obj;
+    let splitedPathToProperty = pathToProperty.split('.').slice(1);
+    let newObject = structuredClone(object);
 
-    pieces.map((value) => {
-        if (new_obj == undefined)
+    splitedPathToProperty.map((property) => {
+        if (newObject == undefined)
             return undefined
-        new_obj = new_obj[value];
+        
+            newObject = newObject[property];
     })
-    return new_obj;
+
+    return newObject;
 }

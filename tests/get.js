@@ -49,7 +49,7 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
 	});
 
-	QUnit.test('Мои тесты для get', function (assert) {
+	QUnit.test('get работает с неправильным путем', function (assert) {
 		const object = {
 			foo: {
 				bar: 41
@@ -65,5 +65,20 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '..foo.bar'), undefined);
 		assert.strictEqual(get(object, '.foo..bar'), undefined);
 		assert.strictEqual(get(object, '.foo.bar.'), undefined);
+	});
+
+	QUnit.test('get не работает с неправильными аргументами', function (assert) {
+		const object = {
+			foo: {
+				bar: 41
+			}
+		}
+		const wrongObject = 10;
+
+		const path = '.foo';
+		const wrongPath = {};
+
+		assert.throws(() => get(wrongObject, path));
+		assert.throws(() => get(object, wrongPath));
 	});
 });
