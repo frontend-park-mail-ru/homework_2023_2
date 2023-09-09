@@ -22,8 +22,7 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
 	QUnit.test('Передача в качестве длины шахматной доски undefined', function (assert) {
-		let x
-		assert.strictEqual(chess(x), null);
+		assert.strictEqual(chess(undefined), null);
 	});
 
 	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {

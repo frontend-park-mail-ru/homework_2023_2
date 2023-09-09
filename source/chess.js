@@ -2,7 +2,7 @@
 
 /**
  * Создание ASCII-шахматной доски размером boardSize*boardSize
- * @param boardSize - размер доски
+ * @param {number} boardSize - размер доски
  * @returns {string} Шахматная доска
  */
 const chess = (boardSize) => {
