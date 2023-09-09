@@ -1,10 +1,7 @@
-
-//Стрелочные функции - более современный стиль создания функций. Поэтому стоит использовать их
-//Контекст выполнения в данном случае не обязывает меня пользоваться тем или иным объявлением. this нигде не применяется
 /**
- * Функция проверяет, является ли число невалидным.
- * @param {number} value - длина строки, либо высота дерева.
- * @returns {boolean} - true, если высота некорректна, иначе false.
+ * Функция проверяет, является ли переданный аргумент невалидным числом.
+ * @param {any} value - длина строки, либо высота дерева.
+ * @returns {boolean} - true, если аргумент некорректен, иначе false.
  */
 const invalidNumberValue = value => !value || !isFinite(value) || isNaN(value);
 
@@ -29,8 +26,6 @@ const myPadStart = (line, finalLength, symbolToAdd=' ') =>
     }
 
     return line;
-
-
 }
 
 
@@ -52,8 +47,6 @@ const myPadEnd = (line, finalLength, symbolToAdd=' ') =>
     }
 
     return line;
-
-
 }
 
 
@@ -100,5 +93,4 @@ const tree = height =>{
     }
     treeString += myRepeat(' ', height-2) + '|' + myRepeat(' ',height-2) + '\n';
     return treeString;
-    
 }
