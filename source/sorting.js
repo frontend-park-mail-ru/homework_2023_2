@@ -6,7 +6,7 @@
  * @param {Array.<string>} keys - массив имён свойств
  * @returns {Array.<Object>} - отсортированный массив
  */
-const sorting = function (objects, keys) {
+const sorting = (objects, keys) => {
     const sortedObjects = objects.slice(); 
     
     return sortedObjects.sort((a, b) => {
