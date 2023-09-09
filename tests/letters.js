@@ -102,4 +102,26 @@ QUnit.module('Тестируем функцию letters', function () {
 
 		assert.strictEqual(letters('\t\v\n', false), '\t\v\n');
 	});
+
+	QUnit.test('Умеет обрабатывать неправильные данные', function (assert) {
+        assert.strictEqual(letters(444), 'error');
+		assert.strictEqual(letters(undefined), 'error');
+		assert.strictEqual(letters(true), 'error');
+        assert.strictEqual(letters(null), 'error');
+        assert.strictEqual(letters(NaN), 'error');
+		assert.strictEqual(letters(function() {}), 'error');
+		assert.strictEqual(letters(() => {}), 'error');
+		assert.strictEqual(letters(['lol']), 'error');
+		assert.strictEqual(letters(['l', 'o', 'l']), 'error');
+		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt']), 'error');
+
+		assert.strictEqual(letters(444, null), 'error');
+		assert.strictEqual(letters(undefined, 234), 'error');
+		assert.strictEqual(letters(true, ['monkey']), 'error');
+        assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), 'error');
+        assert.strictEqual(letters(NaN, () => {}), 'error');
+		assert.strictEqual(letters(['lol'], ['rr', 'trrr', 'r', 't']), 'error');
+		assert.strictEqual(letters(['l', 'o', 'l'], function() {}), 'error');
+		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt'], NaN), 'error');
+    });
 });
