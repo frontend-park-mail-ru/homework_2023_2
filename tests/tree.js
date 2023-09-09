@@ -63,6 +63,8 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree(''),null);
 		assert.strictEqual(tree('sdadas'),null);
 		assert.strictEqual(tree(NaN),null);
+		assert.strictEqual(tree(new Object()),null);
+		assert.strictEqual(tree(new Array()),null);
 		
 	});
 
