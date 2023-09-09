@@ -18,7 +18,7 @@ const sort = (inputString) => {
                 .sort((a, b) => a.localeCompare(b, 'ru'))
                 .join('')
                 .toLowerCase()
-                .replace(/^[^ ]/g, letter => (letter.toUpperCase()))
+                .replace( /^[^ ]/, letter => (letter.toUpperCase()))
         )
         .sort((a, b) => a.localeCompare(b, 'ru'))
         .join(' ')
