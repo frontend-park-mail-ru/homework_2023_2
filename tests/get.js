@@ -75,7 +75,7 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(obj, '.print'), undefined);
 	});
 
-	QUnit.test('get работает правильно с перечисляемыми свойствами прототипов', function (assert) {
+	QUnit.test('get работает правильно с перечисляемыми свойствами прототипов при передачи соответствующей опции', function (assert) {
 		const object = {
 			foo: {
 				bar: 42
@@ -86,5 +86,8 @@ QUnit.module('Тестируем функцию get', function () {
 		Object.setPrototypeOf(object, b)
 
 		assert.strictEqual(get(object, '.b'), undefined);
+		assert.strictEqual(get(object, '.b', undefined), undefined);
+		assert.strictEqual(get(object, '.b', null), undefined);
+		assert.strictEqual(get(object, '.b', true), object.b);
 	});
 });
