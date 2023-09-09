@@ -62,5 +62,8 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.throws(function() {
 			sort(123);
 		}, 'Входной аргумент должен быть строкой');
+		assert.throws(function() {
+			sort(0);
+		}, 'Входной аргумент должен быть строкой');
 	});
 });
