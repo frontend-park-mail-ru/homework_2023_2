@@ -53,7 +53,38 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(), undefined);
 	});
 
-	QUnit.test('get работает правильно с undefined аргументами', function (assert) {
+	QUnit.test('get работает правильно с false-type аргументами', function (assert) {
 		assert.strictEqual(get(undefined, undefined), undefined);
+		assert.strictEqual(get(null, false), undefined);
+		assert.strictEqual(get(false, null), undefined);
+		assert.strictEqual(get(false, false), undefined);
+	});
+
+	QUnit.test('get работает правильно с методоами прототипов', function (assert) {
+		const metaObj = { name: 'Прародитель всех объектов', print: () => {console.log('Печать')} };
+
+		function Object() {
+			this.name = "Объект";
+			this.price = 9999;
+		}
+
+		Object.prototype = metaObj;
+
+		const obj = new Object();
+
+		assert.strictEqual(get(obj, '.print'), undefined);
+	});
+
+	QUnit.test('get работает правильно с перечисляемыми свойствами прототипов', function (assert) {
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+
+		const b = {b: 'b'}
+		Object.setPrototypeOf(object, b)
+
+		assert.strictEqual(get(object, '.b'), undefined);
 	});
 });
