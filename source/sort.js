@@ -6,7 +6,7 @@
  *
  * @param {string} inputString - Входная строка, подлежащая сортировке.
  * @returns {string} - Отсортированная строка с заглавными первыми буквами каждого слова.
- * @throws {InvalidArgumentException} - Выкинет ошибку, если тип переданного параметнра не String.
+ * @throws {InvalidArgumentException} - Выкинет ошибку, если тип переданного параметра не String.
  */
 const sort = (inputString) => {
     if (!inputString)
