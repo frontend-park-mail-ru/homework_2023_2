@@ -7,8 +7,8 @@
  * @returns {Object} The plain object whose properties all have the specified prefix.
  */
 const recBuild = (obj, prefix) => {
-    return Object.entries(obj).reduce((res_obj, [key, val]) => {
-        return {...res_obj, ...(val instanceof Object ? recBuild(val, prefix + key + '.') : {[prefix + key]: val})}
+    return Object.entries(obj).reduce((resObj, [key, val]) => {
+        return {...resObj, ...(val instanceof Object ? recBuild(val, prefix + key + '.') : {[prefix + key]: val})}
     }, {});
 }
 
