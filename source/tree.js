@@ -16,13 +16,17 @@ const tree = height => {
         return null;
     }
 
-    const trunk = 1; //высота ствола
-    const baseOfTree = 2 * (height - trunk) - 1; //кол-во звездочек на нижнем уровне елки, так как на n уровне 2 * n - 1 число звездочек
+    const trunkHeight = 1; //высота ствола
+    const trunkWidth = 1; //ширина ствола
+    const baseOfTree = 2 * (height - trunkHeight) - 1; //кол-во звездочек на нижнем уровне елки, так как на n уровне 2 * n - 1 число звездочек
 
-    let result = " ".repeat((baseOfTree - 1) / 2) + "|" + " ".repeat((baseOfTree - 1) / 2) + "\n"; //(baseOfTree - 1) / 2 - кол-во пробелов перед и после ствола
+    let result = "";
+    for(let i = 0; i < trunkHeight; ++i) {
+        result = `${" ".repeat((baseOfTree - trunkWidth) / 2)}${"|".repeat(trunkWidth)}${" ".repeat((baseOfTree - trunkWidth) / 2)}\n${result}`; //(baseOfTree - trunkWidth) / 2 - кол-во пробелов перед и после ствола
+    }
 
-    for(let padding = 0; padding < height - 1; ++padding) { //padding - кол-во пробелов перед и после звездочек
-        result = " ".repeat(padding) + "*".repeat(baseOfTree - 2 * padding) + " ".repeat(padding) + "\n" + result; // baseOfTree - 2 * padding - кол-во звездочек на текущем уровне
+    for(let padding = 0; padding < height - trunkHeight; ++padding) { //padding - кол-во пробелов перед и после звездочек
+        result = `${" ".repeat(padding)}${"*".repeat(baseOfTree - 2 * padding)}${" ".repeat(padding)}\n${result}`; // baseOfTree - 2 * padding - кол-во звездочек на текущем уровне
     }
     
     return result;
