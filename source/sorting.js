@@ -9,11 +9,17 @@
 const sorting = function (objects, keys) {
     return objects.sort((a, b) => {
         for (let key of keys) {
+            if (!objects.some(object => object.hasOwnProperty(key))) {
+                return 0;
+            }
+
             const propertyA = a[key];
             const propertyB = b[key];
+
             if (propertyA === propertyB) {
                 continue;
             }
+
             switch (typeof propertyA) {
                 case 'string':
                     return propertyA.localeCompare(propertyB);
