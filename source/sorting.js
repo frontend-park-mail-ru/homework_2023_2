@@ -11,18 +11,14 @@ const sorting = function (objects, keys) {
         for (let key of keys) {
             const propertyA = a[key];
             const propertyB = b[key];
+            if (propertyA === propertyB) {
+                continue;
+            }
             switch (typeof propertyA) {
                 case 'string':
-                    const compare = propertyA.localeCompare(propertyB);
-                    if (compare !== 0) {
-                        return compare;
-                    }
-                    break;
+                    return propertyA.localeCompare(propertyB);
                 case 'number':
-                    if (propertyA !== propertyB) {
-                        return propertyA - propertyB;
-                    }
-                    break;
+                    return (propertyA - propertyB);
                 default:
                     break;
             }
