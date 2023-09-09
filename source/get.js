@@ -5,14 +5,14 @@
  * @param {Object} object исходный объект со свойствами
  * @param {string} pathToProperty абсолютный путь до свойства
  * @returns {any} 
- * @throws Неверный тип object, Неверный тип pathToProperty
+ * @throws {TypeError} Неверный тип object, Неверный тип pathToProperty
  */
 const get = (object, pathToProperty) => {
     if (typeof object !== 'object')
-        throw new Error("Неверный тип object")
+        throw new TypeError("Неверный тип object")
     
     if (typeof pathToProperty !== 'string')
-        throw new Error("Неверный тип pathToProperty")
+        throw new TypeError("Неверный тип pathToProperty")
     
     if (pathToProperty === '')
         return undefined;
