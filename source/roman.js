@@ -1,20 +1,6 @@
 'use strict';
 
-/**
- * @param {string} str - Число для перевода в другую систему
- * @description Определение, является ли число из арабской системы счисления
- */
-function isArabic(str) {
-    return /\d+$/.test(str);
-}
 
-/**
- * @param {string} str - Число для перевода в другую систему
- * @description Определение, является ли число из римской системы счисления
- */
-function isRoman(str){
-    return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$/i.test(str);
-}
 
 /**
  * @param {string} number - Число для перевода в другую систему
@@ -22,21 +8,37 @@ function isRoman(str){
  */
 const roman = (number) => {
 
-    const RomanMap = new Map([
-        ["M", 1000],
-        ["CM", 900],
-        ["D", 500],
-        ["CD", 400],
-        ["C", 100],
-        ["XC", 90],
-        ["L", 50],
-        ["XL", 40],
-        ["X", 10],
-        ["IX", 9],
-        ["V", 5],
-        ["IV", 4],
-        ["I", 1],
-    ]);
+    /**
+     * @param {string} str - Число для перевода в другую систему
+     * @description Определение, является ли число из арабской системы счисления
+     */
+    let isArabic = (str) => {
+        return /\d+$/.test(str);
+    }
+
+    /**
+     * @param {string} str - Число для перевода в другую систему
+     * @description Определение, является ли число из римской системы счисления
+     */
+    let isRoman = (str) => {
+        return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
+    }
+
+    const RomanNum = {
+        "M": 1000,
+        "CM": 900,
+        "D": 500,
+        "CD": 400,
+        "C": 100,
+        "XC": 90,
+        "L": 50,
+        "XL": 40,
+        "X": 10,
+        "IX": 9,
+        "V": 5,
+        "IV": 4,
+        "I": 1,
+      };
 
     switch (true){
         case isRoman(number):
@@ -44,25 +46,30 @@ const roman = (number) => {
 
             number = number.toUpperCase()
 
-            for (let i = 0; i < number.length; i++){
-                if ( RomanMap.get(number[i]) < RomanMap.get(number[i+1]) ) {
-                    arabic_result -= RomanMap.get(number[i]);
+            let i = 0;
+
+            while (i < number.length){
+                
+                if ( RomanNum[number[i]] < RomanNum[number[i+1]] ) {
+                    arabic_result -= RomanNum[number[i]];
                 } else {
-                    arabic_result += RomanMap.get(number[i]);
+                    arabic_result += RomanNum[number[i]];
                 }
+                i = i + 1;
             }
+
             return arabic_result;
             
         case isArabic(number):
             let roman_result = "" 
 
-            RomanMap.forEach((value, key) => {
-                if (number >= value){
-                    let count = number / value;
+            for (let key in RomanNum){
+                if (number >= RomanNum[key]){
+                    let count = number / RomanNum[key];
                     roman_result += key.repeat(count);
-                    number = number % value;
+                    number = number % RomanNum[key];
                 }
-            });
+            }
             return roman_result;
             
         default:
