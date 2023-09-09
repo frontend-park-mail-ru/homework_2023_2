@@ -9,11 +9,13 @@
  * @throws {InvalidArgumentException} - Выкинет ошибку, если тип переданного параметнра не String.
  */
 const sort = (inputString) => {
+    if (!inputString)
+        return inputString;
+
     if (typeof inputString !== 'string')
         throw new Error('Входной аргумент должен быть строкой');
 
-    return inputString === '' ? inputString :
-        inputString.split(' ')
+    return inputString.split(' ')
         .map((element) => element.split('')
                 .sort((a, b) => a.localeCompare(b, 'ru'))
                 .join('')
@@ -21,5 +23,5 @@ const sort = (inputString) => {
                 .replace( /^[^ ]/, letter => (letter.toUpperCase()))
         )
         .sort((a, b) => a.localeCompare(b, 'ru'))
-        .join(' ')
+        .join(' ');
 };
