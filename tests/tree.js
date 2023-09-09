@@ -107,4 +107,9 @@ QUnit.module('Тестируем функцию tree', function () {
 			"Invalid value"
 	    );
 	});
+
+	QUnit.test('Неправильный тип данных', function (assert) {
+		assert.strictEqual(tree(false), null);
+		assert.strictEqual(tree(null), null);
+	});
 });

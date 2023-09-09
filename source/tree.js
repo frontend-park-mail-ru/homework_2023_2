@@ -2,7 +2,7 @@
 
 /**
  * function create a tree 
- * @param  {Number} arg contain height of the tree
+ * @param  {(Number|String)} arg contain height of the tree
  * @returns {String} tree
  * @throws Will throw an error if the value of height is invalid
  */
@@ -16,11 +16,13 @@ const tree = height => {
         return null;
     }
 
-    const baseOfTree = 2 * height - 3;
-    let result = " ".repeat((baseOfTree - 1) / 2) + "|" + " ".repeat((baseOfTree - 1) / 2) + "\n";
+    const trunk = 1; //высота ствола
+    const baseOfTree = 2 * (height - trunk) - 1; //кол-во звездочек на нижнем уровне елки, так как на n уровне 2 * n - 1 число звездочек
 
-    for(let padding = 0; padding < height - 1; ++padding) {
-        result = " ".repeat(padding) + "*".repeat(baseOfTree - 2 * padding) + " ".repeat(padding) + "\n" + result;
+    let result = " ".repeat((baseOfTree - 1) / 2) + "|" + " ".repeat((baseOfTree - 1) / 2) + "\n"; //(baseOfTree - 1) / 2 - кол-во пробелов перед и после ствола
+
+    for(let padding = 0; padding < height - 1; ++padding) { //padding - кол-во пробелов перед и после звездочек
+        result = " ".repeat(padding) + "*".repeat(baseOfTree - 2 * padding) + " ".repeat(padding) + "\n" + result; // baseOfTree - 2 * padding - кол-во звездочек на текущем уровне
     }
     
     return result;
