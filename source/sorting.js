@@ -11,16 +11,20 @@ const sorting = function (objects, keys) {
         for (let key of keys) {
             const propertyA = a[key];
             const propertyB = b[key];
-            if (typeof propertyA === 'string') {
-                const compare = propertyA.localeCompare(propertyB);
-                if (compare !== 0) {
-                    return compare;
-                }
-            }
-            if (typeof propertyA === 'number') {
-                if (propertyA !== propertyB) {
-                    return propertyA - propertyB;
-                }
+            switch (typeof propertyA) {
+                case 'string':
+                    const compare = propertyA.localeCompare(propertyB);
+                    if (compare !== 0) {
+                        return compare;
+                    }
+                    break;
+                case 'number':
+                    if (propertyA !== propertyB) {
+                        return propertyA - propertyB;
+                    }
+                    break;
+                default:
+                    return 0;
             }
         }
         return 0;
