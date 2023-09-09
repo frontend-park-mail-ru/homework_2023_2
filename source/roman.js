@@ -1,14 +1,26 @@
 'use strict';
 
+/**
+ * @param {string} str - Число для перевода в другую систему
+ * @description Определение, является ли число из арабской системы счисления
+ */
 function isArabic(str) {
-    return /^[0-9]+$/.test(str);
+    return /\d+$/.test(str);
 }
 
+/**
+ * @param {string} str - Число для перевода в другую систему
+ * @description Определение, является ли число из римской системы счисления
+ */
 function isRoman(str){
-    return /^[IVXLCDMivxlcdm]+$/.test(str);
+    return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$/i.test(str);
 }
 
-const roman = function (number) {
+/**
+ * @param {string} number - Число для перевода в другую систему
+ * @description Перевод числа из арабской СС в римскую или наоборот, либо сообщение о невалидности данных
+ */
+const roman = (number) => {
 
     const RomanMap = new Map([
         ["M", 1000],
@@ -26,38 +38,34 @@ const roman = function (number) {
         ["I", 1],
     ]);
 
-    if (isRoman(number)){
+    switch (true){
+        case isRoman(number):
+            let arabic_result = 0;
 
-        let result = 0;
+            number = number.toUpperCase()
 
-        number = number.toUpperCase()
-
-        for (let i = 0; i < number.length; i++){
-            if ( RomanMap.get(number[i]) < RomanMap.get(number[i+1]) ) {
-                result -= RomanMap.get(number[i]);
-            } else {
-                result += RomanMap.get(number[i]);
+            for (let i = 0; i < number.length; i++){
+                if ( RomanMap.get(number[i]) < RomanMap.get(number[i+1]) ) {
+                    arabic_result -= RomanMap.get(number[i]);
+                } else {
+                    arabic_result += RomanMap.get(number[i]);
+                }
             }
-        }
+            return arabic_result;
+            
+        case isArabic(number):
+            let roman_result = "" 
 
-        return result;
-
-    } else if (isArabic(number)){
-        
-        let result = "" 
-
-        RomanMap.forEach((value, key) => {
-            while ( number >= value ){
-                result += key;
-                number -= value;
-            }
-        });
-
-        return result;
-
-    } else {
-        return "invalid input"
+            RomanMap.forEach((value, key) => {
+                if (number >= value){
+                    let count = number / value;
+                    roman_result += key.repeat(count);
+                    number = number % value;
+                }
+            });
+            return roman_result;
+            
+        default:
+            return "invalid input"
     }
-
-    
 };

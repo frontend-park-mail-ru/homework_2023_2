@@ -9,7 +9,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('d'), 500);
 
 		assert.strictEqual(roman('iv'), 4);
-		assert.strictEqual(roman('iiii'), 4);
+		assert.strictEqual(roman('iiii'), "invalid input");
 		assert.strictEqual(roman('CM'), 900);
 
 		assert.strictEqual(roman('MCMIV'), 1904);
@@ -51,5 +51,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('UUU'), 'invalid input');
 		assert.strictEqual(roman('MMA'), 'invalid input');
 		assert.strictEqual(roman('asd'), 'invalid input');
+		
+
 	});
 });
