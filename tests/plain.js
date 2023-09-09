@@ -2,18 +2,18 @@
 
 QUnit.module('Тестируем функцию plain', function () {
     QUnit.test('Работает c разными типами аргумента на входе(в т.ч без аргументов)', function (assert) {
-        assert.deepEqual(plain(undefined), []);
-        assert.deepEqual(plain(null), []);
-        assert.deepEqual(plain(2), []);
-        assert.deepEqual(plain("arg"), []);
-        assert.deepEqual(plain(false), []);
-        assert.deepEqual(plain({ 1: "1" }), []);
+        assert.deepEqual(plain(undefined), null);
+        assert.deepEqual(plain(null), null);
+        assert.deepEqual(plain(2), null);
+        assert.deepEqual(plain("arg"), null);
+        assert.deepEqual(plain(false), null);
+        assert.deepEqual(plain({ 1: "1" }), null);
     });
 
     QUnit.test('Работает c произвольным числом аргументов разного типа', function (assert) {
-        assert.deepEqual(plain(undefined, null), []);
-        assert.deepEqual(plain(3, "str", 2), []);
-        assert.deepEqual(plain({ 1: "1" }, [1, 2, 3]), []);
+        assert.deepEqual(plain(undefined, null), null);
+        assert.deepEqual(plain(3, "str", 2), null);
+        assert.deepEqual(plain({ 1: "1" }, [1, 2, 3]), null);
     });
 
     QUnit.test('Работает с единственным элементом', function (assert) {
