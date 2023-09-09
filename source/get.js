@@ -8,23 +8,19 @@
  * В ином случае возвращает undefined
  */
 
-const MIN_ARGS_COUNT = 2;
 const QUERY_WITHOUT_DOT = 1;
 const DOT_SYMBOL = '.';
 function get(object, query) {
-    if (arguments.length < MIN_ARGS_COUNT || query === undefined || object === undefined) {
+    if (!query || !object) {
         return undefined;
     }
     if (query === DOT_SYMBOL) {
         return object;
     }
 
-    const properties = query.slice(QUERY_WITHOUT_DOT).split(DOT_SYMBOL);
-    for (const index in properties) {
-        object = object[properties[index]];
-        if (object === undefined) {
-            break;
+    return query.slice(QUERY_WITHOUT_DOT).split(DOT_SYMBOL).reduce((object, property) => {
+        if (object && object.hasOwnProperty(property)) {
+            return object[property]
         }
-    }
-    return object;
+    }, object);
 }
