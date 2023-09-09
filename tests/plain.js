@@ -1,6 +1,21 @@
 'use strict';
 
 QUnit.module('Тестируем функцию plain', function () {
+    QUnit.test('Работает c разными типами аргумента на входе(в т.ч без аргументов)', function (assert) {
+        assert.deepEqual(plain(undefined), []);
+        assert.deepEqual(plain(null), []);
+        assert.deepEqual(plain(2), []);
+        assert.deepEqual(plain("arg"), []);
+        assert.deepEqual(plain(false), []);
+        assert.deepEqual(plain({ 1: "1" }), []);
+    });
+
+    QUnit.test('Работает c произвольным числом аргументов разного типа', function (assert) {
+        assert.deepEqual(plain(undefined, null), []);
+        assert.deepEqual(plain(3, "str", 2), []);
+        assert.deepEqual(plain({ 1: "1" }, [1, 2, 3]), []);
+    });
+
     QUnit.test('Работает с единственным элементом', function (assert) {
         assert.deepEqual(plain([]), [], 'Работает с пустым массивом');
         assert.deepEqual(plain([42]), [42], 'Работает с массивом из одного элемента');
@@ -13,7 +28,7 @@ QUnit.module('Тестируем функцию plain', function () {
         assert.deepEqual(plain([[1, 2, 3, 4]]), [1, 2, 3, 4]);
     });
 
-    QUnit.test('Работает с единственным массивом', function (assert) {
+    QUnit.test('Работает с единственным массивом высокого уровня вложенности', function (assert) {
         assert.deepEqual(plain([[[[[[]]]]]]), []);
         assert.deepEqual(plain([[[42]]]), [42]);
         assert.deepEqual(plain([[[[1, 2, 3, 4]]]]), [1, 2, 3, 4]);
@@ -25,10 +40,16 @@ QUnit.module('Тестируем функцию plain', function () {
         assert.deepEqual(plain([[1, 2, 3, 4], 5, 6, 7, 8]), [1, 2, 3, 4, 5, 6, 7, 8]);
     });
 
-    QUnit.test('Работает со смешанными значениями + вложенность', function (assert) {
+    QUnit.test('Работает со смешанными значениями, одно из значений содержит вложенные значения', function (assert) {
+        assert.deepEqual(plain([[[[]]], 42]), [42]);
+        assert.deepEqual(plain([[[42, 31]], 0]), [42, 31, 0]);
+        assert.deepEqual(plain([[[0, 0, [[[[[[[0]]]]]]], [1, 2, 3, 4]], 5, 6, 7, 8]]), [0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    });
+
+    QUnit.test('Работает со смешанными значениями, произвольное число вложенных значений', function (assert) {
         assert.deepEqual(plain([[[[]], []], 42, 53]), [42, 53]);
         assert.deepEqual(plain([[42], [[[0]], [[]]]]), [42, 0]);
-        assert.deepEqual(plain([[1, 2, 3, 4], 5, 6, 7, 8, [9, 10]]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        assert.deepEqual(plain([[1, 2, 3, 4], 5, 6, 7, 8, [9, 10], [[11], [[12], [[[13]]]]]]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
     });
 
     QUnit.test('Работает с несколькими массивами', function (assert) {
