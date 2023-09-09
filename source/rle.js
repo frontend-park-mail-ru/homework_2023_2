@@ -1,7 +1,15 @@
 'use strict';
 
-/** This function returns a new compressed string using the RLE algorithm. */
-const rle = (string = '') => {
+/**
+ * This function returns a new compressed string using the RLE algorithm.
+ * @param {string} string - this is the string that needs to be converted.
+ * @returns {string|null} - returns a new compressed string or null if nothing is passed.
+ * */
+const rle = (string) => {
+    if (!string) {
+        return null;
+    }
+
     let result = '';
     let count = 1;
 
@@ -14,5 +22,5 @@ const rle = (string = '') => {
         }
     });
 
-    return result || null;
+    return result;
 };
