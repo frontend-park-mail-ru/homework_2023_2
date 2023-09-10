@@ -104,24 +104,26 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Умеет обрабатывать неправильные данные', function (assert) {
-        assert.strictEqual(letters(444), 'error');
-		assert.strictEqual(letters(undefined), 'error');
-		assert.strictEqual(letters(true), 'error');
-        assert.strictEqual(letters(null), 'error');
-        assert.strictEqual(letters(NaN), 'error');
-		assert.strictEqual(letters(function() {}), 'error');
-		assert.strictEqual(letters(() => {}), 'error');
-		assert.strictEqual(letters(['lol']), 'error');
-		assert.strictEqual(letters(['l', 'o', 'l']), 'error');
-		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt']), 'error');
+		assert.strictEqual(letters(444), '');
+		assert.strictEqual(letters(undefined), '');
+		assert.strictEqual(letters(true), '');
+        assert.strictEqual(letters(null), '');
+        assert.strictEqual(letters(NaN), '');
+		assert.strictEqual(letters(function() {}), '');
+		assert.strictEqual(letters(() => {}), '');
+		assert.strictEqual(letters(['lol']), '');
+		assert.strictEqual(letters(['l', 'o', 'l']), '');
+		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt']), '');
+		assert.strictEqual(letters(new String('capybara')), '');
 
-		assert.strictEqual(letters(444, null), 'error');
-		assert.strictEqual(letters(undefined, 234), 'error');
-		assert.strictEqual(letters(true, ['monkey']), 'error');
-        assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), 'error');
-        assert.strictEqual(letters(NaN, () => {}), 'error');
-		assert.strictEqual(letters(['lol'], ['rr', 'trrr', 'r', 't']), 'error');
-		assert.strictEqual(letters(['l', 'o', 'l'], function() {}), 'error');
-		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt'], NaN), 'error');
+		assert.strictEqual(letters(444, null), '');
+		assert.strictEqual(letters(undefined, 234), '');
+		assert.strictEqual(letters(true, ['monkey']), '');
+        assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), '');
+        assert.strictEqual(letters(NaN, () => {}), '');
+		assert.strictEqual(letters(['lol'], ['rr', 'trrr', 'r', 't']), '');
+		assert.strictEqual(letters(['l', 'o', 'l'], function() {}), '');
+		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt'], NaN), '');
+		assert.strictEqual(letters(new String('capybara'), NaN), '');
     });
 });
