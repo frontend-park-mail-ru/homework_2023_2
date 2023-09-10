@@ -24,12 +24,26 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('2'), expected);
 	});
 
-		QUnit.test('Округление в меньшую сторону (доска 2 на 2 вместо 2.5 на 2.5)', function (assert) {
+	QUnit.test('Ошибка при неверных входных параметрах', function (assert) {
 			const expected =
-			'* \n' +
-			' *\n';
-		assert.strictEqual(chess(2.5), expected);
-		assert.strictEqual(chess('2.5'), expected);
+				'* \n' +
+				' *\n';
+		//assert.strictEqual(chess(2.5), expected);
+		//assert.strictEqual(chess('2.5'), expected);
+		assert.throws(function () {
+				chess('2.5')
+			},
+			Error('Size is not a round number!'));
+
+		assert.throws(function () {
+			chess('2.5')
+		},
+			Error('Size is not a round number!'));
+
+		assert.throws(function () {
+				chess('aaaa')
+			},
+			Error('Size is not a round number!'));
 	});
 
 	QUnit.test('Шахматная доска 3 на 3', function (assert) {
