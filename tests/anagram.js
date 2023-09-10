@@ -55,6 +55,27 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram(input), output);
 	});
 
+	QUnit.test('Функция обрабатывает undefined. Тест 1', function (assert) {
+		const input = [
+			undefined, undefined
+		];
+
+		const output = [];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция обрабатывает undefined. Тест 2', function (assert) {
+		const input = [
+			undefined, undefined,
+			'кот', 'ток'
+		];
+
+		const output = [['кот', 'ток']];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
 	QUnit.test('Функция работает с пустым входным массивом', function (assert) {
 		const input = [];
 		const output = [];
