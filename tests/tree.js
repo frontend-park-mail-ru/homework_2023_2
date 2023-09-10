@@ -106,10 +106,59 @@ QUnit.module('Тестируем функцию tree', function () {
 			new Error("Error: invalid value of height"),
 			"Invalid value"
 	    );
+
+		assert.throws(() => 
+			tree(3, 4),
+			new Error("Error: invalid value of trunk height"),
+			"Invalid value"
+	    );
+
+		assert.throws(() => 
+			tree(3, ""),
+			new Error("Error: invalid value of trunk height"),
+			"Invalid value"
+	    );
+
+		assert.throws(() => 
+			tree(3, Infinity),
+			new Error("Error: invalid value of trunk height"),
+			"Invalid value"
+	    );
+
+		assert.throws(() => 
+			tree(3, "pewpew"),
+			new Error("Error: invalid value of trunk height"),
+			"Invalid value"
+	    );
 	});
 
 	QUnit.test('Неправильный тип данных', function (assert) {
 		assert.strictEqual(tree(false), null);
 		assert.strictEqual(tree(null), null);
+	});
+
+	QUnit.test('Ёлочка высотой 5 и высотой ствола 2', function (assert) {
+		const expected =
+			'  *  \n' +
+			' *** \n' +
+			'*****\n' +
+			'  |  \n' +
+			'  |  \n';
+		assert.strictEqual(tree(5, 2), expected);
+		assert.strictEqual(tree('5', '2'), expected);
+	});
+
+	QUnit.test('Ёлочка высотой 8 и высотой ствола 4', function (assert) {
+		const expected =
+			'   *   \n' +
+			'  ***  \n' +
+			' ***** \n' +
+			'*******\n' +
+			'   |   \n' +
+			'   |   \n' +
+			'   |   \n' +
+			'   |   \n';
+		assert.strictEqual(tree(8, 4), expected);
+		assert.strictEqual(tree('8', '4'), expected);
 	});
 });
