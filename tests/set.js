@@ -30,10 +30,10 @@ QUnit.module('Тестируем функцию set', function () {
 			deep: null
 		};
 
-		assert.deepEqual(set({ foo: 'bar' }, '.foo', 'baz'), { foo: 'baz' });
+		assert.deepEqual(set({foo: 'bar'}, '.foo', 'baz'), {foo: 'baz'});
 		assert.deepEqual(set(object, '.deep.hested.field', 42), object2);
 
-		assert.deepEqual(set(object, '.deep.hested', { foo: 'bar' }), object3);
+		assert.deepEqual(set(object, '.deep.hested', {foo: 'bar'}), object3);
 		assert.deepEqual(set(object, '.deep', null), object4);
 	});
 
