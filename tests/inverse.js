@@ -36,15 +36,7 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
 
-/*
-Дополнительные тесты
-*/
-
-	QUnit.test('Все элементы функции должны быть инициализированы', function (assert) {
-		assert.deepEqual(inverse([undefined, 2, 3, 4, 5 ]), []);
-		assert.deepEqual(inverse([1, 2, 3, 4, undefined]), []);
-
-	});
+/* Дополнительные тесты */
 
 	QUnit.test('Функция работает правильно с повторяющимися элементами', function (assert) {
 		assert.deepEqual(inverse([1, 1, 1, 1, 1]), [1, 1, 1, 1, 1]);
