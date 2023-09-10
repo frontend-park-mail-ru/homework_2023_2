@@ -8,7 +8,7 @@
  */
 const rle = function (stringToCompress) {
     // Проверка на тип, единственный вариант который работал
-    if (!(typeof stringToCompress === 'string')){
+    if (typeof stringToCompress !== 'string' && !(stringToCompress instanceof String)){
         return null
     }
     // RegExpr, обозначающее все группы повторяющихся символов
