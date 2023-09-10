@@ -34,4 +34,10 @@ QUnit.module('Тестируем функцию rle', function () {
 	QUnit.test('new String()', function (assert) {
 		assert.strictEqual(rle(new String("ADDD")), "AD3");
 	});
+	QUnit.test('Пустая строка', function (assert) {
+		assert.strictEqual(rle(""), "");
+	});
+	QUnit.test('Пустая строка new String()', function (assert) {
+		assert.strictEqual(rle(new String()), "");
+	});
 });
