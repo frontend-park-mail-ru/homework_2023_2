@@ -2,31 +2,27 @@
 
 /**
  * 
- * @param {String} str строка, в которой содержатся числа (могут вперемешку с любями другими символами)
+ * @param {String} str строка, в которой содержатся числа (могут вперемешку с любыми другими символами)
  * @return {Number[]} массив из двух чисел, в котором нулевой элемент - минимальное число из стороки, 
  *                    первый элемент - максимальное 
  */
 function minmax(str) {
+    const minAndMax = [ undefined, undefined ];
     const numberStrings = str.match(/[+-]?((\d+([.]\d*)?([eE][+-]?\d+)?|[.]\d+([eE][+-]?\d+)?)|Infinity)/gu);
-    if (!numberStrings) {
-        return [ undefined, undefined ];
-    }
 
-    const numbers = [];
-    for (const numStr of numberStrings) {
-        if (numStr.length > 0) {
-            const num = Number(numStr);
+    if (!numberStrings) return minAndMax;
+
+    const numbers = numberStrings.reduce((acc, cur) => {
+        if (cur.length > 0) {
+            const num = Number(cur);
             if (!Number.isNaN(num)) {
-                numbers.push(num);
+                acc.push(num);
             }
         }
-    }
+        return acc;
+    }, []);
 
-    const minAndMax = [ undefined, undefined ];
-
-    if (numbers.length === 0) {
-        return minAndMax;
-    }
+    if (!numbers.length) return minAndMax;
 
     minAndMax[0] = minAndMax[1] = numbers[0];
 
