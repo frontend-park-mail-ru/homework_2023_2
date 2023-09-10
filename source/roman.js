@@ -1,7 +1,7 @@
 //Дмитриев Александр Web-22
 'use strict';
 
-const romanNum = [
+const ROMAN_NUM = [
     {value: 1000, symbol: 'M'},
     {value: 900, symbol: 'CM'},
     {value: 500, symbol: 'D'},
@@ -22,21 +22,17 @@ const romanNum = [
  * @param {string} input - Изначальное число
  * @returns {number} - Вернет результат перевода
  */
-const romanToNumber = input => {
-    let out = 0;
-
-    const romNum = romanNum.reduce(function (result, romanNum) {
+const romanToNumber = (input) => {
+    const romNum = ROMAN_NUM.reduce(function (result, ROMAN_NUM) {
         return {
             ...result,
-            [romanNum.symbol]: romanNum.value,
+            [ROMAN_NUM.symbol]: ROMAN_NUM.value,
         }
     }, {});
 
-    for (let i = 0; i < input.length; i++) {
-        romNum[input[i + 1]] && romNum[input[i]] < romNum[input[i + 1]] ? out -= romNum[input[i]] : out += romNum[input[i]];
-    }
-
-    return out;
+    return input.split('').reduce((out, curr, i) => {
+        return romNum[input[i + 1]] && romNum[curr] < romNum[input[i + 1]] ? out -= romNum[curr] : out += romNum[curr];
+    }, 0);
 }
 
 /**
@@ -44,8 +40,8 @@ const romanToNumber = input => {
  * @param {number} input - Изначальное число
  * @returns {string} - Вернет результат перевода
  */
-const numberToRoman = input => {
-    return romanNum.reduce((res, num) => {
+const numberToRoman = (input) => {
+    return ROMAN_NUM.reduce((res, num) => {
         while (input >= num.value) {
             res += num.symbol;
             input -= num.value;
@@ -59,17 +55,17 @@ const numberToRoman = input => {
  * @param {number|string} input - Изначальное число
  * @returns {number|string} - Вернет результат перевода
  */
-const roman = input => {
+const roman = (input) => {
     //Проверка символов
-    if (!/^[IVXLCDM\d]+$/i.test(input) || typeof input !== 'number' && typeof input !== 'string') {
-        throw "Error";
+    if (!/^[IVXLCDM\d]+$/i.test(input) || typeof input !== 'number' && typeof input !== 'string'  && !(input instanceof Number) && !(input instanceof String)) {
+        throw new TypeError("Invalid data or data type")
     }
 
     if (Number.isInteger(Number(input))) {
         // Arabic to Roman
 
         if (input <= 0 || input >= 3999) {
-            throw "Error";
+            throw new Error("Invalid number value");
         }
 
         return numberToRoman(input);
