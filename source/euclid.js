@@ -7,7 +7,7 @@
  * @param {number} y - число, для которого ищется НОД
  * @returns {number} x - НОД для двух чисел
  */
-const gcd = (x, y) => y ? gcd(y, x % y) : x;
+const gcd = (x, y) => y ? gcd(y, x % y) : Math.abs(x);
 
 /**
  * Нахождение НОД для любого количества чисел
@@ -16,6 +16,6 @@ const gcd = (x, y) => y ? gcd(y, x % y) : x;
  * @returns {number} НОД для любого количества чисел
 */
 const euclid = (...numbers) => 
-	numbers.some((number) => !Number.isInteger(number)) 
-		? null 
-		: numbers.map(Math.abs).reduce(gcd, 0);
+	numbers.every(Number.isInteger) 
+		? numbers.reduce(gcd, 0) 
+		: null;
