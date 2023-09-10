@@ -60,30 +60,26 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(false, false), undefined);
 	});
 
-	QUnit.test('get работает правильно с методоами прототипов', function (assert) {
+	QUnit.test('get работает правильно с методами прототипов', function (assert) {
 		const metaObj = { name: 'Прародитель всех объектов', print: () => {console.log('Печать')} };
-
 		function Object() {
 			this.name = "Объект";
 			this.price = 9999;
 		}
-
 		Object.prototype = metaObj;
-
-		const obj = new Object();
+		const obj = {};
 
 		assert.strictEqual(get(obj, '.print'), undefined);
 	});
 
-	QUnit.test('get работает правильно с перечисляемыми свойствами прототипов при передачи соответствующей опции', function (assert) {
+	QUnit.test('get работает правильно с перечисляемыми свойствами прототипов при передаче соответствующей опции', function (assert) {
 		const object = {
 			foo: {
 				bar: 42
 			}
 		};
-
-		const b = {b: 'b'}
-		Object.setPrototypeOf(object, b)
+		const b = {b: 'b'};
+		Object.setPrototypeOf(object, b);
 
 		assert.strictEqual(get(object, '.b'), undefined);
 		assert.strictEqual(get(object, '.b', undefined), undefined);

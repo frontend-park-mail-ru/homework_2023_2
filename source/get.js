@@ -9,9 +9,10 @@
  * В ином случае возвращает undefined
  */
 
-const QUERY_WITHOUT_DOT = 1;
-const DOT_SYMBOL = '.';
 function get(object, query, flag = false) {
+    const QUERY_WITHOUT_DOT = 1;
+    const DOT_SYMBOL = '.';
+
     if (!query || !object) {
         return undefined;
     }
