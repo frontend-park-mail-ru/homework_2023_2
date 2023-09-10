@@ -16,6 +16,6 @@ const gcd = (x, y) => y ? gcd(y, x % y) : x;
  * @returns {number} НОД для любого количества чисел
 */
 const euclid = (...numbers) => 
-		numbers.some((number) => !Number.isInteger(number)) 
-				? null 
-				: numbers.map(Math.abs).reduce(gcd, 0);
+	numbers.some((number) => !Number.isInteger(number)) 
+		? null 
+		: numbers.map(Math.abs).reduce(gcd, 0);
