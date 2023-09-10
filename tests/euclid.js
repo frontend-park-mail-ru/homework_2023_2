@@ -35,7 +35,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 	});
 	
 	QUnit.test('На входе может быть 0', function (assert) {
-		assert.strictEqual(euclid(0), 'Uncorrect', 'euclid(0) === Uncorrect');
-		assert.strictEqual(euclid(7, 0, 21), 'Uncorrect', 'euclid(7, 0, 21) === Uncorrect');
+		assert.strictEqual(euclid(0), 0, 'euclid(0) === 0');
+		assert.strictEqual(euclid(7, 0, 21), 7, 'euclid(7, 0, 21) === 7');
 	});
 });
