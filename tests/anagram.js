@@ -18,7 +18,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram(input), output);
 	});
 		
-		QUnit.test('Дополнительный тест 1', function (assert) {
+		QUnit.test('Тест - не у всех слов есть пара', function (assert) {
 		const input = [
 			'анаграмма', 'магнат', 
 			'кот', 'ток', 
