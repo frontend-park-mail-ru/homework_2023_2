@@ -25,13 +25,8 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
 	QUnit.test('Ошибка при неверных входных параметрах', function (assert) {
-			const expected =
-				'* \n' +
-				' *\n';
-		//assert.strictEqual(chess(2.5), expected);
-		//assert.strictEqual(chess('2.5'), expected);
 		assert.throws(function () {
-				chess('2.5')
+				chess(2.5)
 			},
 			Error('Size is not a round number!'));
 
@@ -42,6 +37,11 @@ QUnit.module('Тестируем функцию chess', function () {
 
 		assert.throws(function () {
 				chess('aaaa')
+			},
+			Error('Size is not a round number!'));
+		let obj = new Object();
+		assert.throws(function () {
+				chess(obj)
 			},
 			Error('Size is not a round number!'));
 	});

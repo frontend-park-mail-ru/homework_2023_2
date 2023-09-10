@@ -29,8 +29,9 @@ const makeLine = (size, isWhiteFirstField) => {
  @throws {'Size is not a round number!'}  - если размер поля не представляет собой целое число
  */
 const chess = (size) => {
-    if (size % 1 !== 0 ) {
-    throw new Error('Size is not a round number!');
+    size = Number(size);
+    if (!Number.isInteger(size)) {
+        throw new Error('Size is not a round number!');
     };
     if (size <= 1) {
         return null;
