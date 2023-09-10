@@ -5,6 +5,7 @@
  * @param {Array.<Object>} objects - массив plain-объектов
  * @param {Array.<string>} keys - массив имён свойств
  * @returns {Array.<Object>} - отсортированный массив
+ * @throws {InvalidArgumentException} Выкидывает исключение, если передано несуществующее имя свойства объекта
  */
 const sorting = (objects, keys) => {
     const sortedObjects = objects.slice(); 
