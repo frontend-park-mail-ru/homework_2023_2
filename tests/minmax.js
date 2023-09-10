@@ -44,5 +44,6 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax([1, 2, 3, 4]), [ undefined, undefined ]);
 		assert.deepEqual(minmax(new Date()), [ undefined, undefined ]);
 		assert.deepEqual(minmax(new String()), [ undefined, undefined ]);
+		assert.deepEqual(minmax(new String('1 1 1 1')), [ 1, 1 ]);
 	});
 });
