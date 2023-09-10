@@ -11,7 +11,7 @@ const sorting = (objects, keys) => {
     
     return sortedObjects.sort((a, b) => {
         for (let key of keys) {
-            if (!sortedObjects.some(object => object.hasOwnProperty(key))) {
+            if (!sortedObjects.some((object) => object.hasOwnProperty(key))) {
                 return 0;
             }
 
@@ -26,7 +26,7 @@ const sorting = (objects, keys) => {
                 case 'string':
                     return propertyA.localeCompare(propertyB);
                 case 'number':
-                    return (propertyA - propertyB);
+                    return propertyA - propertyB;
                 default:
                     break;
             }
