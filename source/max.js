@@ -6,12 +6,12 @@ const inverse = (array, ind) => {
 let numbers = array.slice();
 	if (ind) {
 		const len = numbers.length;
+		let subarray1 = numbers.slice(ind)
+		let subarray2 = numbers.slice(0, ind)
 		if (ind >= 0){
-			let reversedSubarray = numbers.slice(ind).reverse();
-			return numbers.slice(0, ind).concat(reversedSubarray);
+			return subarray2.concat(subarray1.reverse());
 		} else {
-			let subarray = numbers.slice(ind);
-			return numbers.slice(0, len+ind).reverse().concat(subarray);
+			return subarray2.reverse().concat(subarray1);
 		}
 	}
 	else {
