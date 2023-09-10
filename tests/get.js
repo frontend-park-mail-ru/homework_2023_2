@@ -112,9 +112,10 @@ QUnit.module('Тестируем функцию get', function () {
 		};
 
 		const object = {
-			arr: [ 1, 2, 3 ],
-			__proto__: objectPrototype
+			arr: [ 1, 2, 3 ]
 		};
+		
+		Object.setPrototypeOf(object, objectPrototype);
 
 		assert.strictEqual(get(object, '.arr.1'), 2);
 		assert.strictEqual(get(object, '.val'), undefined);
