@@ -1,9 +1,6 @@
 "use strict";
 
-const zip = (...objects) => {
-	if (objects.every((element) => typeof element === "object")) {
-		return Object.assign({}, ...objects.reverse());
-	} else {
-		return null;
-	}
-};
+const zip = (...objects) =>
+	objects.every((element) => typeof element === "object")
+		? Object.assign({}, ...objects.reverse())
+		: null;
