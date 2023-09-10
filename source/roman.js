@@ -11,7 +11,7 @@ const roman = (number) => {
      * @description Определение, является ли число из арабской системы счисления
      */
     let isArabic = (str) => {
-        if (str == ""){
+        if (!str){
             return false;
         }
         return /\d+$/.test(str);
@@ -22,7 +22,7 @@ const roman = (number) => {
      * @description Определение, является ли число из римской системы счисления
      */
     let isRoman = (str) => {
-        if (str == ""){
+        if (!str){
             return false;
         }
         return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
@@ -49,7 +49,7 @@ const roman = (number) => {
 
             number = number.toUpperCase()
 
-            let arabic_result = number.split('').reduce(function(sum, current, index){
+            return number.split('').reduce(function(sum, current, index){
                 if ( RomanNum[current] < RomanNum[number[index+1]] ) {
                     return sum -= RomanNum[current];
                 } else {
@@ -57,11 +57,9 @@ const roman = (number) => {
                 }
             }, 0);
 
-            return arabic_result;
-            
         case isArabic(number):
 
-            let roman_result = Object.keys(RomanNum).reduce(function(sum, current){
+            return Object.keys(RomanNum).reduce(function(sum, current){
                 if (number >= RomanNum[current]){
                     let count = number / RomanNum[current];
                     number = number % RomanNum[current];
@@ -69,8 +67,6 @@ const roman = (number) => {
                 }
                 return sum;
             }, "");
-
-            return roman_result;
             
         default:
             return "invalid input"
