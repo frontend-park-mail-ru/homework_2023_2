@@ -13,13 +13,20 @@ const gcd = (x, y) => {
 	return x + y;
 }
 
-const euclid = function(...numbers) {
-	if(numbers.length < 2) {
-		return numbers[0];
+const isInfinity = (number) => {
+	if (!number.isFinite) {
+		return true;
 	}
+	return false;
+}
 
-	let result = numbers.reduce((first, second) => {
-		return gcd(Math.abs(first), Math.abs(second));
+const euclid = (...numbers) => {
+	if (numbers.some(isInfinity)) {
+		return "Infinity number";
+	}		
+	
+	const result = numbers.reduce((previousValue, current, index) => {	
+		return gcd(previousValue, Math.abs(current));
 	}, 0);
 		
 	return result;

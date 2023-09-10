@@ -38,4 +38,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.strictEqual(euclid(0), 0, 'euclid(0) === 0');
 		assert.strictEqual(euclid(7, 0, 21), 7, 'euclid(7, 0, 21) === 7');
 	});
+	QUnit.test('На входе может быть бесконечное число', function (assert) {
+		assert.strictEqual(euclid(Infinity), 'Infinity number', 'euclid(Infinity) === "Infinity number"');
+	});
 });
