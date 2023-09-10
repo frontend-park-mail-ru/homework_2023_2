@@ -7,12 +7,12 @@
  * @param {number} y - число, для которого ищется НОД
  * @returns {number} x - НОД для двух чисел
  */
-const gcd = (x, y) => y ? gcd(y, x % y) : x
+const gcd = (x, y) => y ? gcd(y, x % y) : x;
 
 /**
  * Нахождение НОД для любого количества чисел
  *
- * @param {...numbers} numbers - любое количество чисел
+ * @param {...number} numbers - любое количество чисел
  * @returns {number} НОД для любого количества чисел
 */
 const euclid = (...numbers) => {
