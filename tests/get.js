@@ -118,6 +118,14 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.throws(function() {
 			get(true, true);
 		}, new TypeError("Invalid argument type"));
+
+		assert.throws(function() {
+			get(object, false);
+		}, new TypeError("Invalid argument type"));
+		
+		assert.throws(function() {
+			get(false, false);
+		}, new TypeError("Invalid argument type"));
 	});
 
 	QUnit.test('get правильно работает с объектами, имеющими прототипы', function (assert) {
