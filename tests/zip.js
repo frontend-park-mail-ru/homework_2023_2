@@ -190,4 +190,16 @@ QUnit.module("Тестируем функцию zip", function () {
 		};
 		assert.deepEqual(zip(obj4, obj5), obj45);
 	});
+
+	QUnit.test(
+		"Функция правильно работает в случае, когда на вход подаются не объекты",
+		function (assert) {
+			assert.deepEqual(zip(4), null);
+
+			assert.deepEqual(zip("dfsd", 4), null);
+
+			assert.deepEqual(zip(4, { name: "age" }), null);
+
+			assert.deepEqual(zip({ name: "age" }, {}, "fsdf"), null);
+	});
 });
