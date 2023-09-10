@@ -12,33 +12,35 @@ QUnit.module('Тестируем функцию solve', function () {
 
 	QUnit.test('solve выкидывает ошибку при неправильном ' +
 			   'количестве аргументов', function (assert) {
+		const err = new RangeError('Error: incorrect number of arguments');
 		assert.throws(() =>
 			{solve('x + 1'); },
-			new Error('Error: incorrect number of arguments'),
+			err,
 			'Error thrown'
 		);
 		assert.throws(() =>
 			{solve(); },
-			new Error('Error: incorrect number of arguments'),
+			err,
 			'Error thrown'
 		);
 		assert.throws(() =>
 			{solve(1, 1, 1); },
-			new Error('Error: incorrect number of arguments'),
+			err,
 			'Error thrown'
 		);
 	});
 
 	QUnit.test('solve выкидывает ошибку при неправильном ' +
 			   'типе аргументов', function (assert) {
+		const err = new TypeError('Error: incorrect type of arguments');
 		assert.throws(() =>
 			{solve(1, 'x + 1'); },
-			new Error('Error: incorrect type of arguments'),
+			err,
 			'Error thrown'
 		);
 		assert.throws(() =>
 			{solve(1, 1); },
-			new Error('Error: incorrect type of arguments'),
+			err,
 			'Error thrown'
 		);
 	});
