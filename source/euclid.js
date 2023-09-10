@@ -7,7 +7,7 @@ const euclid = (...numbers) => {
 		return null;
 	}		
 	
-	return numbers.reduce((previousValue, current, index) => {	
+	return numbers.reduce((previousValue, current) => {	
 		return gcd(previousValue, Math.abs(current));
 	}, 0);
 }
