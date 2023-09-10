@@ -13,7 +13,7 @@
  * @throws {TypeError} - Arguments must be of type Object and String.
 */
 const get = (object, pathToProperty) => {
-    if (typeof object !== 'object' || typeof pathToProperty !== 'string' || object === null || pathToProperty === null) {
+    if (typeof object !== 'object' || typeof pathToProperty !== 'string' || !object || !pathToProperty) {
         throw new TypeError("Invalid argument type");
     }
 
