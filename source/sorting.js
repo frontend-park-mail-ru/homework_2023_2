@@ -12,7 +12,7 @@ const sorting = (objects, keys) => {
     return sortedObjects.sort((a, b) => {
         for (let key of keys) {
             if (!sortedObjects.some((object) => object.hasOwnProperty(key))) {
-                return 0;
+                throw new Error('A non-existent object name was passed')
             }
 
             const propertyA = a[key];
