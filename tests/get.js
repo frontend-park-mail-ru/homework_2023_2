@@ -63,7 +63,7 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.foo.*'), undefined);
 	});
 
-	QUnit.test('get правильно работает с неопределенными аргументами', function (assert) {
+	QUnit.test('get правильно работает с undefined и null', function (assert) {
 		const object = {
 			foo: {
 				bar: 42
@@ -88,6 +88,14 @@ QUnit.module('Тестируем функцию get', function () {
 
 		assert.throws(function() {
 			get(undefined, undefined);
+		}, new TypeError("Invalid argument type"));
+
+		assert.throws(function() {
+			get(null, '.foo');
+		}, new TypeError("Invalid argument type"));
+		
+		assert.throws(function() {
+			get(object, null);
 		}, new TypeError("Invalid argument type"));
 	});
 
