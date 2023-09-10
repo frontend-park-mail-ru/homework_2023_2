@@ -12,7 +12,7 @@
  * @returns {Object|undefined} - Property value or undefined if property does not exist.
  * @throws {TypeError} - Arguments must be of type Object and String.
 */
-const get = (object, pathToProperty) => {
+const get = (object, pathToProperty, needProto = false) => {
     if (typeof object !== 'object' || typeof pathToProperty !== 'string' || !object || !pathToProperty) {
         throw new TypeError("Invalid argument type");
     }
@@ -25,5 +25,5 @@ const get = (object, pathToProperty) => {
     const propertyNames = pathToProperty.slice(PATH_START_INDEX).split('.');
 
     return propertyNames.reduce((previous, propertyName) =>
-        previous && previous.hasOwnProperty(propertyName) ? previous[propertyName] : undefined, object);
+        previous && (previous.hasOwnProperty(propertyName) || needProto) ? previous[propertyName] : undefined, object);
 };

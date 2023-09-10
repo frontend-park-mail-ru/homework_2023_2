@@ -143,5 +143,10 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.arr.1'), 2);
 		assert.strictEqual(get(object, '.val'), undefined);
 		assert.strictEqual(get(object, '.flag'), undefined);
+
+		const needPrototypeProps = true;
+		assert.strictEqual(get(object, '.arr.1', needPrototypeProps), 2);
+		assert.strictEqual(get(object, '.val', needPrototypeProps), 10);
+		assert.strictEqual(get(object, '.flag', needPrototypeProps), true);
 	});
 });
