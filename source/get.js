@@ -5,8 +5,6 @@
     и возвращает значение этого свойства (или undefined, если свойства не существует)
 */
 
-const PATH_START_INDEX = 1;
-
 /**
  * Get property value of given object.
  * @param {Object} object - Object to get property value from.
@@ -23,6 +21,7 @@ const get = (object, pathToProperty) => {
         return object;
     }
 
+    const PATH_START_INDEX = 1;
     const propertyNames = pathToProperty.slice(PATH_START_INDEX).split('.');
 
     return propertyNames.reduce((previous, propertyName) =>
