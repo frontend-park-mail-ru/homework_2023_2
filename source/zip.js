@@ -1,3 +1,9 @@
 "use strict";
 
-const zip = (...objects) => Object.assign({}, ...objects.reverse());
+const zip = (...objects) => {
+	if (objects.every((element) => typeof element === "object")) {
+		return Object.assign({}, ...objects.reverse());
+	} else {
+		return null;
+	}
+};
