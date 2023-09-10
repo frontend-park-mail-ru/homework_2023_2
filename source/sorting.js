@@ -8,11 +8,9 @@
  * @throws {InvalidArgumentException} Выкидывает исключение, если передано несуществующее имя свойства объекта
  */
 const sorting = (objects, keys) => {
-    const sortedObjects = [...objects];
-    
-    return sortedObjects.sort((a, b) => {
+    return [...objects].sort((a, b) => {
         for (const key of keys) {
-            if (!sortedObjects.some((object) => object.hasOwnProperty(key))) {
+            if (!objects.some((object) => object.hasOwnProperty(key))) {
                 throw new Error('A non-existent object name was passed');
             }
 
