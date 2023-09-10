@@ -9,6 +9,7 @@
  * Get property value of given object.
  * @param {Object} object - Object to get property value from.
  * @param {String} pathToProperty - Sequence of property names, each beginning with a dot.
+ * @param {Bool} needProto - Flag that determines whether prototype properties are needed.
  * @returns {Object|undefined} - Property value or undefined if property does not exist.
  * @throws {TypeError} - Arguments must be of type Object and String.
 */
