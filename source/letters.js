@@ -1,5 +1,10 @@
 'use strict';
-/* Функция фильтрации элементов массива использюущая функцию-компаратор передаваемый как параметр func*/
+/**
+ * Функция фильтрации
+ * @param {function} func - Функция сравнения
+ * @param {string} str - Фильтруемая строка
+ * @returns {string} Строка состоящая из уникальных символов
+ */
 const filter = (func, str) => 
 {
     let uniquestr = [];
@@ -9,27 +14,25 @@ const filter = (func, str) =>
     return uniquestr.join("");
 }
 
-/* функция letters в зависимости от переданных параметров удаляет неуникальные элементы из строки:
-* случай true: функция будет искать повторяющиеся символы в строках и удалять их, оставляя на месте только первую встречающуюся букву.
-* случай false: функция будет оставлять только последнюю встречающуюся букву.
-* случай когда второго параметра нет: функция будет удалять из строки символы, которые встречаются в ней больше одного раза.
-*/ 
+/**
+ * Функция удаляющая неуникальные символы
+ * @param {string} input - Подаваемая на вход строка
+ * @param {boolean} flag - Флаг, влияющий на режим фильтрации
+ * @returns {string} Строка состоящая из уникальных символов
+ */
 const letters = (input, flag) =>
 {
-    /* Проверка на верность переданных параметров */
-    try {
-        input.split('');
-        if(typeof flag !== 'boolean' && typeof flag !== 'undefined')
-            throw new Error();
-    } catch (error) {
+    if(typeof flag !== 'boolean' && typeof flag !== 'undefined' || typeof input !== 'string') {
         return "Wrong input type, must be (string, boolean)";
     }
+
     const str = input.split('');
-    /* Вызов функции фильтрации в зависимости от переданных параметров */
-    if(flag)
+
+    if(flag) {
         return filter((item, index) => str.indexOf(item) === index, str);
-    else if(flag === false)
+    } else if(flag === false) {
         return filter((item, index) => str.lastIndexOf(item) === index, str);
-    else
+    } else {
         return filter((item) => str.lastIndexOf(item) === str.indexOf(item), str);
+    }      
 }
