@@ -1,5 +1,10 @@
 'use strict'
 
+/**
+ * Функция tree
+ * @param {number} height высота ёлочки, учитывая ствол
+ * @returns {string} строка с ёлочкой
+ */
 function tree(height) {
     if (height < 3) {
         return null
