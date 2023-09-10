@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 /**
  * @param {string} number - Число для перевода в другую систему
  * @description Перевод числа из арабской СС в римскую или наоборот, либо сообщение о невалидности данных
@@ -13,6 +11,9 @@ const roman = (number) => {
      * @description Определение, является ли число из арабской системы счисления
      */
     let isArabic = (str) => {
+        if (str == ""){
+            return false;
+        }
         return /\d+$/.test(str);
     }
 
@@ -21,6 +22,9 @@ const roman = (number) => {
      * @description Определение, является ли число из римской системы счисления
      */
     let isRoman = (str) => {
+        if (str == ""){
+            return false;
+        }
         return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
     }
 
@@ -42,34 +46,30 @@ const roman = (number) => {
 
     switch (true){
         case isRoman(number):
-            let arabic_result = 0;
 
             number = number.toUpperCase()
 
-            let i = 0;
-
-            while (i < number.length){
-                
-                if ( RomanNum[number[i]] < RomanNum[number[i+1]] ) {
-                    arabic_result -= RomanNum[number[i]];
+            let arabic_result = number.split('').reduce(function(sum, current, index){
+                if ( RomanNum[current] < RomanNum[number[index+1]] ) {
+                    return sum -= RomanNum[current];
                 } else {
-                    arabic_result += RomanNum[number[i]];
+                    return sum += RomanNum[current];
                 }
-                i = i + 1;
-            }
+            }, 0);
 
             return arabic_result;
             
         case isArabic(number):
-            let roman_result = "" 
 
-            for (let key in RomanNum){
-                if (number >= RomanNum[key]){
-                    let count = number / RomanNum[key];
-                    roman_result += key.repeat(count);
-                    number = number % RomanNum[key];
+            let roman_result = Object.keys(RomanNum).reduce(function(sum, current){
+                if (number >= RomanNum[current]){
+                    let count = number / RomanNum[current];
+                    number = number % RomanNum[current];
+                    return sum += current.repeat(count);
                 }
-            }
+                return sum;
+            }, "");
+
             return roman_result;
             
         default:
