@@ -87,7 +87,7 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.deepEqual(zip({}, {}, {}, {}, {length: 199}), {length: 199});
 	});
 
-	QUnit.test('Функция игнорирует аргументы, не являющиеся объектами', function (assert) {
+	QUnit.test('Функция игнорирует аргументы, не являющиеся объектами, а также массивы и строки', function (assert) {
 		assert.deepEqual(zip(1, 3, {node: 1, object: 2, ob: 1}), {node: 1, object: 2, ob: 1});
 		assert.deepEqual(zip(1, {x: 3}, 3, 5, {x: 5, y: 3}), {x: 3, y: 3});
 		assert.deepEqual(zip([1, 2, 3], "string", {x: 3, y: 3}), {x: 3, y: 3});
