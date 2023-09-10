@@ -6,14 +6,15 @@ const WHITE_FIELD = '*'
 /**
  Функция генерирует строку шахматной доски
  @param {number} size - длина строки
- @param {string} firstField - первый элемент строки, может быть BLACK_FIELD или WHITE_FIELD в зависимости от того, рисуем четную или нечетную строку
+ @param {boolean} isWhite - true если первый элемент строки белый, false - если черный
  @returns {string} - строка шахматной доски
  */
-const makeLine = (size, firstField) => {
-    let line = Array.from({length: size}, (size, i) => {
-        return (i++ % 2) ? WHITE_FIELD : BLACK_FIELD
+const makeLine = (size, isWhite) => {
+    const line = Array.from({length: size}, (size, i) => {
+        return (i % 2) ? WHITE_FIELD : BLACK_FIELD
     })
-    if (firstField === WHITE_FIELD) { line.unshift(WHITE_FIELD); line.pop(); };
+    if (isWhite) { line.unshift(WHITE_FIELD);
+        line.pop(); };
     line.push('\n');
     return line.join("");
 }
@@ -25,13 +26,14 @@ const makeLine = (size, firstField) => {
  @returns {string} - строка, изображающая шахматную доску
  */
 const chess = (size) => {
-    if (size <= 1) { return null };
+    if (size <= 1) {
+        return null };
     let field = '';
-    let oddLine = makeLine(size, BLACK_FIELD)
-    let evenLine = makeLine(size, WHITE_FIELD)
+    const oddLine = makeLine(size, false);
+    const evenLine = makeLine(size, true);
 
     for (let i = 1; i <= size; i++) {
-        (i % 2)
+        i % 2
             ? (field += evenLine)
             : (field += oddLine)
     }
