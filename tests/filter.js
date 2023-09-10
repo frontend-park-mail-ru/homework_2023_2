@@ -21,6 +21,13 @@ QUnit.module('Проверка работы функции filter', function () 
 		assert.strictEqual(output, expected);
 	});
 
+	QUnit.test('filter не экранирует валидные и экранирует не валидные html-тэги', function (assert) {
+		const input = '<strong>Hello, <em>World!</em></strong> 1 + 2 < 4!';
+
+		assert.strictEqual(filter(input, ['em']), '&lt;strong&gt;Hello, <em>World!</em>&lt;/strong&gt; 1 + 2 &lt; 4!');
+		assert.strictEqual(filter(input, ['strong']), '<strong>Hello, &lt;em&gt;World!&lt;/em&gt;</strong> 1 + 2 &lt; 4!');
+	});
+
 	QUnit.test('filter экранирует XSS', function (assert) {
 		assert.strictEqual(filter(`<script>alert('1');</script>`, [ 'strong', 'em' ]), '&lt;script&gt;alert(&#39;1&#39;);&lt;/script&gt;');
 		assert.strictEqual(filter(`<img src="bad" onerror="alert('1');">`, [ 'strong', 'em' ]), '&lt;img src=&quot;bad&quot; onerror=&quot;alert(&#39;1&#39;);&quot;&gt;');
@@ -36,11 +43,11 @@ QUnit.module('Проверка работы функции filter', function () 
 	});
 
 	QUnit.test('filter допускает только массив строк', function (assert) {
-		assert.throws(()=> filter(`<script>alert('1');</script>`, null), new Error("expected Array of strings"));
-		assert.throws(()=> filter(`<script>alert('1');</script>`, [null, null]), new Error("expected Array of strings"));
+		assert.throws(()=> filter(`<script>alert('1');</script>`, null), new TypeError("expected Array of strings"));
+		assert.throws(()=> filter(`<script>alert('1');</script>`, [null, null]), new TypeError("expected Array of strings"));
 	});
 
 	QUnit.test('filter допускает только текст', function (assert) {
-		assert.throws(()=> filter([1, 2 , 4]), new Error("expected String"));
+		assert.throws(()=> filter([1, 2 , 4]), new TypeError("expected String"));
 	});
 });
