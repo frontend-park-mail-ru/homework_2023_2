@@ -26,3 +26,5 @@ QUnit.module('Тестируем функцию max', function () {
 		assert.strictEqual(max([ 0, -1000, -Infinity ]), 0);
 	});
 });
+
+

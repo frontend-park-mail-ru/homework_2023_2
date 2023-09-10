@@ -10,12 +10,15 @@ let numbers = array.slice();
             return numbers.slice(0, ind).concat(reversedSubarray);
         } else {
             ind = Math.abs(ind);
-            let subarray = numbers.splice(numbers.length - ind, ind)
-            let result = numbers.reverse().concat(subarray);
-            return result;
+            let len = numbers.length;
+            let subarray1 = numbers.slice(len - ind, len);
+            let subarray2 = numbers.slice(0, len - ind);
+            return subarray2.reverse().concat(subarray1);
         }
     }
     else {
         return numbers.reverse();;
     }
 };
+
+
