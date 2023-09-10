@@ -53,30 +53,30 @@ QUnit.module('Тестируем функцию set', function () {
 
 	QUnit.test('set работает правильно c массивами', function (assert) {
 		const object1 = {
-			foo: [1, 2, 3],
+			foo: [ 1, 2, 3 ],
 			bar: [
-				{ foobar: '42' }
+				{foobar: '42'}
 			]
 		};
 
 		const object2 = {
-			foo: [1, 2, 3],
+			foo: [ 1, 2, 3 ],
 			bar: [
-				{ foobar: '42' }
+				{foobar: '42'}
 			]
 		};
 
 		const new1 = {
-			foo: [42, 2, 3],
+			foo: [ 42, 2, 3 ],
 			bar: [
-				{ foobar: '42' }
+				{foobar: '42'}
 			]
 		};
 
 		const new2 = {
-			foo: [1, 2, 3],
+			foo: [ 1, 2, 3 ],
 			bar: [
-				{ foobar: 'baz' }
+				{foobar: 'baz'}
 			]
 		};
 
