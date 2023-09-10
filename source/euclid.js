@@ -17,15 +17,7 @@ const euclid = function(...numbers) {
 	if(numbers.length < 2) {
 		return numbers[0];
 	}
-	
-	/*for (let i = 1; i < numbers.length; i++ ) {
-		let second = numbers[i];
-		if (second == 0) {
-			return 'Uncorrect';
-		}
-		
-		first = gcd(Math.abs(first), Math.abs(second));
-	}*/	
+
 	let result = numbers.reduce((first, second) => {
 		return gcd(Math.abs(first), Math.abs(second));
 	}, 0);
