@@ -91,6 +91,20 @@ QUnit.module('Тестируем функцию get', function () {
 		}, new TypeError("Invalid argument type"));
 	});
 
+	QUnit.test('get правильно работает с аргументами других типов', function (assert) {
+		const object = {
+			arr: [ 1, 2, 3 ]
+		};
+
+		assert.throws(function() {
+			get(object, 10);
+		}, new TypeError("Invalid argument type"));
+
+		assert.throws(function() {
+			get(true, true);
+		}, new TypeError("Invalid argument type"));
+	});
+
 	QUnit.test('get правильно работает с объектами, имеющими прототипы', function (assert) {
 		const objectPrototype = {
 			val: 10,
