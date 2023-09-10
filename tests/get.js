@@ -90,4 +90,20 @@ QUnit.module('Тестируем функцию get', function () {
 			get(undefined, undefined);
 		}, new TypeError("Invalid argument type"));
 	});
+
+	QUnit.test('get правильно работает с объектами, имеющими прототипы', function (assert) {
+		const objectPrototype = {
+			val: 10,
+			flag : true
+		};
+
+		const object = {
+			arr: [ 1, 2, 3 ],
+			__proto__: objectPrototype
+		};
+
+		assert.strictEqual(get(object, '.arr.1'), 2);
+		assert.strictEqual(get(object, '.val'), undefined);
+		assert.strictEqual(get(object, '.flag'), undefined);
+	});
 });

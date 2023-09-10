@@ -26,5 +26,5 @@ const get = (object, pathToProperty) => {
     const propertyNames = pathToProperty.slice(PATH_START_INDEX).split('.');
 
     return propertyNames.reduce((previous, propertyName) =>
-        previous === undefined ? undefined : previous[propertyName], object);
+        previous === undefined || !previous.hasOwnProperty(propertyName) ? undefined : previous[propertyName], object);
 };
