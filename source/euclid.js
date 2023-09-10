@@ -13,15 +13,8 @@ const gcd = (x, y) => {
 	return x + y;
 }
 
-const isInfinity = (number) => {
-	if (!number.isFinite) {
-		return true;
-	}
-	return false;
-}
-
 const euclid = (...numbers) => {
-	if (numbers.some(isInfinity)) {
+	if (numbers.some((number) => !Number.isFinite(number) ? true : false)) {
 		return "Infinity number";
 	}		
 	
