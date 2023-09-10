@@ -33,4 +33,13 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -5), [ 1, 2, 3, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
+
+	QUnit.test('Функция работает с пустым массивом и отрицательным числом', function (assert) {
+		assert.deepEqual(inverse([], -1), []);
+	});
+		
+	QUnit.test('Функция работает с массивом из одного элемента и отрицательным числом', function (assert) {
+		assert.deepEqual(inverse([1], -1), [1]);
+		assert.deepEqual(inverse(['a'], -1), ['a']);
+	});
 });
