@@ -107,8 +107,8 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters(444), '');
 		assert.strictEqual(letters(undefined), '');
 		assert.strictEqual(letters(true), '');
-        assert.strictEqual(letters(null), '');
-        assert.strictEqual(letters(NaN), '');
+		assert.strictEqual(letters(null), '');
+		assert.strictEqual(letters(NaN), '');
 		assert.strictEqual(letters(function() {}), '');
 		assert.strictEqual(letters(() => {}), '');
 		assert.strictEqual(letters(['lol']), '');
@@ -119,8 +119,8 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters(444, null), '');
 		assert.strictEqual(letters(undefined, 234), '');
 		assert.strictEqual(letters(true, ['monkey']), '');
-        assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), '');
-        assert.strictEqual(letters(NaN, () => {}), '');
+		assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), '');
+		assert.strictEqual(letters(NaN, () => {}), '');
 		assert.strictEqual(letters(['lol'], ['rr', 'trrr', 'r', 't']), '');
 		assert.strictEqual(letters(['l', 'o', 'l'], function() {}), '');
 		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt'], NaN), '');
