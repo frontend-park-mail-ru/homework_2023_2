@@ -11,7 +11,7 @@ const sorting = (objects, keys) => {
     const sortedObjects = [...objects];
     
     return sortedObjects.sort((a, b) => {
-        for (let key of keys) {
+        for (const key of keys) {
             if (!sortedObjects.some((object) => object.hasOwnProperty(key))) {
                 throw new Error('A non-existent object name was passed');
             }
