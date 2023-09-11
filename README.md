@@ -1,4 +1,4 @@
-# frontend-homework, вариант №3 Томская Ульяна
+# frontend-homework, вариант №3
 > Introductory homework for the course "Frontend-development"
 
 ## Привет!

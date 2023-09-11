@@ -11,10 +11,11 @@ const roman = (number) => {
      * @description Определение, является ли число из арабской системы счисления
      */
     let isArabic = (str) => {
-        if (str.length == 0){
-            return false;
+        let type = typeof str;
+        if (str && (type == 'string' ||  type == 'number')){
+            return /\d+$/.test(str);
         }
-        return /\d+$/.test(str);
+        return false;
     }
 
     /**
@@ -22,10 +23,10 @@ const roman = (number) => {
      * @description Определение, является ли число из римской системы счисления
      */
     let isRoman = (str) => {
-        if (str.length == 0){
-            return false;
+        if (str && typeof str == 'string'){
+            return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
         }
-        return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
+        return false;
     }
 
     const RomanNum = {

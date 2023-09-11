@@ -63,5 +63,8 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('MMMM'), 'invalid input');
 		assert.strictEqual(roman(''), 'invalid input');
 		assert.strictEqual(roman([]), 'invalid input');
+		assert.strictEqual(roman({}), 'invalid input');
+		assert.strictEqual(roman(true), 'invalid input');
+		assert.strictEqual(roman(false), 'invalid input');
 	});
 });
