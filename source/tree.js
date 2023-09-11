@@ -4,6 +4,7 @@
  * Функция tree
  * @param {number} height высота ёлочки, учитывая ствол
  * @returns {string} строка с ёлочкой
+ * @returns {null} null, если переданная высота ёлочки меньше трех: ёлочек высотой ниже трёх не бывает
  */
 function tree(height) {
     if (height < 3) {
