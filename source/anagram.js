@@ -8,25 +8,25 @@
  */
 
 const anagram = (words) => {
-const groups = {};
+    const groups = {};
 
-for (const word of words) {
-    const sortedWord = word.split('').sort().join('');
+    for (const word of words) {
+        const sortedWord = word.split('').sort().join('');
 
-    if (!groups[sortedWord]) {
-        groups[sortedWord] = [];
+        if (!groups[sortedWord]) {
+            groups[sortedWord] = [];
+        }
+
+        groups[sortedWord].push(word);
     }
 
-    groups[sortedWord].push(word);
-}
+    const anagramGroups = [];
 
-const anagramGroups = [];
-
-for (const sortedWord in groups) {
-    if (groups[sortedWord].length >= 2) {
-        anagramGroups.push(groups[sortedWord].sort());
+    for (const sortedWord in groups) {
+        if (groups[sortedWord].length >= 2) {
+            anagramGroups.push(groups[sortedWord].sort());
+        }
     }
-}
 
-return anagramGroups.sort();
+    return anagramGroups.sort();
 };
