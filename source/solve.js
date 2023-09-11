@@ -15,7 +15,8 @@ const solve = (...args) => {
         throw new RangeError('Error: incorrect number of arguments');
     }
     let [expression, value] = args;
-    if (String(expression) !== expression || typeof value !== 'number') {
+    console.log(expression instanceof String)
+    if ((!(expression instanceof String) && typeof expression !== 'string') || typeof value !== 'number') {
         throw new TypeError('Error: incorrect type of arguments');
     }
     if (expression.match(/[^-+)(\/\*x\d\s]/)) {
