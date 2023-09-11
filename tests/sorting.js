@@ -120,4 +120,59 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		assert.deepEqual(actual, expected);
 	});
+
+  QUnit.test('sorting сортирует массив, если у объектов разное количество свойств, но есть переданые', function (assert) {
+		const initial = [
+			{prop1: '3000'},
+			{prop1: '1000', prop2: '2000'},
+			{prop1: '4'},
+			{prop1: '200'}
+		];
+		const actual = sorting(initial, [ 'prop1' ]);
+
+    const expected = [
+      {prop1: '1000', prop2: '2000'},
+			{prop1: '200'},
+			{prop1: '3000'},
+			{prop1: '4'},
+		];
+		assert.deepEqual(actual, expected);
+	});
+
+  QUnit.test('sorting не изменяет массив, если у какого-то объекта остуствует переданное свойство', function (assert) {
+		const initial = [
+			{prop1: '3000'},
+			{prop2: '1000'},
+			{prop1: '4'},
+			{prop3: '200'}
+		];
+		const actual = sorting(initial, [ 'prop1' ]);
+
+    const expected = [
+			{prop1: '3000'},
+			{prop2: '1000'},
+			{prop1: '4'},
+			{prop3: '200'}
+		];
+		assert.deepEqual(actual, expected);
+	});
+
+  QUnit.test('sorting не изменяет массив, если значения одних и тех же свойств имеют различные типы', function (assert) {
+		const initial = [
+			{prop1: '3000'},
+			{prop1: 1000},
+			{prop1: '4'},
+			{prop1: true}
+		];
+		const actual = sorting(initial, [ 'prop1' ]);
+
+		const expected = [
+			{prop1: '3000'},
+			{prop1: 1000},
+			{prop1: '4'},
+			{prop1: true}
+		];
+
+		assert.deepEqual(actual, expected);
+	});
 });
