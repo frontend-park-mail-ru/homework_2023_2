@@ -42,18 +42,18 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('Тестирование работы с иными типами данных, в случае невалидные входных данные должна быть ошибка TypeError',
 	function (assert) {
-		assert.throws(() => (plain(undefined), TypeError));
-		assert.throws(() => (plain(5), TypeError));
-		assert.throws(() => (plain(9999n), TypeError));
-		assert.throws(() => (plain(true), TypeError));
-		assert.throws(() => (plain('alert("true")'), TypeError));
-		assert.throws(() => (plain(Symbol("id")), TypeError));
-		assert.throws(() => (plain(Math), TypeError));
-		assert.throws(() => (plain(null), TypeError));
-		assert.throws(() => (plain(alert('alert')), TypeError));
-		assert.throws(() => (plain(NaN), TypeError));
-		assert.throws(() => (plain( {} ), TypeError));
-		assert.throws(() => (plain( '' ), TypeError));
-		assert.throws(() => (plain( {id: 1, name: 'Gleb', data: [null, 10n, 10n, 3]} ), TypeError));
+		assert.throws(() => plain(undefined), TypeError);
+		assert.throws(() => plain(5), TypeError);
+		assert.throws(() => plain(9999n), TypeError);
+		assert.throws(() => plain(true), TypeError);
+		assert.throws(() => plain('alert("true")'), TypeError);
+		assert.throws(() => plain(Symbol("id")), TypeError);
+		assert.throws(() => plain(Math), TypeError);
+		assert.throws(() => plain(null), TypeError);
+		assert.throws(() => plain(alert('alert')), TypeError);
+		assert.throws(() => plain(NaN), TypeError);
+		assert.throws(() => plain( {} ), TypeError);
+		assert.throws(() => plain( '' ), TypeError);
+		assert.throws(() => plain( {id: 1, name: 'Gleb', data: [null, 10n, 10n, 3]} ), TypeError);
 	});
 });
