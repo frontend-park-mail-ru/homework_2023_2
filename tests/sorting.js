@@ -215,4 +215,52 @@ QUnit.module('Тестируем функцию sorting', function () {
 
         assert.deepEqual(actual, expected);
     });
+
+    QUnit.test('sorting сортирует массив по строкам, которые являются объектами, а не примитивами', function (assert) {
+        const a = new String('a');
+        const b = new String('b');
+
+        const initial = [
+            {prop1: b},
+            {prop1: 'b'},
+            {prop1: 'c'},
+            {prop1: 'a'},
+            {prop1: a},
+        ];
+        const actual = sorting(initial, ['prop1']);
+
+        const expected = [
+            {prop1: 'a'},
+            {prop1: a},
+            {prop1: b},
+            {prop1: 'b'},
+            {prop1: 'c'},
+        ];
+
+        assert.deepEqual(actual, expected);
+    });
+
+    QUnit.test('sorting сортирует массив по числам, которые являются объектами, а не примитивами', function (assert) {
+        const one = new String(1);
+        const two = new String(2);
+
+        const initial = [
+            {prop1: two},
+            {prop1: 2},
+            {prop1: 3},
+            {prop1: 1},
+            {prop1: one},
+        ];
+        const actual = sorting(initial, ['prop1']);
+
+        const expected = [
+            {prop1: 1},
+            {prop1: one},
+            {prop1: two},
+            {prop1: 2},
+            {prop1: 3},
+        ];
+
+        assert.deepEqual(actual, expected);
+    });
 });
