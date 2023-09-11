@@ -29,7 +29,7 @@ let anagram = (words) => {
     if (words === null)
         return null
 
-    words.sort(); // в первую очередь для упрощения тестирования
+    words.sort();
     let result = [];
     let anagramLine = [];
 
