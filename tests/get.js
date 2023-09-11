@@ -11,7 +11,7 @@ QUnit.module('Тестируем функцию get', function () {
 			}
 		};
 
-		assert.strictEqual(get(object, '.foo'), object.foo);
+		assert.strictEqual(get(object, '.foo'), object.foo);	
 		assert.strictEqual(get(object, '.deep.hested.field'), object.deep.hested.field);
 
 		assert.deepEqual(get(object, '.deep.hested'), object.deep.hested);
@@ -148,5 +148,14 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.arr.1', needPrototypeProps), 2);
 		assert.strictEqual(get(object, '.val', needPrototypeProps), 10);
 		assert.strictEqual(get(object, '.flag', needPrototypeProps), true);
+	});
+
+	QUnit.test('get правильно работает с аргументами, созданными конструктором', function (assert) {
+		const object = {
+			arr: [ 1, 2, 3 ]
+		};
+
+		assert.strictEqual(get(object, new String('.arr.0')), 1);
+		assert.strictEqual(get(object, new String('.arr.1'), new Boolean(true)), 2);
 	});
 });

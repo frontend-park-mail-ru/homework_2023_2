@@ -14,7 +14,10 @@
  * @throws {TypeError} - Arguments must be of type Object and String.
 */
 const get = (object, pathToProperty, needProto = false) => {
-    if (typeof object !== 'object' || typeof pathToProperty !== 'string' || !object || !pathToProperty) {
+    const toStr = Object.prototype.toString;
+
+    if (toStr.call(object) !== '[object Object]' || toStr.call(pathToProperty) !== '[object String]'
+    || toStr.call(needProto) !== '[object Boolean]') {
         throw new TypeError('Invalid argument type');
     }
 
