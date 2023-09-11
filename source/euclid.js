@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Вычисление наибольшего общего делителя для переданных аргументов
@@ -9,8 +9,13 @@
 
 const euclid = (...numbers) => {
 
-	if (!numbers.every((arg) => Number.isInteger(arg) && arg > 0 && arg !== Number.MAX_VALUE)) {
-		throw new TypeError("expected sequence of natural numbers");
+	if (!(Array.isArray(numbers)
+			&& numbers.length
+			&& numbers.every(
+				(arg) => Number.isInteger(arg) && arg > 0 && arg !== Number.MAX_VALUE
+		  	)
+		)) {
+		throw new TypeError('expected sequence of natural numbers');
 	}
 
 	return numbers.reduce((nod, num) => {

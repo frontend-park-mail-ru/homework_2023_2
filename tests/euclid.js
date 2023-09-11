@@ -30,7 +30,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 	});
 
 	QUnit.test(
-		"Функция должна правильно работать с одинаковыми числами",
+		'Функция должна правильно работать с одинаковыми числами',
 		function (assert) {
 			assert.strictEqual(euclid(9, 9, 9, 9, 9, 9), 9);
 			assert.strictEqual(euclid(21, 21, 21), 21);
@@ -40,7 +40,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 	);
 
 	QUnit.test(
-		"Функция должна правильно работать с взаимопростыми числами",
+		'Функция должна правильно работать с взаимопростыми числами',
 		function (assert) {
 			const a = [3, 23, 43, 53, 73, 103];
 			assert.strictEqual(euclid(...a), 1);
@@ -55,49 +55,28 @@ QUnit.module('Тестируем функцию euclid', function () {
 	);
 
 	QUnit.test(
-		"На входе массив",
+		'Функция должна правильно обрабатывать некорректные данные',
 		function (assert) {
-			assert.throws(() => euclid([1, 2, 3]), new TypeError("expected sequence of natural numbers"))
-			assert.throws(() => euclid(20, 30, [1, 2, 3]), new TypeError("expected sequence of natural numbers"))
-		}
-	);
+			assert.throws(() => euclid(), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при отсутствии аргументов');
 
-	QUnit.test(
-		"На входе не натуральное число",
-		function (assert) {
-			assert.throws(() => euclid(2.4, 24, 2), new TypeError("expected sequence of natural numbers"))
-			assert.throws(() => euclid(-20, 15, 10), new TypeError("expected sequence of natural numbers"))
-			assert.throws(() => euclid(0, 1, 2, 3), new TypeError("expected sequence of natural numbers"))
-			assert.throws(() => euclid(1000, Number.POSITIVE_INFINITY), new TypeError("expected sequence of natural numbers"))
-		}
-	);
+			assert.throws(() => euclid([1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при массиве на входе');
+			assert.throws(() => euclid(20, 30, [1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при массиве на входе');
 
-	QUnit.test(
-		"На входе строка",
-		function (assert) {
-			assert.throws(() => euclid("23", 23), new TypeError("expected sequence of natural numbers"))
-		}
-	);
+			assert.throws(() => euclid(2.4, 24, 2), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
+			assert.throws(() => euclid(-20, 15, 10), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
+			assert.throws(() => euclid(0, 1, 2, 3), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
+			assert.throws(() => euclid(1000, Number.POSITIVE_INFINITY), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
 
-	QUnit.test(
-		"На входе функция",
-		function (assert) {
-			assert.throws(() => euclid(4, function(){}), new TypeError("expected sequence of natural numbers"))
-		}
-	);
+			assert.throws(() => euclid('abcd'), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при строке на входе');
+			assert.throws(() => euclid('23', 23), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при строке на входе');
 
-	QUnit.test(
-		"На входе null",
-		function (assert) {
-			assert.throws(() => euclid(3, 5, null, 8), new TypeError("expected sequence of natural numbers"))
-		}
-	);
+			assert.throws(() => euclid(4, function(){}), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при функции на входе')
 
-	QUnit.test(
-		"На входе boolean",
-		function (assert) {
-			assert.throws(() => euclid(true), new TypeError("expected sequence of natural numbers"))
-			assert.throws(() => euclid(false), new TypeError("expected sequence of natural numbers"))
+			assert.throws(() => euclid(3, 5, null, 8), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при null на входе')
+
+			assert.throws(() => euclid(true), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при boolean на входе')
+			assert.throws(() => euclid(false), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при boolean на входе')
 		}
 	);
+	  
 });
