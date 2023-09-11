@@ -2,26 +2,26 @@
 
 function inverse(array, value = 0) {
 	let left;
-	let rigth;
+	let right;
 
 	if (value > 0) {
 		left = value;
-		rigth = array.length - 1;
+		right = array.length - 1;
 	} else if (value < 0) {
 		left = 0;
-		rigth = array.length - 1 + value;
+		right = array.length - 1 + value;
 	} else {
 		left = 0;
-		rigth = array.length - 1;
+		right = array.length - 1;
 	}
 
-	while (left < rigth) {
+	while (left < right) {
 		let temp = array[left];
-		array[left] = array[rigth];
-		array[rigth] = temp;
+		array[left] = array[right];
+		array[right] = temp;
 
 		left++;
-		rigth--;
+		right--;
 	}
 
 	return array;
