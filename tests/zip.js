@@ -222,9 +222,6 @@ QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test(
 		'Функция правильно работает в случае, когда на вход не подается никаких объектов',
 		function (assert) {
-			// function f() {
-			// 	throw new Error('boo');
-			// }
 			assert.throws(zip);
 		}
 	);
