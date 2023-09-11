@@ -49,4 +49,8 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ -1, -2, -3, -3, -3 ]),[ -3, -3, -3, -2, -1 ]);
 
 	});
+
+	QUnit.test('1111', function (assert) {
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ]), [ 5, 4, 3, 2, 1 ]);
+	});
 });
