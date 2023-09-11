@@ -7,7 +7,7 @@
  */
 
 const rle = input => {
-    if (typeof input != "string") {
+    if (typeof input != 'string') {
         throw new TypeError(`Improper value type provided! (Must be 'string', '${typeof input}' was provided instead)`);
     }
     let count = 1;
