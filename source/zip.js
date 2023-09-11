@@ -11,9 +11,8 @@ function zip(...objects) {
             if (!(key in resObj))
                 resObj[key] = object[key];
         }
-        
-    })
 
+    })
 
     return resObj;
 
