@@ -1,17 +1,18 @@
 /**
- * 
+ * Функция возвращает инвертированный массив, если он без дополнительного параметра.
+ * Если передать положительный параметр n вместе с массивом, 
+ * он инвертирует массив с n-го элемента, с отрицательным -до |n|-го элемента.
  * @param {array} array инвертируемый массив
  * @param {number} index индекс, от(до) которого идет инверсия
  * @returns {array} возвращаемый массив
  */
-
 const inverse = (array, index) => {
 
     if (!Array.isArray(array)) {
         return "Передан не массив";
     } 
 	const numbers = array.slice();
-	if (!index) {
+	if (typeof(index) === "undefined") {
 		return numbers.reverse();
 	}
     if (typeof index !== "number") {
