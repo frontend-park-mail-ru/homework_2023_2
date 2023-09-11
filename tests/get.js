@@ -50,14 +50,27 @@ QUnit.module('Тестируем функцию get', function () {
 	});
 
 	QUnit.test('get работает правильно без передачи аргументов', function (assert) {
-		assert.strictEqual(get(), undefined);
+		const err = new TypeError("Invalid object argument type");
+		assert.throws(function() { get(); }, err);
 	});
 
 	QUnit.test('get работает правильно с false-type аргументами', function (assert) {
-		assert.strictEqual(get(undefined, undefined), undefined);
-		assert.strictEqual(get(null, false), undefined);
-		assert.strictEqual(get(false, null), undefined);
-		assert.strictEqual(get(false, false), undefined);
+		const errForWrongObject= new TypeError('Invalid object argument type');
+		const errForWrongQuery = new TypeError('Invalid query argument type');
+		const query = '.foo';
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+
+		assert.throws(function() { get(undefined, query); }, errForWrongObject);
+		assert.throws(function() { get(null, query); }, errForWrongObject);
+		assert.throws(function() { get(false, query) }, errForWrongObject);
+
+		assert.throws(function() { get(object, null); }, errForWrongQuery);
+		assert.throws(function() { get(object, false); }, errForWrongQuery);
+		assert.throws(function() { get(object, undefined); }, errForWrongQuery);
 	});
 
 	QUnit.test('get работает правильно с методами прототипов', function (assert) {

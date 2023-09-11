@@ -13,16 +13,21 @@ function get(object, query, flag = false) {
     const QUERY_WITHOUT_DOT = 1;
     const DOT_SYMBOL = '.';
 
-    if (!query || !object) {
-        return undefined;
+    if (!object || typeof(object) !== 'object') {
+        throw new TypeError('Invalid object argument type');
     }
+
+    if (!query || typeof(query) !== 'string') {
+        throw new TypeError('Invalid query argument type');
+    }
+
     if (query === DOT_SYMBOL) {
         return object;
     }
 
     return query.slice(QUERY_WITHOUT_DOT).split(DOT_SYMBOL).reduce((object, property) => {
         if (object && (flag || object.hasOwnProperty(property))) {
-            return object[property]
+            return object[property];
         }
     }, object);
 }
