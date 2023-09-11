@@ -1,17 +1,23 @@
 'use strict';
 /**
- * Returns new object with all the properties of all the input objects.
+ * Returns new object with all the properties of all the given objects.
  * If one property is in multiple objects selects the erliest one.
- * If one of input parametres is not an object - returns null
+ * If one of given arguments is not an object - returns null
+ * Throws an exception if given no arguments
  *
- * @param  {...object} objects - Input objects
+ * @throws {Error} Argument objects should not be empty
+ * @param  {...object} objects - Given objects
  * @returns {object} - New object with all the properties or null.
  */
 const zip = (...objects) => {
 	if (objects.length == 0) {
 		throw new Error('No parametres were entered');
 	}
-	return objects.every((element) => typeof element === 'object')
+	return objects.every(
+		(element) =>
+			typeof element === 'object' &&
+			element.__proto__ === Object.prototype
+	)
 		? Object.assign({}, ...objects.reverse())
 		: null;
 };

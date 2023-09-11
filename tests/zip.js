@@ -207,7 +207,7 @@ QUnit.module('Тестируем функцию zip', function () {
 	});
 
 	QUnit.test(
-		'Функция правильно работает в случае, когда на вход подаются не объекты',
+		'Функция правильно работает в случае, когда на вход подаются не объекты или объекты с методами в протатипах',
 		function (assert) {
 			assert.deepEqual(zip(4), null);
 
@@ -216,6 +216,10 @@ QUnit.module('Тестируем функцию zip', function () {
 			assert.deepEqual(zip(4, { name: 'age' }), null);
 
 			assert.deepEqual(zip({ name: 'age' }, {}, 'fsdf'), null);
+
+			assert.deepEqual(zip(new Date()), null);
+
+			assert.deepEqual(zip({}, new Date()), null);
 		}
 	);
 
