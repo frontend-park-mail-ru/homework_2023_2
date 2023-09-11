@@ -44,10 +44,12 @@ QUnit.module('Тестируем функцию plainify', function () {
 	});
 
 	QUnit.test('plainify возвращает TypeError, если в качестве аргумента - не объект или null', function (assert) {
-		assert.deepEqual(plainify(null), TypeError);
-		assert.deepEqual(plainify(undefined), TypeError);
-		assert.deepEqual(plainify(NaN), TypeError);
-		assert.deepEqual(plainify('helloworld'), TypeError);
+		assert.raises(() => { plainify(null) }, new TypeError);
+		assert.raises(() => { plainify(undefined) }, new TypeError);
+		assert.raises(() => { plainify(NaN) }, new TypeError);
+		assert.raises(() => { plainify('helloworld') }, new TypeError);
+		assert.raises(() => { plainify(new String('helloworld')) }, new TypeError);
+		assert.raises(() => { plainify(new Date()) }, new TypeError);
 	});
 
 	QUnit.test('plainify работает правильно с array', function (assert) {
@@ -70,7 +72,6 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.deepEqual(plainify(nested), plain);
 	})
 
-	
 	QUnit.test('plainify воспринимает null как значение, а не объект', function (assert) {
 		const nested = {
 			a: {

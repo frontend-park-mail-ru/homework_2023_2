@@ -7,8 +7,10 @@
  * @return {Object} The resulting object with flattened keys.
  */
 const plainify = (obj) => {
-    if (!isObj(obj)) return TypeError;
-    
+    if (!isPlainable(obj)) {
+        throw new TypeError;
+    }
+
     return plainifyWithPrefix(obj, '');
 }
 
@@ -21,10 +23,9 @@ const plainify = (obj) => {
  */
 const plainifyWithPrefix = (obj, prefix) => {
     return Object.entries(obj).reduce((acc, [k, v]) => {
-        return {...acc, ...(isObj(v) ? plainifyWithPrefix(v, `${prefix}${k}.`) : { [`${prefix}${k}`]: v })};
+        return {...acc, ...(isPlainable(v) ? plainifyWithPrefix(v, `${prefix}${k}.`) : { [`${prefix}${k}`]: v })};
     }, {})
 }
-
 
 /**
  * Returns whether the given object is an object. Null is not considered as an object.
@@ -32,4 +33,7 @@ const plainifyWithPrefix = (obj, prefix) => {
  * @param {object} obj 
  * @returns {boolean}
  */
-const isObj = (obj) => { return typeof obj === 'object' && obj !== null }
+const isPlainable = (obj) => { 
+    return (typeof obj === 'object' && obj !== null && 
+            (obj.constructor === Object || obj.constructor === Array));
+}
