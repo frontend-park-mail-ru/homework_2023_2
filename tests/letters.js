@@ -67,6 +67,7 @@ QUnit.module('Тестируем функцию letters', function () {
         assert.strictEqual(letters(word => { return 'its a string. honestly' }), '');
         assert.strictEqual(letters({'does': 34, 'it': 4, 'posssible': 32344}), '');
         assert.strictEqual(letters({name: 'arman', surname: 'desir', age: 16}), '');
+        assert.strictEqual(letters(new String()), '');
         assert.strictEqual(letters('prototype', 'regr'), '');
         assert.strictEqual(letters('prototype', 124), '');
         assert.strictEqual(letters('prototype', ['4', '345']), '');
