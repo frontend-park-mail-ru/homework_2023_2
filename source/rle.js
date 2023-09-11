@@ -4,11 +4,12 @@
  * This function performs Run Length Encoding compression on the input string
  * @param {string} input 
  * @returns {string}
+ * @throws {TypeError}
  */
 
 const rle = input => {
-    if (typeof input != 'string') {
-        throw new TypeError(`Improper value type provided! (Must be 'string', '${typeof input}' was provided instead)`);
+    if (!(typeof input === 'string' || input instanceof String)) {
+        throw new TypeError(`Improper value type provided! (Must be 'string' or String, '${typeof input}' was provided instead)`);
     }
     let count = 1;
     let currChar = '';
