@@ -90,45 +90,45 @@ QUnit.module('Тестируем функцию tree', function () {
 
 	QUnit.test('Невалидные входные данные', function (assert) {
 		assert.throws(() => 
-			tree("purpur"),
-			new Error("Error: invalid value of height"),
-			"Invalid value"
+			tree('purpur'),
+			new Error('Error: invalid value of height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
 			tree(Infinity),
-			new Error("Error: invalid value of height"),
-			"Invalid value"
+			new Error('Error: invalid value of height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
-			tree(""),
-			new Error("Error: invalid value of height"),
-			"Invalid value"
+			tree(''),
+			new Error('Error: invalid value of height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
 			tree(3, 4),
-			new Error("Error: invalid value of trunk height"),
-			"Invalid value"
+			new Error('Error: invalid value of trunk height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
-			tree(3, ""),
-			new Error("Error: invalid value of trunk height"),
-			"Invalid value"
+			tree(3, ''),
+			new Error('Error: invalid value of trunk height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
 			tree(3, Infinity),
-			new Error("Error: invalid value of trunk height"),
-			"Invalid value"
+			new Error('Error: invalid value of trunk height'),
+			'Invalid value'
 	    );
 
 		assert.throws(() => 
-			tree(3, "pewpew"),
-			new Error("Error: invalid value of trunk height"),
-			"Invalid value"
+			tree(3, 'pewpew'),
+			new Error('Error: invalid value of trunk height'),
+			'Invalid value'
 	    );
 	});
 

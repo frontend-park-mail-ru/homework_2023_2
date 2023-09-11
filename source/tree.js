@@ -10,31 +10,31 @@
 const tree = (height, trunkHeight = 1) => {
 
     const level = (strings, character, amountOfChar, amountOfSpace) => {
-        return " ".repeat(amountOfSpace) + `${character}`.repeat(amountOfChar) + " ".repeat(amountOfSpace);
+        return ' '.repeat(amountOfSpace) + `${character}`.repeat(amountOfChar) + ' '.repeat(amountOfSpace);
     }
 
-    if (isNaN(height) || height === Infinity || height === "") {
-        throw new Error("Error: invalid value of height");
+    if (isNaN(height) || Number.isFinite(height) || height === '') {
+        throw new Error('Error: invalid value of height');
     }
 
     if (height < 3) {
         return null;
     }
 
-    if (isNaN(trunkHeight) || trunkHeight === Infinity || trunkHeight === "" || trunkHeight >= height) {
-        throw new Error("Error: invalid value of trunk height");
+    if (isNaN(trunkHeight) || Number.isFinite(trunkHeight) || trunkHeight === "" || trunkHeight >= height) {
+        throw new Error('Error: invalid value of trunk height');
     }
 
     const trunkWidth = 1;
     const baseOfTree = 2 * (height - trunkHeight) - 1;
 
-    let result = "";
+    let result = '';
     for(let i = 0; i < trunkHeight; ++i) {
-        result = `${level `${"|"}${trunkWidth}${(baseOfTree - trunkWidth) / 2}`}\n${result}`;
+        result = `${level `${'|'}${trunkWidth}${(baseOfTree - trunkWidth) / 2}`}\n${result}`;
     }
 
     for(let padding = 0; padding < height - trunkHeight; ++padding) {
-        result = `${level `${"*"}${baseOfTree - 2 * padding}${padding}`}\n${result}`;
+        result = `${level `${'*'}${baseOfTree - 2 * padding}${padding}`}\n${result}`;
     }
     
     return result;
