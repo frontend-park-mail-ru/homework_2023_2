@@ -1,9 +1,9 @@
 'use strict';
 
 /** 
- * @function - Escapes special characters with exception of valid http-tags
+ * @function - Escapes special characters with exception of valid HTML-tags
  * @param {string} input - String whose characteres need to be escaped
- * @param {string[]} validTags - Valid http-tags
+ * @param {string[]} validTags - Valid HTML-tags
  * @return {string} - String with escaped special characters
  */
 const filter = (input, validTags = []) => {
