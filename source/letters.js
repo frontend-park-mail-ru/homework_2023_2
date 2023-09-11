@@ -10,11 +10,15 @@
  * Если ничего не передано, то будут удаляться из строки все символы, которые встречаются в ней 
  * больше одного раза.
  * @return {string} - отфильтрованная строка.
+ * @throws {Error} - выдаст ошибку, если в переменные подать неверные типы данных.
  */
 const letters = (input, mode) => {
+    if (typeof input === 'object' && input instanceof String) {
+        input = input.toString();
+    }
+
     if (typeof input !== 'string' || typeof mode !== 'boolean' && typeof mode !== 'undefined') {
-        console.error('Type error. Enter the correct data type');
-        return '';
+        throw new Error('Type error. Enter the correct data type');
     }
 
     const array = input.split('');

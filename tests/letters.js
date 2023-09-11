@@ -104,26 +104,36 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Умеет обрабатывать неправильные данные', function (assert) {
-		assert.strictEqual(letters(444), '');
-		assert.strictEqual(letters(undefined), '');
-		assert.strictEqual(letters(true), '');
-		assert.strictEqual(letters(null), '');
-		assert.strictEqual(letters(NaN), '');
-		assert.strictEqual(letters(function() {}), '');
-		assert.strictEqual(letters(() => {}), '');
-		assert.strictEqual(letters(['lol']), '');
-		assert.strictEqual(letters(['l', 'o', 'l']), '');
-		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt']), '');
-		assert.strictEqual(letters(new String('capybara')), '');
+		assert.throws(function () { letters(444) }, Error);
+		assert.throws(function () { letters (undefined) }, Error);
+		assert.throws(function () { letters(true) }, Error);
+		assert.throws(function () { letters(null) }, Error);
+		assert.throws(function () { letters(NaN) }, Error);
+		assert.throws(function () { letters(function() {}) }, Error);
+		assert.throws(function () { letters(() => {}) }, Error);
+		assert.throws(function () { letters(['lol']) }, Error);
+		assert.throws(function () { letters(['l', 'o', 'l']) }, Error);
+		assert.throws(function () { letters(['yt', 'o', 'gl', 't', 'ttt']) }, Error);
 
-		assert.strictEqual(letters(444, null), '');
-		assert.strictEqual(letters(undefined, 234), '');
-		assert.strictEqual(letters(true, ['monkey']), '');
-		assert.strictEqual(letters(null, ['m', 'o', 'n', 'k', 'e', 'y']), '');
-		assert.strictEqual(letters(NaN, () => {}), '');
-		assert.strictEqual(letters(['lol'], ['rr', 'trrr', 'r', 't']), '');
-		assert.strictEqual(letters(['l', 'o', 'l'], function() {}), '');
-		assert.strictEqual(letters(['yt', 'o', 'gl', 't', 'ttt'], NaN), '');
-		assert.strictEqual(letters(new String('capybara'), NaN), '');
+		assert.throws(function () { letters(444, null) }, Error);
+		assert.throws(function () { letters(undefined, 234) }, Error);
+		assert.throws(function () { letters(true, ['monkey']) }, Error);
+		assert.throws(function () { letters(null, ['m', 'o', 'n', 'k', 'e', 'y']) }, Error);
+		assert.throws(function () { letters(NaN, () => {}) }, Error);
+		assert.throws(function () { letters(['lol'], ['rr', 'trrr', 'r', 't']) }, Error);
+		assert.throws(function () { letters(['l', 'o', 'l'], function() {}) }, Error);
+		assert.throws(function () { letters(['yt', 'o', 'gl', 't', 'ttt'], NaN) }, Error);
+		assert.throws(function () { letters(new String('capybara'), NaN) }, Error);
     });
+
+	QUnit.test('Правильно обрабатывает объекты строк', function (assert) {
+		assert.strictEqual(letters(new String('capybara')), 'cpybr');
+		assert.strictEqual(letters(new String('cat capybara dog')), 'tpybrdog');
+
+		assert.strictEqual(letters(new String('capybara'), true), 'capybr');
+		assert.strictEqual(letters(new String('cat capybara dog'), true), 'cat pybrdog');
+
+		assert.strictEqual(letters(new String('capybara'), false), 'cpybra');
+		assert.strictEqual(letters(new String('cat capybara dog'), false), 'tcpybra dog');
+	});
 });
