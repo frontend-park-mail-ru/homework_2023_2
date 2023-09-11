@@ -9,7 +9,7 @@
 const rle = function (stringToCompress) {
     // Проверка на тип, единственный вариант который работал
     if (typeof stringToCompress !== 'string' && !(stringToCompress instanceof String)) {
-        throw new TypeError("Введенный тип не является строкой.");
+        throw new TypeError('Введенный тип не является строкой.' );
     }
     // RegExpr, обозначающее все группы повторяющихся символов
     const regex = new RegExp(/(.)\1+/, 'g');
