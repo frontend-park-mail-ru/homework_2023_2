@@ -23,15 +23,19 @@ const ROMAN_NUM = [
  * @returns {number} - Вернет результат перевода
  */
 const romanToNumber = (input) => {
-    const romNum = ROMAN_NUM.reduce(function (result, ROMAN_NUM) {
+    let newInput = input.toUpperCase();
+
+    const romNum = ROMAN_NUM.reduce(function(result, ROMAN_NUM) {
         return {
             ...result,
             [ROMAN_NUM.symbol]: ROMAN_NUM.value,
         }
     }, {});
 
-    return input.split('').reduce((out, curr, i) => {
-        return romNum[input[i + 1]] && romNum[curr] < romNum[input[i + 1]] ? out -= romNum[curr] : out += romNum[curr];
+    return newInput.split('').reduce((out, curr, i) => {
+        return romNum[newInput[i + 1]] && romNum[curr] <
+        romNum[newInput[i + 1]] ? out -= romNum[curr] :
+            out += romNum[curr];
     }, 0);
 }
 
@@ -41,6 +45,10 @@ const romanToNumber = (input) => {
  * @returns {string} - Вернет результат перевода
  */
 const numberToRoman = (input) => {
+    if (input <= 0 || input >= 3999) {
+        throw new Error("Invalid number value");
+    }
+
     return ROMAN_NUM.reduce((res, num) => {
         while (input >= num.value) {
             res += num.symbol;
@@ -57,24 +65,13 @@ const numberToRoman = (input) => {
  */
 const roman = (input) => {
     //Проверка символов
-    if (!/^[IVXLCDM\d]+$/i.test(input) || typeof input !== 'number' && typeof input !== 'string'  && !(input instanceof Number) && !(input instanceof String)) {
+    if (!/^[IVXLCDM\d]+$/i.test(input) ||
+        typeof input !== 'number' &&
+        typeof input !== 'string' &&
+        !(input instanceof Number) &&
+        !(input instanceof String)) {
         throw new TypeError("Invalid data or data type")
     }
 
-    if (Number.isInteger(Number(input))) {
-        // Arabic to Roman
-
-        if (input <= 0 || input >= 3999) {
-            throw new Error("Invalid number value");
-        }
-
-        return numberToRoman(input);
-
-    } else {
-        //Roman to Arabic
-
-        input = input.toUpperCase();
-
-        return romanToNumber(input);
-    }
+    return Number.isInteger(Number(input)) ? numberToRoman(input) : romanToNumber(input);
 }
