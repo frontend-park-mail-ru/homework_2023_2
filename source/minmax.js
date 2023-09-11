@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * @param {String} str - Строка
- * @returns {(number)[]} - массив чисел Float
+ * @param {string} str - Строка
+ * @returns {number[]} - массив чисел Float
  * */
 const getNumbersArr = (str) => {
   const strs = str.split(" ");
@@ -12,8 +12,9 @@ const getNumbersArr = (str) => {
 };
 
 /**
- * @param {String} numbers - Строка чисел, разделенных пробелами.
- * @returns {(number|undefined)[]} Массив, с минимальным и максимальным числами
+ * @param {string} numbers - Строка чисел, разделенных пробелами.
+ * @returns {(number|undefined)[]} Массив, с минимальным и максимальным числами.
+ * Если строка не содержит чисел - возвращается [undefined, undefined]
  */
 const minmax = (numbers) => {
   if (typeof numbers !== "string") {
