@@ -11,7 +11,7 @@ const roman = (number) => {
      * @description Определение, является ли число из арабской системы счисления
      */
     let isArabic = (str) => {
-        if (!str){
+        if (str.length == 0){
             return false;
         }
         return /\d+$/.test(str);
@@ -22,7 +22,7 @@ const roman = (number) => {
      * @description Определение, является ли число из римской системы счисления
      */
     let isRoman = (str) => {
-        if (!str){
+        if (str.length == 0){
             return false;
         }
         return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
