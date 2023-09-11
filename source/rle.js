@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- * This functions performs Run Length Encoding compression on the input string
+ * This function performs Run Length Encoding compression on the input string
  * @param {string} input 
  * @returns {string}
  */
 
 const rle = input => {
     if (typeof input != "string") {
-        throw new TypeError(`Improper value type provided! (Must be 'string', ${typeof input} was provided instead)`);
+        throw new TypeError(`Improper value type provided! (Must be 'string', '${typeof input}' was provided instead)`);
     }
     let count = 1;
     let currChar = '';
