@@ -13,6 +13,8 @@ let countLetters = (word) => {
 }
 
 let areAnagrams = (firstWord, secondWord) => {
+    if (firstWord?.length != secondWord?.length)
+        return false;
     let letterCountFirst = countLetters(firstWord);
     let letterCountSecond = countLetters(secondWord);
     for (let letter in letterCountFirst) {
@@ -24,13 +26,12 @@ let areAnagrams = (firstWord, secondWord) => {
 }
 
 let anagram = (words) => {
+    if (words === null)
+        return null
+
     words.sort(); // в первую очередь для упрощения тестирования
     let result = [];
     let anagramLine = [];
-    let lettersPerWord = [];
-    for (let i = 0; i < words?.length; i++) {
-        lettersPerWord[i] = countLetters(words[i]);
-    }
 
     for (let i = 0; i < words?.length; i++) {
         if (words[i] == null) {
