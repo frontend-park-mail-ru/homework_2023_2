@@ -88,8 +88,17 @@ QUnit.module('Тестируем функцию zip', function () {
 	});
 
 	QUnit.test('Функция игнорирует аргументы, не являющиеся объектами, а также массивы и строки', function (assert) {
-		assert.deepEqual(zip(1, 3, {node: 1, object: 2, ob: 1}), {node: 1, object: 2, ob: 1});
-		assert.deepEqual(zip(1, {x: 3}, 3, 5, {x: 5, y: 3}), {x: 3, y: 3});
-		assert.deepEqual(zip([1, 2, 3], "string", {x: 3, y: 3}), {x: 3, y: 3});
+		assert.throws(
+			function() {zip(1, 3, {node: 1, object: 2, ob: 1})}, 
+			Error("TYPE ERROR IN ARGUMENTS")
+		);
+		assert.throws(
+			function() {zip(1, {x: 3}, 3, 5, {x: 5, y: 3})}, 
+			Error("TYPE ERROR IN ARGUMENTS")
+		);
+		assert.throws(
+			function() {zip([1, 2, 3], "string", {x: 3, y: 3})}, 
+			Error("TYPE ERROR IN ARGUMENTS")
+		);
 	});
 });
