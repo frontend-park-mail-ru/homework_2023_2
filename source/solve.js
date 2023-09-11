@@ -11,13 +11,7 @@
 const solve = function (equation, x_value) {
     
     let solution = null;
-    try {
-        equation = equation.replaceAll('x', String(x_value));
-    } catch {
-        console.log("Неверно введено уравнение");
-        throw new Error('Error: incorrect input data');
-    }
+    equation = equation.replaceAll('x', String(x_value));
     solution =  eval(equation);
-    console.log(solution);
     return solution;
 };
