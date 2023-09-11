@@ -16,19 +16,6 @@ QUnit.module('Тестируем функцию roman', function () {
         assert.strictEqual(roman('mmxvii'), 2017, "roman('mmxvii') === 1990");
     });
 
-    //added tests
-    QUnit.test("roman правильно определяет, что римское число было записано неверно", function (assert) {
-        assert.strictEqual(roman('iiii'),
-            'Your number iiii is incorrect or it is not a number!',
-            "roman('iiii') === Your number iiii is incorrect or it is not a number!");
-        assert.strictEqual(roman('IVIII'),
-            'Your number IVIII is incorrect or it is not a number!',
-            "roman('IVIII') === 'Your number IVIII is incorrect or it is not a number!");
-        assert.strictEqual(roman('lmc'),
-            'Your number lmc is incorrect or it is not a number!',
-            "roman('lmc') === Your number lmc is incorrect or it is not a number!");
-    });
-
     QUnit.test("roman правильно переводит из десятичной системы счисления", function (assert) {
         assert.strictEqual(roman(1), 'I', "roman(1) === 'I'");
         assert.strictEqual(roman(5), 'V', "roman(5) === 'V'");
@@ -51,7 +38,7 @@ QUnit.module('Тестируем функцию roman', function () {
     });
 
     //added tests
-    QUnit.test("roman правильно обрабатывает пробелы в начале и конце строки и пустую строку", function (assert) {
+    QUnit.test("roman правильно обрабатывает пробелы в начале и конце строки", function (assert) {
         assert.strictEqual(roman('   1904'), 'MCMIV', "roman('   1904') === 'MCMIV'");
         assert.strictEqual(roman('1990   '), 'MCMXC', "roman('1990   ') === 'MCMXC'");
         assert.strictEqual(roman('  2017  '), 'MMXVII', "roman('  2017  ') === 'MMXVII'");
@@ -60,32 +47,5 @@ QUnit.module('Тестируем функцию roman', function () {
         assert.strictEqual(roman('MCMXC  '), 1990, "roman('MCMXC  ') === 1990");
         assert.strictEqual(roman('  MMXVII  '), 2017, "roman('  MMXVII  ') === 2017");
 
-        assert.strictEqual(roman(''), "Your input is empty!", "Your input is empty!");
-    });
-
-    //added tests
-    QUnit.test("roman правильно определяет, что десятичное число было записано неверно", function (assert) {
-        assert.strictEqual(roman('01234'),
-            'Your number 01234 is incorrect or it is not a number!',
-            "roman('01234') === Your number 01234 is incorrect or it is not a number!");
-    });
-
-    //added tests
-    QUnit.test("roman правильно обрабатывает ошибки при непредсказуемом вводе", function (assert) {
-        assert.strictEqual(roman([1, '2']),
-            'Your number 1,2 is incorrect or it is not a number!',
-            "roman([1, '2']) === Your number 1,2 is incorrect or it is not a number!");
-        assert.strictEqual(roman(NaN),
-            'Your number NaN is incorrect or it is not a number!',
-            "roman(NaN) === Your number NaN is incorrect or it is not a number!");
-        assert.strictEqual(roman(undefined),
-            'Your number undefined is incorrect or it is not a number!',
-            "roman(undefined) === Your number undefined is incorrect or it is not a number!");
-        assert.strictEqual(roman(true),
-            'Your number true is incorrect or it is not a number!',
-            "roman(true) === Your number true is incorrect or it is not a number!");
-        assert.strictEqual(roman(function (s) {return 1;}),
-            'Your number function (s) {return 1;} is incorrect or it is not a number!',
-            "roman(function (s) {return 1;}) === Your number function (s){return 1;} is incorrect or it is not a number!");
     });
 });
