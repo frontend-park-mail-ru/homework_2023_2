@@ -2,8 +2,8 @@
 
 QUnit.module('Тестируем функцию chess', function () {
 	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {
-		assert.strictEqual(chess(1), null);
-		assert.strictEqual(chess('1'), null);
+		assert.throws(function () {chess(1);}, TypeError, 'Должна выбрасываться ошибка TypeError');
+		assert.throws(function () {chess('1');}, TypeError, 'Должна выбрасываться ошибка TypeError');
 	});
 
 	QUnit.test('Шахматная доска 2 на 2', function (assert) {
@@ -38,19 +38,15 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
 	QUnit.test('Число с плавающей точкой', function (assert) {
-		const expected = chess(666.666); 
-		assert.strictEqual(expected, null);
-	});
-
-	QUnit.test('Отрицательное число', function (assert) {
-		const expected = chess(-89); 
-		assert.strictEqual(expected, null);
-	});
+		assert.throws(function () {chess(666.666);}, TypeError, 'Должна выбрасываться ошибка TypeError');
+	  });
+	
+	  QUnit.test('Отрицательное число', function (assert) {
+		assert.throws(function () {chess(-89);}, TypeError, 'Должна выбрасываться ошибка TypeError');
+	  });
 
 	QUnit.test('Строку нельзя использовать как входные данные', function (assert) {
-		const result = chess('ABRAKADABRA'); 
-		assert.strictEqual(result, null, 'Строка не пройдёт, только числа');
+		assert.throws(function () {chess('ABRAKADABRA');}, TypeError, 'Должна выбрасываться ошибка TypeError');
   	});
 
 });
-

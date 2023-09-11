@@ -3,17 +3,18 @@
  * @param {number} N - размер доски
  */
 const chess = (N) => {
-  if (N <= 1 || N % 1 !== 0) return null;
+  if (!isFinite(N) || N <= 1 || N % 1 !== 0) {
+    throw new TypeError('Число должно быть положительным целым');
+  }  
 
   let chessboard = '';
 
-  for (let i = 0; i < N; i++) {
-      for (let j = 0; j < N; j++) {
-        chessboard += (i + j) % 2 === 0 ? '*' : ' ';
-      }
-      chessboard += '\n';
-  }
+  Array.from({ length: N }).forEach((_, i) => {
+    Array.from({ length: N }).forEach((_, j) => {
+      chessboard += (i + j) % 2 === 0 ? '*' : ' ';
+    });
+    chessboard += '\n';
+  });
   return chessboard;
   
 };
-
