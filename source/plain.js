@@ -2,14 +2,14 @@
 
 /**
  * Принимать на вход массив массивов и создавёт из них один общий массив.
- * В случае не массива возвратит то же, что и пришло.
- *
+ * 
  * @param {Array} input Входной массив массивов.
  * @return {Array} объединённый общий массив.
+ * @throws Выдасть ошибку TypeError, если передан НЕ массив.
  */
 const plain = (input) => {
     if (!Array.isArray(input)) {
-        return input;
+        throw new TypeError("Input must be an array");
     }
 
     return input.reduce(
