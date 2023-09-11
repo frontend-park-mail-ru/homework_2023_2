@@ -1,9 +1,10 @@
 "use strict";
 
 /**
- * Функция проверяет, является ли переданный аргумент невалидным числом.
- * @param {any} value - длина строки, либо высота дерева.
- * @returns {boolean} - true, если аргумент некорректен, иначе false.
+ * Функция проверяет, является ли переданный аргумент не числовым значением или бесконечностью(то есть null, undefined,
+ * Array, Object, function, строкой, дающей NaN etc).
+ * @param {any} value - проверяемое значение.
+ * @returns {boolean} - true, если аргумент - не числовое значение, иначе false.
  */
 const invalidNumberValue = (value) =>
   !value || !isFinite(value) || isNaN(value);
