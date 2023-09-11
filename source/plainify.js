@@ -1,10 +1,11 @@
 'use strict';
 
 /**
- * Returns a plain version of keys of the given object.
+ * Generate the function comment for the given function body.
  *
- * @param {Object} obj - The object to be converted to a plain version.
- * @return {Object} The resulting object with flattened keys.
+ * @param {object} obj - The object to be converted to a plain version.
+ * @throws {TypeError} If the object is not plainable.
+ * @return {object} The resulting object with flattened keys.
  */
 const plainify = (obj) => {
     if (!isPlainable(obj)) {
@@ -28,7 +29,9 @@ const plainifyWithPrefix = (obj, prefix) => {
 }
 
 /**
- * Returns whether the given object is an object. Null is not considered as an object.
+ * Returns whether the given object is plainable.
+ * Plainable objects are array, instances of Object.
+ * Null is not considered as plainable.
  * 
  * @param {object} obj 
  * @returns {boolean}
