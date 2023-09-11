@@ -7,6 +7,8 @@
  *                    первый элемент - максимальное 
  */
 function minmax(str) {
+    if (!(str instanceof String)) throw TypeError("str argument should be a String");
+    
     const minAndMax = [ undefined, undefined ];
     const numberStrings = str.match(/[+-]?((\d+([.]\d*)?([eE][+-]?\d+)?|[.]\d+([eE][+-]?\d+)?)|Infinity)/gu);
 
