@@ -1,7 +1,7 @@
 'use strict';
 
 const BLACK_FIELD = ' ';
-const WHITE_FIELD = '*'
+const WHITE_FIELD = '*';
 
 /**
  Функция генерирует строку шахматной доски
@@ -31,19 +31,14 @@ const makeLine = (size, isWhiteFirstField) => {
 const chess = (size) => {
     size = Number(size);
     if (!Number.isInteger(size)) {
-        throw new Error('Size is not a round number!');
+        throw new RangeError('Size is not a round number!');
     };
     if (size <= 1) {
         return null;
     };
-    let field = '';
-    const oddLine = makeLine(size, false);
-    const evenLine = makeLine(size, true);
-
-    for (let i = 1; i <= size; i++) {
-        i % 2
-            ? field += evenLine
-            : field += oddLine
+    let field = (makeLine(size, true) + makeLine(size, false)).repeat(size / 2);
+    if (size % 2) {
+        field += makeLine(size, true);
     }
     return field;
 };
