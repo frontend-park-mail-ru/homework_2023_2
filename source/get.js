@@ -15,7 +15,7 @@
 */
 const get = (object, pathToProperty, needProto = false) => {
     if (typeof object !== 'object' || typeof pathToProperty !== 'string' || !object || !pathToProperty) {
-        throw new TypeError("Invalid argument type");
+        throw new TypeError('Invalid argument type');
     }
 
     if (pathToProperty === '.') {
