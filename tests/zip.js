@@ -74,4 +74,42 @@ QUnit.module('Тестируем функцию zip', function () {
 		};
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
 	});
+
+	QUnit.test('Функция работает, если ничего не передать', function (assert) {
+		assert.deepEqual(zip(), {}, "Должен быть возвращен пустой объект");
+	});
+
+	QUnit.test('Функция работает, если среди свойст объекта есть другие объекты', function (assert) {
+		
+		const obj1 = {
+			name: 'test'
+		}
+
+		const obj = {
+			friend: obj1
+		};
+
+		assert.deepEqual(zip({friend: obj1}), obj, "У объектов должно быть общее свойство - другой объект");
+	});
+
+	QUnit.test('Функция работает, если передаются объекты с несколькими свойствами', function (assert) {
+		
+		const obj1 = {
+			name: 'test',
+			age: 19
+		}
+
+
+		const obj = {
+			name: 'test',
+			age: 19,
+			friend: obj1,
+			surname: 'testfas'
+		}
+
+		assert.deepEqual(zip({name: 'test', age: 19}, {friend: obj1, surname: 'testfas'}), obj, "Объект должен обладать всеми свойствами переданных объектов");
+	});
+
+
 });
+
