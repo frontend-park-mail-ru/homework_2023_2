@@ -9,14 +9,14 @@
 const inverse = (array, index) => {
 
     if (!Array.isArray(array)) {
-        return "Передан не массив";
+        throw new Error('Parameter is not an array!');
     } 
 	const numbers = array.slice();
 	if (typeof(index) === "undefined") {
 		return numbers.reverse();
 	}
     if (typeof index !== "number") {
-        return "Индекс должен быть числом";
+        throw new TypeError('Parameter is not a number!');
     }   
 	const subarray1 = numbers.slice(index)
 	const subarray2 = numbers.slice(0, index)
