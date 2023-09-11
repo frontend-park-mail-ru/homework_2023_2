@@ -26,6 +26,14 @@ const sorting = (objects, keys) => {
                     return propertyA.localeCompare(propertyB);
                 case 'number':
                     return propertyA - propertyB;
+                case "object":
+                    if (propertyA instanceof String) {
+                        return propertyA.localeCompare(propertyB);
+                    }
+                    if (propertyA instanceof Number) {
+                        return propertyA - propertyB;
+                    }
+                    break;
                 default:
                     break;
             }
