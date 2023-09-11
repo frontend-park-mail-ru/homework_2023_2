@@ -10,7 +10,7 @@ let chess = size => {
         console.log("Ожидалось число")
         return null
     }
-    if (size % 1 != 0) {
+    if (size % 1 !== 0) {
         console.log("Ожидалось целое число")
         return null
     }
@@ -21,7 +21,7 @@ let chess = size => {
     let desk = ""
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-            desk = (i+j) % 2 == 0 ? desk + '*' : desk + ' '
+            desk += (i+j) % 2 === 0 ? '*' : ' '
         }
         desk = desk + '\n'
     }
