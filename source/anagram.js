@@ -24,6 +24,7 @@ let areAnagrams = (firstWord, secondWord) => {
 }
 
 let anagram = (words) => {
+    words.sort(); // в первую очередь для упрощения тестирования
     let result = [];
     let anagramLine = [];
     let lettersPerWord = [];
@@ -38,12 +39,14 @@ let anagram = (words) => {
 
         for (let j = i + 1; j < words?.length; j++) {
             if (areAnagrams(words[i], words[j])) {
+                if (anagramLine.length === 0) {
+                    anagramLine.push(words[i])
+                }
                 anagramLine.push(words[j]);
                 words[j] = null;
             }
         }
         if (anagramLine.length > 0) {
-            anagramLine.push(words[i]);
             result.push(anagramLine);
             anagramLine = [];
         }
