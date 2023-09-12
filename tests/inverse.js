@@ -51,6 +51,12 @@ QUnit.module('Тестируем функцию inverse', function () {
 	});
 
 	QUnit.test('Функция выдаёт исключения', function (assert) {
-		assert.throws(inverse([ 1, 2, 3, 4, 5 ], false), TypeError('Parameter is not a number!'));
+		assert.throws(() => inverse([ 1, 2, 3, 4, 5 ], false), TypeError('Parameter is not a number!'));
+		assert.throws(() => inverse([ 1, 2, 3, 4, 5 ], null), TypeError('Parameter is not a number!'));
+		assert.throws(() => inverse([ 1, 2, 3, 4, 5 ], "21"), TypeError('Parameter is not a number!'));
+		assert.throws(() => inverse("4", 2), TypeError('Parameter is not an array!'));
+		assert.throws(() => inverse(2, 2), TypeError('Parameter is not an array!'));
+		assert.throws(() => inverse(false, 2), TypeError('Parameter is not an array!'));
 	});
+	
 });
