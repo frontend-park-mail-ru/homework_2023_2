@@ -213,6 +213,10 @@ QUnit.module('Тестируем функцию zip', function () {
 
 			assert.deepEqual(zip('dfsd', 4), null);
 
+			assert.deepEqual(zip(true), null);
+			
+			assert.deepEqual(zip(true, 4), null);
+
 			assert.deepEqual(zip(4, { name: 'age' }), null);
 
 			assert.deepEqual(zip({ name: 'age' }, {}, 'fsdf'), null);

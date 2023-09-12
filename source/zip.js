@@ -16,7 +16,7 @@ const zip = (...objects) => {
 	return objects.every(
 		(element) =>
 			typeof element === 'object' &&
-			element.__proto__ === Object.prototype
+			Object.getPrototypeOf(element) === Object.prototype
 	)
 		? Object.assign({}, ...objects.reverse())
 		: null;
