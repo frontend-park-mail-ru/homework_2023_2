@@ -29,7 +29,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { prop1: 30 },
         { prop1: 1000 },
         { prop1: 4 },
-        { prop1: 200 },
+        { prop1: 200 }
       ];
       const actual = sorting(initial, ["prop1"]);
 
@@ -37,7 +37,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { prop1: 4 },
         { prop1: 30 },
         { prop1: 200 },
-        { prop1: 1000 },
+        { prop1: 1000 }
       ];
 
       assert.deepEqual(actual, expected);
@@ -52,7 +52,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { name: "Dolores", age: 10 },
         { name: "John", age: 40 },
         { name: "Ann", age: 31 },
-        { name: "Paul", age: 40 },
+        { name: "Paul", age: 40 }
       ];
       const actual = sorting(initial, ["age", "name"]);
 
@@ -61,7 +61,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { age: 30, name: "Tom" },
         { age: 31, name: "Ann" },
         { age: 40, name: "John" },
-        { age: 40, name: "Paul" },
+        { age: 40, name: "Paul" }
       ];
 
       assert.deepEqual(actual, expected);
@@ -74,7 +74,7 @@ QUnit.module("Тестируем функцию sorting", function () {
       { name: "Dolores", age: 10.3 },
       { name: "John", age: 40.2 },
       { name: "Ann", age: 31 },
-      { name: "Paul", age: 40.1 },
+      { name: "Paul", age: 40.1 }
     ];
     const actual = sorting(initial, ["age"]);
 
@@ -83,7 +83,7 @@ QUnit.module("Тестируем функцию sorting", function () {
       { name: "Tom", age: 30.5 },
       { name: "Ann", age: 31 },
       { name: "Paul", age: 40.1 },
-      { name: "John", age: 40.2 },
+      { name: "John", age: 40.2 }
     ];
 
     assert.deepEqual(actual, expected);
@@ -96,7 +96,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { prop1: "30" },
         { prop1: "1000" },
         { prop1: "4" },
-        { prop1: "200" },
+        { prop1: "200" }
       ];
       const actual = sorting(initial, ["prop1"]);
 
@@ -104,7 +104,7 @@ QUnit.module("Тестируем функцию sorting", function () {
         { prop1: "1000" },
         { prop1: "200" },
         { prop1: "30" },
-        { prop1: "4" },
+        { prop1: "4" }
       ];
 
       assert.deepEqual(actual, expected);
@@ -120,7 +120,7 @@ QUnit.module("Тестируем функцию sorting", function () {
       { prop1: 4, id: 1 },
       { prop1: 4, id: 2 },
       { prop1: 2, id: 1 },
-      { prop1: 2, id: 2 },
+      { prop1: 2, id: 2 }
     ];
     const actual = sorting(initial, ["prop1"]);
 
@@ -132,7 +132,7 @@ QUnit.module("Тестируем функцию sorting", function () {
       { prop1: 3, id: 1 },
       { prop1: 3, id: 2 },
       { prop1: 4, id: 1 },
-      { prop1: 4, id: 2 },
+      { prop1: 4, id: 2 }
     ];
 
     assert.deepEqual(actual, expected);
@@ -147,7 +147,7 @@ QUnit.module("Тестируем функцию sorting", function () {
       { prop1: 4, id: "1" },
       { prop1: 4, id: "2" },
       { prop1: 2, id: "1" },
-      { prop1: 2, id: "2" },
+      { prop1: 2, id: "2" }
     ];
     const actual = sorting(initial, ["id", "prop1"]);
 
@@ -159,9 +159,39 @@ QUnit.module("Тестируем функцию sorting", function () {
       { prop1: 1, id: "2" },
       { prop1: 2, id: "2" },
       { prop1: 3, id: "2" },
-      { prop1: 4, id: "2" },
+      { prop1: 4, id: "2" }
     ];
 
     assert.deepEqual(actual, expected);
   });
+
+  QUnit.test(
+    "sorting сортирует словарь, содержащий undefined значения",
+    function (assert) {
+      const initial = [
+        { prop1: 3, id: "1" },
+        { prop1: undefined, id: "2" },
+        { prop1: 1, id: "1" },
+        { prop1: undefined, id: "2" },
+        { prop1: 4, id: "1" },
+        { prop1: 4, id: "2" },
+        { prop1: 2, id: "1" },
+        { prop1: 2, id: "2" }
+      ];
+      const actual = sorting(initial, ["prop1"]);
+
+      const expected = [
+        { prop1: 1, id: "1" },
+        { prop1: 2, id: "1" },
+        { prop1: 2, id: "2" },
+        { prop1: 3, id: "1" },
+        { prop1: 4, id: "1" },
+        { prop1: 4, id: "2" },
+        { prop1: undefined, id: "2" },
+        { prop1: undefined, id: "2" }
+      ];
+
+      assert.deepEqual(actual, expected);
+    }
+  );
 });

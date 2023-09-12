@@ -17,6 +17,12 @@ const sorting = (array, fields) => {
       if (!(field in b)) {
         throw new Error("the key", field, "does not exist in object", b);
       }
+      if (!a[field]) {
+        return 1;
+      }
+      if (!b[field]) {
+        return -1;
+      }
       return a[field] >= b[field] ? 1 : -1;
     });
   });
