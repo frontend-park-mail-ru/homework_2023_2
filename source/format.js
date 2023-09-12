@@ -5,19 +5,14 @@
  * @param {number[]} numbers - Исходный массив чисел
  * @param {number} cols - Число колонок в таблице
  * @returns {string} Ряд представленный в виде нескольких колонок
+ * @throws {TypeError} Несоответствие типов
  */
 const format = (numbers, cols) => {
 	if (!Array.isArray(numbers)) {
 		throw new TypeError("numbers: Array of numbers expected");
 	}
 
-	if (
-		typeof cols !== "number" &&
-		typeof cols !== "bigint" &&
-		!(cols instanceof Number) &&
-		!(cols instanceof BigInt)
-	) {
-
+	if (typeof cols !== "number") {
 		throw new TypeError("cols: Number was expected");
 	}
 
