@@ -10,7 +10,7 @@
  * @throws {TypeError}
  */
 const set = (obj, path, value) => {
-    if (typeof obj !== 'object' || (typeof path !== 'string') && !(path instanceof String)) {
+    if (typeof obj !== 'object' || (!(typeof path === 'string' || path instanceof String))) {
         throw new TypeError("No correct parametr's");
     }
 
