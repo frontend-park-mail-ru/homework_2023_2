@@ -76,3 +76,10 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.throws(() => letters('prototype', ['4', '345']));
 	});
 });
+
+"\t\tassert.strictEqual(letters(',.;=\\n\\t '), ',.;=\\n\\t ');\n" +
+"\n" +
+"\t\tassert.strictEqual(letters('1234', true), '1234');"
+
+"',.;=\\n\\t ');\n" +
+"\t\tassert.strictEqual(letters('1234', true), '1234');"
