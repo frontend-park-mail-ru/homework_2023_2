@@ -6,7 +6,7 @@ QUnit.module('Тестируем функцию rle', function () {
 		assert.strictEqual(rle('BCCDDDAXXXX'), 'BC2D3AX4');
 		assert.strictEqual(rle('AVVVBBBVVXDHJFFFFDDDDDDHAAAAJJJDDSLSSSDDDD'), 'AV3B3V2XDHJF4D6HA4J3D2SLS3D4');
 		assert.throws(() => rle(), TypeError);
-		assert.strictEqual(rle(''), null);
+		assert.strictEqual(rle(''), '');
 		assert.strictEqual(rle('C'), 'C');
 		assert.throws(() => rle(123), TypeError);
 		assert.strictEqual(rle('44455788'), '4352782');

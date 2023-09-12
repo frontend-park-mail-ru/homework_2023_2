@@ -11,7 +11,7 @@ const rle = (string) => {
         throw new TypeError('TypeError');
     }
     if (string.length === 0) {
-        return null;
+        return '';
     }
 
     let result = '';
