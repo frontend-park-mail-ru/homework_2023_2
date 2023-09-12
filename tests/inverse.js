@@ -50,7 +50,7 @@ QUnit.module('Тестируем функцию inverse', function () {
 
 	});
 
-	QUnit.test('1111', function (assert) {
-		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ]), [ 5, 4, 3, 2, 1 ]);
+	QUnit.test('Функция выдаёт исключения', function (assert) {
+		assert.throws(inverse([ 1, 2, 3, 4, 5 ], false), TypeError('Parameter is not a number!'));
 	});
 });
