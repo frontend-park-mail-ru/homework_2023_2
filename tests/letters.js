@@ -6,12 +6,10 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('abcd'), 'abcd');
 		assert.strictEqual(letters('олдж фыва'), 'олдж фыва');
 		assert.strictEqual(letters(',.;=\n\t '), ',.;=\n\t ');
-
 		assert.strictEqual(letters('1234', true), '1234');
 		assert.strictEqual(letters('abcd', true), 'abcd');
 		assert.strictEqual(letters('олдж фыва', true), 'олдж фыва');
 		assert.strictEqual(letters(',.;=\n\t ', true), ',.;=\n\t ');
-
 		assert.strictEqual(letters('1234', false), '1234');
 		assert.strictEqual(letters('abcd', false), 'abcd');
 		assert.strictEqual(letters('олдж фыва', false), 'олдж фыва');
@@ -59,20 +57,20 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Корректно реагирует на неправильные данные', function (assert) {
-		assert.strictEqual(letters(234567890), '');
-		assert.strictEqual(letters(['p', 'r', 'o', 't', 'o', 't', 'y', 'p', 'e']), '');
-		assert.strictEqual(letters(null), '');
-		assert.strictEqual(letters(NaN), '');
-		assert.strictEqual(letters(undefined), '');
-		assert.strictEqual(letters(word => {
+		assert.throws(() => letters(234567890));
+		assert.throws(() => letters(['p', 'r', 'o', 't', 'o', 't', 'y', 'p', 'e']));
+		assert.throws(() => letters(null));
+		assert.throws(() => letters(NaN));
+		assert.throws(() => letters(undefined));
+		assert.throws(() => letters(word => {
 			return 'its a string. honestly'
 		}), '');
-		assert.strictEqual(letters({'does': 34, 'it': 4, 'posssible': 32344}), '');
-		assert.strictEqual(letters({name: 'arman', surname: 'desir', age: 16}), '');
+		assert.throws(() => letters({'does': 34, 'it': 4, 'posssible': 32344}));
+		assert.throws(() => letters({name: 'arman', surname: 'desir', age: 16}));
 		assert.strictEqual(letters(new String('prototype')), 'rye');
 		assert.strictEqual(letters(new String('')), '');
-		assert.strictEqual(letters('prototype', 'regr'), '');
-		assert.strictEqual(letters('prototype', 124), '');
-		assert.strictEqual(letters('prototype', ['4', '345']), '');
+		assert.throws(() => letters('prototype', 'regr'));
+		assert.throws(() => letters('prototype', 124));
+		assert.throws(() => letters('prototype', ['4', '345']));
 	});
 });

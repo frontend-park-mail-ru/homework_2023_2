@@ -10,8 +10,8 @@
  * @return {string} words, строка, из которой удалены неуникальные символы.
  */
 const letters = (words, parameter = null) => {
-    if (typeof words !== "string" && !(words instanceof String)) {
-        return Error("incorrect type of param words");
+    if (typeof words !== 'string' && !(words instanceof String)) {
+        throw new Error('incorrect type of param words');
     }
 
     const array = Array.from(words);
@@ -31,6 +31,6 @@ const letters = (words, parameter = null) => {
             return array.filter((word, index) => array.lastIndexOf(word) === index).join('')
 
         default:
-            return Error("incorrect type of param parameter");
+            throw new Error('incorrect type of param parameter');
     }
 }
