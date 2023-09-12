@@ -4,8 +4,6 @@ const format = (numbers, cols) => {
 	let widths = new Array(cols);
 	widths.fill(0);
 
-	let result = "";
-
 	numbers.forEach((element, i) => {
 		widths[i % cols] = max([
 			element.toString().length,
@@ -13,19 +11,20 @@ const format = (numbers, cols) => {
 		]);
 	});
 
-	numbers.forEach((element, i) => {
-		let str_element = element.toString();
-		let prefix = " ".repeat(widths[i % cols] - str_element.length);
+	return numbers.reduce((result, element, i) => {
+		let strElement = element.toString();
+		let prefix = " ".repeat(widths[i % cols] - strElement.length);
+		
+		let isNotFirstElement = Boolean(i);
+		let isNotLastColumn = Boolean(i % cols);
 
-		if (i % cols != 0) {
+		if (isNotLastColumn) {
 			prefix += " ";
-		} else if (i != 0) {
+		} else if (isNotFirstElement) {
 			prefix = "\n" + prefix;
 		}
 
-		result += prefix + str_element;
-	});
-	
-	return result;
+		return result + prefix + strElement;
+	}, "");
 };
 
