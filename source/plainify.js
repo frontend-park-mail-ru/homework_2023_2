@@ -8,7 +8,9 @@
  */
 const recBuild = (obj, prefix) => {
     return Object.entries(obj).reduce((resObj, [key, val]) => {
-        return {...resObj, ...(val instanceof Object ? recBuild(val, prefix + key + '.') : {[prefix + key]: val})}
+        return {...resObj, ...(Object.prototype.toString.call(val) === '[object Object]' ||
+            Object.prototype.toString.call(val) === '[object Array]' ?
+            recBuild(val, prefix + key + '.') : {[prefix + key]: val})}
     }, {});
 }
 
@@ -17,6 +19,7 @@ const recBuild = (obj, prefix) => {
  * Converting an object to plain.
  * @param {Object} object - Source object.
  * @returns {Object} The plain object.
+ * @throws {TypeError} The passed parameter must be an object.
  */
 const plainify = object => {
     if (Object.prototype.toString.call(object) !== '[object Object]') {
