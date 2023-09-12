@@ -94,12 +94,13 @@ QUnit.module('Тестируем функцию set', function () {
 		};
 
 		assert.deepEqual(set({}, '.deep.nested.field', null), object);
+		assert.deepEqual(set(null, '.deep.nested.field', null), object);
 	});
 
 	QUnit.test('set работает правильно на некорректных данных', function (assert) {
-		var err = new Error("No correct parametr's")
-		assert.throws(function() { set({}, 12, 32); }, err);
-		assert.throws(function() { set('', ".func.fd", 32); }, err);
+		const err = new TypeError("No correct parametr's");
+		assert.throws(() => set({}, 12, 32), err);
+		assert.throws(() => set('', ".func.fd", 32), err);
 	});
 	
 	QUnit.test('set работает правильно с path без точки', function (assert) {
