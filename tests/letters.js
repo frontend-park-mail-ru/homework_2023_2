@@ -6,10 +6,12 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('abcd'), 'abcd');
 		assert.strictEqual(letters('олдж фыва'), 'олдж фыва');
 		assert.strictEqual(letters(',.;=\n\t '), ',.;=\n\t ');
+
 		assert.strictEqual(letters('1234', true), '1234');
 		assert.strictEqual(letters('abcd', true), 'abcd');
 		assert.strictEqual(letters('олдж фыва', true), 'олдж фыва');
 		assert.strictEqual(letters(',.;=\n\t ', true), ',.;=\n\t ');
+
 		assert.strictEqual(letters('1234', false), '1234');
 		assert.strictEqual(letters('abcd', false), 'abcd');
 		assert.strictEqual(letters('олдж фыва', false), 'олдж фыва');
