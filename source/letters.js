@@ -31,7 +31,6 @@ const letters = (words, parameter = null) => {
             return array.filter((word, index) => array.lastIndexOf(word) === index).join('')
 
         default:
-            console.log("incorrect type of param parameter");
-            return '';
+            return Error("incorrect type of param parameter");
     }
 }
