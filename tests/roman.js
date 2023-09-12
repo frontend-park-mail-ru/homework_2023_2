@@ -68,3 +68,4 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.throws(function() {roman(new Number(4001))}, Error, "Invalid number value");
 	});
 });
+
