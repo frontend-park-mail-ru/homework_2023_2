@@ -18,21 +18,21 @@ export const euclid = (...args) => {
     });
 
     return Math.abs(GCD);
-
 };
 
 /**
- * Calculates gcd for two numbers. There is no check for an integer type, because this check in current use happens at a high level in the euclid function
- * @param {number} a - The first number.
- * @param {number} b - The second number.
- * @returns {number|NaN } - GCD of two numbers. Returns Nan if one of the given numbers is NaN.
+ * Calculates gcd for two numbers. There is no check for an integer type, because this check in current use happens at high level in the euclid function
+ * @param {number} firstNum - The first number.
+ * @param {number} secondNum - The second number.
+ * @returns {number} - GCD of two numbers. Returns Nan if one of the given numbers is NaN.
  */
-const calcGCD = (a, b) => {
-    while (b !== 0 && !isNaN(a)) {
-        [a, b] = [b, a % b];
+const calcGCD = (firstNum, secondNum) => {
+    let firstNumber = firstNum;
+    let secondNumber = secondNum;
+
+    while (secondNumber !== 0) {
+        [firstNumber, secondNumber] = [secondNumber, firstNumber % secondNumber];
     }
 
-    return a;
+    return firstNumber;
 };
-
-console.log("nessags", euclid(2, 3));

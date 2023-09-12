@@ -30,6 +30,13 @@ QUnit.module('Тестируем функцию window.euclidGlobal', function (
         assert.strictEqual(window.euclidGlobal(...[...temp, ...temp, ...temp, ...temp, ...temp]), window.euclidGlobal(...temp));
     });
 
+    QUnit.test("Функция должна правильно работать с отрицательными аргументами", function (assert) {
+        assert.strictEqual(window.euclidGlobal(1, -1, 1,), 1, "window.euclidGlobal(1, -1, 1) === 1");
+        assert.strictEqual(window.euclidGlobal(1000, -10, 100,), 10, "window.euclidGlobal(1000, -10, 100) === 10");
+        assert.strictEqual(window.euclidGlobal(-105, -25, -55), 5, "window.euclidGlobal(-105, -25, -55) === 5");
+        assert.strictEqual(window.euclidGlobal(-6006, -3738735, -51051), 3003, "window.euclidGlobal(-6006, -3738735, -51051) === 3003");
+    });
+
     QUnit.test('Функция должна правильно обрабатывать отсутствие аргументов', function (assert) {
         assert.throws(() => {
             window.euclidGlobal();
@@ -59,11 +66,4 @@ QUnit.module('Тестируем функцию window.euclidGlobal', function (
             window.euclidGlobal(Infinity, 2, 42);
         }, Error, "window.euclidGlobal(Infinity, 2, 42) должна выкинуть Error");
     });
-
-    QUnit.test("Функция должна правильно работать с отрицательными аргументами", function (assert){
-        assert.strictEqual(window.euclidGlobal(1, -1, 1,), 1, "window.euclidGlobal(1, -1, 1) === 1");
-        assert.strictEqual(window.euclidGlobal(1000, -10, 100,), 10, "window.euclidGlobal(1000, -10, 100) === 10");
-        assert.strictEqual(window.euclidGlobal(-105, -25, -55), 5, "window.euclidGlobal(-105, -25, -55) === 5");
-        assert.strictEqual(window.euclidGlobal(-6006, -3738735, -51051), 3003, "window.euclidGlobal(-6006, -3738735, -51051) === 3003");
-    })
 });
