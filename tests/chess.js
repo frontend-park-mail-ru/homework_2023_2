@@ -3,41 +3,41 @@
 QUnit.module('Тестируем функцию chess', function () {
 
 	QUnit.test('Передача в качестве длины шахматной доски null', function (assert) {
-		assert.strictEqual(chess(null), null);
-		assert.strictEqual(chess('null'), null);
+		assert.throws(function() {chess(null)}, TypeError);
+		assert.throws(function() {chess('null')}, TypeError);
 	});
 
 	QUnit.test('Передача в качестве длины шахматной доски NaN', function (assert) {
-		assert.strictEqual(chess(NaN), null);
-		assert.strictEqual(chess('NaN'), null);
+		assert.throws(function() {chess(NaN)}, TypeError);
+		assert.throws(function() {chess('NaN')}, TypeError);
 	});
 
 	QUnit.test('Передача в качестве длины шахматной доски bool', function (assert) {
-		assert.strictEqual(chess(true), null);
-		assert.strictEqual(chess('true'), null);
+		assert.throws(function() {chess(true)}, TypeError);
+		assert.throws(function() {chess('true')}, TypeError);
 	});
 
 	QUnit.test('Передача в качестве длины шахматной доски массив', function (assert) {
-		assert.strictEqual(chess([1, 2]), null);
+		assert.throws(function() {chess([1, 2])}, TypeError);
 	});
 
 	QUnit.test('Передача в качестве длины шахматной доски undefined', function (assert) {
-		assert.strictEqual(chess(undefined), null);
+		assert.throws(function() {chess(undefined)}, TypeError);
 	});
 
 	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {
-		assert.strictEqual(chess(1), null);
-		assert.strictEqual(chess('1'), null);
+		assert.throws(function() {chess(1)}, TypeError);
+		assert.throws(function() {chess('1')}, TypeError);
 	});
 
 	QUnit.test('Шахматной доски с отрицательной стороной не бывает', function (assert) {
-		assert.strictEqual(chess(-1), null);
-		assert.strictEqual(chess('-1'), null);
+		assert.throws(function() {chess(-1)}, TypeError);
+		assert.throws(function() {chess('-1')}, TypeError);
 	});
 
 	QUnit.test('Шахматной доски с не целой длиной стороны не бывает', function (assert) {
-		assert.strictEqual(chess(2.5), null);
-		assert.strictEqual(chess('2.5'), null);
+		assert.throws(function() {chess(2.5)}, TypeError);
+		assert.throws(function() {chess('2.5')}, TypeError);
 	});
 
 	QUnit.test('Шахматная доска 2 на 2', function (assert) {
