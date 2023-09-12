@@ -7,11 +7,11 @@
 const roman = (number) => {
 
     /**
-     * @param {string} str - Число для перевода в другую систему
+     * @param {(string|number)} str - Число для перевода в другую систему
      * @description Определение, является ли число из арабской системы счисления
      */
-    let isArabic = (str) => {
-        let type = typeof str;
+    const isArabic = (str) => {
+        let type = typeof str.valueOf();
         if (str && (type == 'string' ||  type == 'number')){
             return /\d+$/.test(str);
         }
@@ -22,8 +22,8 @@ const roman = (number) => {
      * @param {string} str - Число для перевода в другую систему
      * @description Определение, является ли число из римской системы счисления
      */
-    let isRoman = (str) => {
-        if (str && typeof str == 'string'){
+    const isRoman = (str) => {
+        if (str && typeof str.valueOf() == 'string'){
             return /^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,4})?$/i.test(str);
         }
         return false;
