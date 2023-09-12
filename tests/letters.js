@@ -71,18 +71,51 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Тест на неверно переданные параметры', function (assert) {
-		assert.strictEqual(letters(132, "fake"), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters(333, 32), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters([1,2,3,4,5], 32), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters(true, false), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters((a, b) => a + b, "fake"), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters(1.2, true), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters(null, null), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters("null", null), 'Wrong input type, must be (string, boolean)');
+		assert.throws(
+			() => letters(true, false),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters(132, "fake"),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters(333, 32),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters([1, 2, 3, 4, 5], 32),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters((a, b) => a + b, "fake"),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters(1.2, true),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters(null, null),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters("null", null),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters(Symbol("input"), Symbol("flag")),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters({ a: "foo", b: 42, c: {} }, { a: "foo", b: 42, c: {} }),
+			Error('Wrong input type, must be (string, boolean)')
+		);
+		assert.throws(
+			() => letters("aaAaBBbB", "fake"),
+			Error('Wrong input type, must be (string, boolean)')
+		);
 		assert.strictEqual(letters("undefined", undefined), 'ufi');
-		assert.strictEqual(letters(Symbol("input"), Symbol("flag")), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters({ a: "foo", b: 42, c: {} }, { a: "foo", b: 42, c: {} }), 'Wrong input type, must be (string, boolean)');
-		assert.strictEqual(letters("aaAaBBbB", "fake"), 'Wrong input type, must be (string, boolean)');
 	});
 
 	QUnit.test('Тест на полную строку с флагом', function (assert) {
