@@ -2,12 +2,26 @@
 
 /**
  * Функция для форматирования ряда чисел в табличку
- * @param {Array} numbers - Исходный массив чисел
+ * @param {number[]} numbers - Исходный массив чисел
  * @param {number} cols - Число колонок в таблице
+ * @returns {string} Ряд представленный в виде нескольких колонок
  */
 const format = (numbers, cols) => {
-	let widths = new Array(cols);
-	widths.fill(0);
+	if (!Array.isArray(numbers)) {
+		throw new TypeError("numbers: Array of numbers expected");
+	}
+
+	if (
+		typeof cols !== "number" &&
+		typeof cols !== "bigint" &&
+		!(cols instanceof Number) &&
+		!(cols instanceof BigInt)
+	) {
+
+		throw new TypeError("cols: Number was expected");
+	}
+
+	let widths = Array(cols).fill(0);
 
 	numbers.forEach((element, i) => {
 		widths[i % cols] = max([
@@ -17,11 +31,11 @@ const format = (numbers, cols) => {
 	});
 
 	return numbers.reduce((result, element, i) => {
-		let strElement = element.toString();
+		const strElement = element.toString();
 		let prefix = " ".repeat(widths[i % cols] - strElement.length);
 		
-		let isNotFirstElement = Boolean(i);
-		let isNotLastColumn = Boolean(i % cols);
+		const isNotFirstElement = Boolean(i);
+		const isNotLastColumn = Boolean(i % cols);
 
 		if (isNotLastColumn) {
 			prefix += " ";
