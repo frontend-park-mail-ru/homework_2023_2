@@ -8,13 +8,17 @@
  */
 export const euclid = (...args) => {
     if (args.length === 0) throw Error("len of args should be > 0");
-    if (!Number.isInteger(args[0])) throw Error(`args[0] === ${args[0]} is not integer`);
 
-    return Math.abs(args.reduce((gcd, current, currentIndex) => {
-            if (!Number.isInteger(current)) throw Error(`args[${currentIndex}] === ${current} is not integer`);
-            return calcGCD(gcd, current);
-        })
-    );
+    args.forEach((item, i) => {
+        if (!Number.isInteger(item)) throw Error(`args consist non integer element = ${item} with idx = ${i} `)
+    });
+
+    let GCD = args.reduce((gcd, current) => {
+        return calcGCD(gcd, current);
+    });
+
+    return Math.abs(GCD);
+
 };
 
 /**
