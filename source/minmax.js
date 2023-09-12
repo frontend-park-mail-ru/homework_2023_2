@@ -8,8 +8,10 @@
  */
 
 const minmax = (inputLine) => {
-    if (inputLine == '' || !(typeof inputLine === 'string' || inputLine instanceof String)) {
+    if (inputLine == '') {
         return [undefined, undefined];
+    } else if (!(typeof inputLine === 'string' || inputLine instanceof String)) {
+        return TypeError("Argument in minmax function should be a String");
     }
     const numbersLine = inputLine.split(' ').reduce((accumulator, word) => {
             if (!isNaN(word)) {

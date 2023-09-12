@@ -38,11 +38,11 @@ QUnit.module('Тестируем функцию minmax', function () {
 
 	QUnit.test('minmax корректно работает с разными типами данных', function (assert) {
 		assert.deepEqual(minmax('" " 1 1e-2 2 3.4 [7]'), [ 1e-2 , 3.4] );
-		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
-		assert.deepEqual(minmax(NaN), [ undefined, undefined ]);
-		assert.deepEqual(minmax({}), [ undefined, undefined ]);
-		assert.deepEqual(minmax([1, 2, 3, 4]), [ undefined, undefined ]);
-		assert.deepEqual(minmax(new Date()), [ undefined, undefined ]);
+		assert.deepEqual(minmax(undefined), TypeError("Argument in minmax function should be a String"));
+		assert.deepEqual(minmax(NaN), TypeError("Argument in minmax function should be a String"));
+		assert.deepEqual(minmax({}), TypeError("Argument in minmax function should be a String"));
+		assert.deepEqual(minmax([1, 2, 3, 4]), TypeError("Argument in minmax function should be a String"));
+		assert.deepEqual(minmax(new Date()), TypeError("Argument in minmax function should be a String"));
 		assert.deepEqual(minmax(new String()), [ undefined, undefined ]);
 		assert.deepEqual(minmax(new String('1 1 1 1')), [ 1, 1 ]);
 	});
