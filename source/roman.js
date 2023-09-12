@@ -11,7 +11,7 @@ const roman = (number) => {
      * @description Определение, является ли число из арабской системы счисления
      */
     const isArabic = (str) => {
-        let type = typeof str.valueOf();
+        const type = typeof str.valueOf();
         if (str && (type == 'string' ||  type == 'number')){
             return /\d+$/.test(str);
         }
