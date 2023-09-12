@@ -7,21 +7,18 @@
  * @param {string} path - property path.
  * @param {*} value - The value to be set.
  * @returns {object}
- * @throws {TypeError}
+ * @throws {TypeError} If one of the following conditions is not met:
+ * - `obj` is not an object or is `null`.
+ * - `path` is not a string or an instance of the `String` class.
  */
 const set = (obj, path, value) => {
-    if (typeof obj !== 'object' || (!(typeof path === 'string' || path instanceof String))) {
+    if (typeof obj !== 'object' || obj === null || (!(typeof path === 'string' || path instanceof String))) {
         throw new TypeError("No correct parametr's");
     }
 
     const lineSplit = path.startsWith('.') ? path.slice(1) : path;
-
     const keys = lineSplit.split('.');
     const lastKey = keys.pop();
-
-    if (obj === null) {
-        obj = {}
-    }
 
     const lastProperty = keys.reduce((current, key) => {
         if (!current[key]) {
@@ -31,9 +28,10 @@ const set = (obj, path, value) => {
         return current[key];
     }, obj);
 
-    if (value !== undefined) {
+    if (value !==undefined) {
         lastProperty[lastKey] = value;
     }
+
 
     return obj;
 }
