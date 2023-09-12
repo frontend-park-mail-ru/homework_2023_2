@@ -195,4 +195,3 @@ QUnit.module("Тестируем функцию sorting", function () {
     }
   );
 });
-
