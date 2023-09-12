@@ -9,7 +9,7 @@
  * В ином случае возвращает undefined
  */
 
-function get(object, query, flag = false) {
+const get = (object, query, flag = false) => {
     const QUERY_WITHOUT_DOT = 1;
     const DOT_SYMBOL = '.';
 
