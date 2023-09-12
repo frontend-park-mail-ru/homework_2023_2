@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Функция для форматирования ряда чисел в табличку
+ * @param {Array} numbers - Исходный массив чисел
+ * @param {number} cols - Число колонок в таблице
+ */
 const format = (numbers, cols) => {
 	let widths = new Array(cols);
 	widths.fill(0);
