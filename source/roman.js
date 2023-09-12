@@ -33,8 +33,10 @@ const romanToNumber = (input) => {
     }, {});
 
     return newInput.split('').reduce((out, curr, i) => {
-        return romNum[newInput[i + 1]] && romNum[curr] <
-        romNum[newInput[i + 1]] ? out -= romNum[curr] :
+        return romNum[newInput[i + 1]] &&
+            romNum[curr] <
+            romNum[newInput[i + 1]] ?
+            out -= romNum[curr] :
             out += romNum[curr];
     }, 0);
 }
@@ -75,3 +77,4 @@ const roman = (input) => {
 
     return Number.isInteger(Number(input)) ? numberToRoman(input) : romanToNumber(input);
 }
+
