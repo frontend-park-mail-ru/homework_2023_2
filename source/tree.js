@@ -13,7 +13,7 @@ const tree = (height, trunkHeight = 1) => {
         return ' '.repeat(amountOfSpace) + `${character}`.repeat(amountOfChar) + ' '.repeat(amountOfSpace);
     }
 
-    if (isNaN(height) ||  height === '' || !isFinite(height)) {
+    if (height === '' || !isFinite(height)) {
         throw new Error('Error: invalid value of height');
     }
 
@@ -21,7 +21,7 @@ const tree = (height, trunkHeight = 1) => {
         return null;
     }
 
-    if (isNaN(trunkHeight) || trunkHeight === "" || trunkHeight >= height || !isFinite(trunkHeight)) {
+    if (trunkHeight === "" || trunkHeight >= height || !isFinite(trunkHeight)) {
         throw new Error('Error: invalid value of trunk height');
     }
 
