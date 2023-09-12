@@ -11,8 +11,7 @@
  */
 const letters = (words, parameter = null) => {
     if (typeof words !== "string" && !(words instanceof String)) {
-        console.log("incorrect type of param words");
-        return '';
+        return Error("incorrect type of param words");
     }
 
     const array = Array.from(words);
@@ -36,5 +35,3 @@ const letters = (words, parameter = null) => {
             return '';
     }
 }
-
-console.log(letters('prototype'))
