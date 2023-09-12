@@ -10,7 +10,7 @@ const euclid = (...args) => {
     throw new Error('Not correct args.');
   }
   
-  if (!args.every((arg) => typeof arg === 'number' && !isNaN(arg) && isFinite(arg) && arg !== Number.MAX_VALUE)) {
+  if (!args.every((arg) => typeof arg === 'number' && isFinite(arg) && arg !== Number.MAX_VALUE)) {
     throw new Error('Not correct args.');
 
   }
@@ -29,10 +29,15 @@ const euclid = (...args) => {
 * @returns {number} - Наибольший общий делитель для двух чисел.
  */
 const calculateGCD = (firstNumber, secondNumber) => {
+  if (firstNumber === secondNumber) {
+    return firstNumber;
+  }
+  
   while (secondNumber !== 0) {
     [firstNumber, secondNumber] = [secondNumber, firstNumber % secondNumber];
   }
     
   return firstNumber;
 };
+
 
