@@ -23,7 +23,7 @@ const ROMAN_NUM = [
  * @returns {number} - Вернет результат перевода
  */
 const romanToNumber = (input) => {
-    let newInput = input.toUpperCase();
+    const newInput = input.toUpperCase();
 
     const romNum = ROMAN_NUM.reduce(function(result, ROMAN_NUM) {
         return {
