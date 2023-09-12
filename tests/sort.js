@@ -44,6 +44,8 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('      hehehehe         aboba'), 'Aabbo Eeeehhhh', 'Убирает лишние пробелы');
 		assert.strictEqual(sort('       '), '', 'Обрабатывает строчку из пробелов');
 		assert.strictEqual(sort(''), '', 'Обрабатывает пустую строку');
-		assert.strictEqual(sort(12345), null, 'Обрабатывает некорректный ввод (не строка)');
+		assert.throws(() => {
+			sort(12345);
+		 }, TypeError, 'Обарбатывает ввод не со строкой');
 	});
 });

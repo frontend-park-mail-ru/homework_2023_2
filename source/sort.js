@@ -1,32 +1,18 @@
 'use strict';
 
-const localeCompare = (strArray) => { // сортировака по алфавиту
-	return strArray.sort(function (a, b) {return a.localeCompare(b);});
-}
+const localeCompare = (strArray) => strArray.sort( (a, b) => a.localeCompare(b) ); // сортировка по алфавиту
 
-const capitalize = (str) => { // делает первую букву прописной, остальные строчными
-	if (typeof str === 'string' && str.length !== 0){ // проверяем тип и что не пустая
-		return str[0].toUpperCase() + str.slice(1).toLowerCase();
-	} else {
-		return null
-	}
-}
+const capitalize = (str) => str.length !== 0 ? str[0].toUpperCase() + str.slice(1).toLowerCase() : null; // первая буква прописная, остальные строчные 
 
 const sort = (str) => {  
-	if ( typeof str === 'string' ) { // проверяем тип
-		str = str.replace(/\s+/g, ' ').trim(); // заменям повторяющиеся пробелы, убираем боковые пробелы
-		let words = str.split(' '); 
-		
-		words = words.map((word) => { // заменил for на words.map
-			word = localeCompare(word.split('')).join('')  
-			word = capitalize(word);
-			return word;
-		});
+	if ( typeof str !== 'string' ) { // проверяем тип
+		throw new TypeError('Аргумент должен быть строкой'); // добавил ранний выход с выбрасыванием TypeError
+	}
 
-		const sortedWords = localeCompare(words); // сортируем слова в предоложении 
-		return sortedWords.join(' ');
-	}
-	else { // не строка
-	    return null
-	}
+	return localeCompare(str.replace(/\s+/g, ' ').trim().split(' ').map((word) => { // все впихнул в один return
+		word = localeCompare(word.split('')).join('')  
+		word = capitalize(word);
+		return word;
+	})).join(' ');
 }
+		
