@@ -10,8 +10,6 @@
  * @param {string[]} input - The input array of strings.
  * @returns {string[][]}   - An array of anagram string groups.
  */
-
-
 const anagram = (input) => {
     if (!Array.isArray(input)) {
         return [];
