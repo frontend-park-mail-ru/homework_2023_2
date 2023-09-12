@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const map = {
+const escapeChars = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
@@ -14,12 +14,13 @@ const map = {
  * @param {string} text - фильтруемый текст
  * @param {string[]} [tags=[]]  - список разрешенных тегов
  * @returns {string} отфильтрованный текст
+ * @throws {TypeError} при неверных аргументах
  */
 const filter = (text, tags = []) => {
-  if (typeof text !== "string") {
+  if (typeof text !== "string" && !(text instanceof String)) {
     throw new TypeError("expected String");
   }
-  if (!Array.isArray(tags) || tags.some((el) => typeof el !== "string")) {
+  if (!Array.isArray(tags) || tags.some((el) => typeof el !== "string" && !(text instanceof String))) {
     throw new TypeError("expected Array of strings");
   }
   const resArr = text.split(/([&"<>'])/);
@@ -31,7 +32,7 @@ const filter = (text, tags = []) => {
       i += 2;
       continue;
     }
-    resArr[i] = map[resArr[i]];
+    resArr[i] = escapeChars[resArr[i]];
   }
   return resArr.join("");
 };

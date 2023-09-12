@@ -35,6 +35,7 @@ QUnit.module('Проверка работы функции filter', function () 
 
 	QUnit.test('filter экранирует символы подряд, в конце, в начале', function (assert) {
 		assert.strictEqual(filter(`"1 && 1 <script>alert('1');</script>"`, [ 'script' ]), '&quot;1 &amp;&amp; 1 <script>alert(&#39;1&#39;);</script>&quot;');
+		assert.strictEqual(filter(new String(`"1 && 1 <script>alert('1');</script>"`), [ 'script' ]), '&quot;1 &amp;&amp; 1 <script>alert(&#39;1&#39;);</script>&quot;');
 	});
 
 	QUnit.test('filter экранирует с одним аргументом', function (assert) {
