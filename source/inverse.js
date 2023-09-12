@@ -10,9 +10,13 @@
  * или вторым - не целое число.
  */
 const inverse = (array, offsetIndex = 0) => {
-    if (!Array.isArray(array)) throw new TypeError("Arg1 is not an Array"); 
-    if (!Number.isInteger(offsetIndex)) throw new TypeError("Arg2 is not an Integer");
-    if (offsetIndex === 0) return array.reverse(); 
+    if (!Array.isArray(array)) {
+        throw new TypeError('Arg1 is not an Array');
+    }
+    if (!Number.isInteger(offsetIndex)) {
+        throw new TypeError('Arg2 is not an Integer');
+    }
+    if (offsetIndex === 0) return array.reverse();
     return offsetIndex > 0 ? array.slice(0, offsetIndex).concat(array.slice(offsetIndex).reverse()) :
         array.slice(0, offsetIndex).reverse().concat(array.slice(offsetIndex));
 };
