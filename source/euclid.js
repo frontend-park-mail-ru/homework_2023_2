@@ -3,13 +3,15 @@
 /**
  * euclid() calculates the greatest common divisor (GCD) using the Euclid method
  * @param {...number} args - GCD is calculated for all these numbers
- * @returns {number|NaN} - GCD of numbers passed or Nan if at least one of the passed arguments is not an integer
+ * @returns {number} - GCD of numbers passed
+ * @throws {Error} if at least one of the passed arguments is not an integer or args is empty
  */
 export const euclid = (...args) => {
-    if (args.length === 0 || !Number.isInteger(args[0])) return NaN;
+    if (args.length === 0) throw Error("len of args should be > 0");
+    if (!Number.isInteger(args[0])) throw Error(`args[0] === ${args[0]} is not integer`);
 
-    return Math.abs(args.reduce((gcd, current) => {
-            if (!Number.isInteger(current)) return NaN;
+    return Math.abs(args.reduce((gcd, current, currentIndex) => {
+            if (!Number.isInteger(current)) throw Error(`args[${currentIndex}] === ${current} is not integer`);
             return calcGCD(gcd, current);
         })
     );
@@ -28,3 +30,5 @@ const calcGCD = (a, b) => {
 
     return a;
 };
+
+console.log("nessags", euclid(2, 3));
