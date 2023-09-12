@@ -56,6 +56,15 @@ QUnit.module('Тестируем функцию anagram', function () {
 	});
 
 	QUnit.test('Функция обрабатывает undefined. Тест 1', function (assert) {
+		const input = undefined
+
+		const output = [];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+
+	QUnit.test('Функция обрабатывает undefined. Тест 2', function (assert) {
 		const input = [
 			undefined, undefined
 		];
@@ -65,7 +74,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram(input), output);
 	});
 
-	QUnit.test('Функция обрабатывает undefined. Тест 2', function (assert) {
+	QUnit.test('Функция обрабатывает undefined. Тест 3', function (assert) {
 		const input = [
 			undefined, undefined,
 			'кот', 'ток'
@@ -73,6 +82,30 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 		const output = [['кот', 'ток']];
 
+		assert.deepEqual(anagram(input), output);
+	});
+	
+	QUnit.test('Обработка функцией значений undefined и анаграмм в массиве ввода. Тест 4', function (assert) {
+		const input = ['listen', undefined, 'silent'];
+		const output = [['listen', 'silent']];
+	
+		assert.deepEqual(anagram(input), output);
+	});
+	
+	QUnit.test('Обработка функцией значений undefined и не-строковых элементов в массиве ввода . Тест 5', function (assert) {
+		const input = [undefined, 123, null, 'hello', undefined, true, 'world'];
+		const output = [];
+	
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Обработка функцией значений undefined и не-строковых элементов в массиве ввода . Тест 6', function (assert) {
+		const input = [undefined, 123, null, 'клоун', 'кулон', undefined, true, 'world', 'drow'];
+		
+		const output = [
+			[ "клоун", "кулон"]
+		];
+	
 		assert.deepEqual(anagram(input), output);
 	});
 
