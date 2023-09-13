@@ -8,26 +8,24 @@
  */
 const filter = (input, validTags = []) => {
 
-    if (typeof input !== "string") {
-        console.error("input must be string");
-        return;
+    if (typeof input !== 'string' && !(input instanceof String)) {
+        throw TypeError('input must be string');
     }
 
-    if (!Array.isArray(validTags) || validTags.some( (item) => typeof(item) !== "string") ) {
-        console.error("validTags must be array of string");
-        return;
+    if (!Array.isArray(validTags) || validTags.some( (item) => typeof(item) !== 'string') ) {
+        throw TypeError('validTags must be array of string');
     }
 
     const tags = validTags.join('|');
 
-    const ltRegExp = new RegExp(`\<(?!(\/?)(${tags})[\\>]+)`, "gi"),
-          gtRegExp = new RegExp(`(?<!(\/?)[</]+(${tags}))\>`, "gi");
+    const ltRegExp = new RegExp(`\<(?!(\/?)(${tags})[\\>]+)`, 'gi'),
+          gtRegExp = new RegExp(`(?<!(\/?)[</]+(${tags}))\>`, 'gi');
 
     return input
-        .replaceAll(`&`, "&amp;")
-        .replaceAll(`"`, "&quot;")
-        .replaceAll(`'`, "&#39;")
-        .replaceAll(ltRegExp, "&lt;")
-        .replaceAll(gtRegExp, "&gt;");
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;')
+        .replaceAll(ltRegExp, '&lt;')
+        .replaceAll(gtRegExp, '&gt;');
 }
 

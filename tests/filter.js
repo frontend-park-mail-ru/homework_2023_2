@@ -31,7 +31,7 @@ QUnit.module('Проверка работы функции filter', function () 
 
 		const output = filter(input);
 
-		const expected = "&lt;strong&gt;Hello, &lt;em&gt;World!&lt;/em&gt;&lt;/strong&gt; 1 + 2 &lt; 4!";
+		const expected = '&lt;strong&gt;Hello, &lt;em&gt;World!&lt;/em&gt;&lt;/strong&gt; 1 + 2 &lt; 4!';
 
 		assert.strictEqual(output, expected);
 	});
@@ -41,10 +41,32 @@ QUnit.module('Проверка работы функции filter', function () 
 
 		const output = filter(input, [ "str", "ong" ]);
 
-		const expected = "&lt;strong&gt;Hello, <str>World!</str>&lt;/strong&gt; 1 + 2 &lt; 4!";
+		const expected = '&lt;strong&gt;Hello, <str>World!</str>&lt;/strong&gt; 1 + 2 &lt; 4!';
 
 		assert.strictEqual(output, expected);
 	});
+
+	QUnit.test('filter выбрасывает TypeError при некорректом первом аргументе', function (assert) {
+		const validTags = [ 'em', 'strong' ];
+
+		const error = new TypeError('input must be string');
+
+		assert.throws( function() { filter(1234, validTags) }, error, "filter(1234, validTags)" );
+		assert.throws( function() { filter([1, 2, 3, 4], validTags) }, error, "filter([1, 2, 3, 4], validTags)" );
+		assert.throws( function() { filter({ input: '<strong>' }, validTags) }, error, "{ input: '<strong>' }" );
+		assert.throws( function() { filter(null, validTags) }, error, "filter(null, validTags)" );
+	});
+
+	QUnit.test('filter выбрасывает TypeError при некорректом втором аргументе', function (assert) {
+		const input = '<strong>Hello, <str>World!</str></strong> 1 + 2 < 4!';
+
+		const error = new TypeError('validTags must be array of string');
+
+		assert.throws( function() { filter(input, [ 'em', 'strong', null]) }, error, "filter(input, [ 'em', 'strong', null])" );
+		assert.throws( function() { filter(input, 'strong') }, error, "filter(input, 'strong')");
+		assert.throws( function() { filter(input, { validTags: 'strong' }) }, error, "filter(input, { validTags: 'strong' })" );
+		assert.throws( function() { filter(input, null) }, error, "filter(input, null)" );
 	
+	});
 });
 
