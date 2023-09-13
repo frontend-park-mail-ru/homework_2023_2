@@ -1,6 +1,6 @@
 'use strict'
 
-let zip = (...objects) => {
+const zip = (...objects) => {
 
     if (objects.length == 0) {
         return {};  
