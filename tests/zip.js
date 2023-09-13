@@ -114,11 +114,11 @@ QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция выбрасывает ошибку, если передаются некорректные параметры', function (assert) {
 		assert.throws(() => {
 			zip(5, 'hello');
-		}, TypeError('Были переданы данные, содержащие не только объекты'));
+		}, TypeError("TypeError: expected 'object' but got number"));
 
 		assert.throws(() => {
 			zip('hello', false);
-		}, TypeError('Были переданы данные, содержащие не только объекты'));
+		}, TypeError("TypeError: expected 'object' but got string"));
 	});
 
 	QUnit.test('Функция работает, если передаются свойства совпадающие со свойствами прототипа', function (assert) {
