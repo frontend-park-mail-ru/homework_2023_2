@@ -114,6 +114,22 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.throws(() => anagram(input), err);
 	});
 
+	QUnit.test('Обработка функцией значений не-строковых элементов в массиве ввода . Тест 8', function (assert) {
+		const input = [111, 325, 572, 22233, 8787, 44, 0, 87, 12];
+		
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
+	});
+
+	QUnit.test('Обработка функцией значений не-строковых элементов в массиве ввода . Тест 9', function (assert) {
+		const input = [{ name: 'Alice' }, { name: 'Bob' }];
+		
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
+	});
+
 	QUnit.test('Функция работает с пустым входным массивом', function (assert) {
 		assert.deepEqual(anagram([]), []);
 	});
@@ -142,6 +158,13 @@ QUnit.module('Тестируем функцию anagram', function () {
 	QUnit.test('Функция работает с разными длинами слов', function (assert) {
 		const input = ['кот', 'то', 'ток'];
 		const output = [['кот', 'ток']];
+
+		assert.deepEqual(anagram(input), output);
+	});
+
+	QUnit.test('Функция работает с строками имеющими пробелы', function (assert) {
+		const input = ['hello world', 'world hello'];
+		const output = [["hello world", "world hello"]];
 
 		assert.deepEqual(anagram(input), output);
 	});
