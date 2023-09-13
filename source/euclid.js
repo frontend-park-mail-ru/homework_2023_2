@@ -28,6 +28,10 @@ export const euclid = (...args) => {
  * @returns {number} - GCD of two numbers.
  */
 const calcGCD = (firstNum, secondNum) => {
+    if (Math.abs(firstNum) === 1 && Math.abs(secondNum) === 1) {
+        return 1;
+    }
+
     let firstNumber = firstNum;
     let secondNumber = secondNum;
 
