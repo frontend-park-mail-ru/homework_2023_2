@@ -24,7 +24,7 @@ const zip = (...objects) => {
         }
     }
 
-    let resObj = objects.reduce((props, object) => {
+    const resObj = objects.reduce((props, object) => {
         
         for (const key of Object.keys(object)) {
             
