@@ -48,19 +48,15 @@ const roman = (number) => {
     switch (true){
         case isRoman(number):
 
-            number = number.toUpperCase()
+            number = number.toUpperCase();
 
-            return number.split('').reduce(function(sum, current, index){
-                if ( RomanNum[current] < RomanNum[number[index+1]] ) {
-                    return sum -= RomanNum[current];
-                } else {
-                    return sum += RomanNum[current];
-                }
+            return number.split('').reduce((sum, current, index) => {
+                return (RomanNum[current] < RomanNum[number[index+1]] ? sum -= RomanNum[current] : sum += RomanNum[current]);
             }, 0);
 
         case isArabic(number):
 
-            return Object.keys(RomanNum).reduce(function(sum, current){
+            return Object.keys(RomanNum).reduce((sum, current) => {
                 if (number >= RomanNum[current]){
                     let count = number / RomanNum[current];
                     number = number % RomanNum[current];
@@ -70,6 +66,6 @@ const roman = (number) => {
             }, "");
             
         default:
-            return "invalid input"
+            throw new Error("invalid input");   
     }
 };

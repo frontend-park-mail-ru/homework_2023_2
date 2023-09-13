@@ -50,23 +50,23 @@ QUnit.module('Тестируем функцию roman', function () {
 	});
 
 	QUnit.test('roman правильно определяет неправильные данные', function (assert) {
-		assert.strictEqual(roman('56pp'), 'invalid input');
-		assert.strictEqual(roman('77&&'), 'invalid input');
-		assert.strictEqual(roman('***'), 'invalid input');
+		assert.throws(() => { roman('56pp');}, Error("invalid input"));
+		assert.throws(() => { roman('77&&');}, Error("invalid input"));
+		assert.throws(() => { roman('***');}, Error("invalid input"));
+		assert.throws(() => { roman('UUU');}, Error("invalid input"));
+		assert.throws(() => { roman('MMA');}, Error("invalid input"));
+		assert.throws(() => { roman('asd');}, Error("invalid input"));
 
-		assert.strictEqual(roman('UUU'), 'invalid input');
-		assert.strictEqual(roman('MMA'), 'invalid input');
-		assert.strictEqual(roman('asd'), 'invalid input');
-
-		assert.strictEqual(roman('DM'), 'invalid input');
-		assert.strictEqual(roman('id'), 'invalid input');
-		assert.strictEqual(roman('DDDDD'), 'invalid input');
-		assert.strictEqual(roman('VL'), 'invalid input');
-		assert.strictEqual(roman('MMMM'), 'invalid input');
-		assert.strictEqual(roman(''), 'invalid input');
-		assert.strictEqual(roman([]), 'invalid input');
-		assert.strictEqual(roman({}), 'invalid input');
-		assert.strictEqual(roman(true), 'invalid input');
-		assert.strictEqual(roman(false), 'invalid input');
+		assert.throws(() => { roman('DM');}, Error("invalid input"));
+		assert.throws(() => { roman('id');}, Error("invalid input"));
+		assert.throws(() => { roman('DDDDD');}, Error("invalid input"));
+		assert.throws(() => { roman('VL');}, Error("invalid input"));
+		assert.throws(() => { roman('MMMM');}, Error("invalid input"));
+		
+		assert.throws(() => { roman('');}, Error("invalid input"));
+		assert.throws(() => { roman([]);}, Error("invalid input"));
+		assert.throws(() => { roman({});}, Error("invalid input"));
+		assert.throws(() => { roman(true);}, Error("invalid input"));
+		assert.throws(() => { roman(false);}, Error("invalid input"));
 	});
 });
