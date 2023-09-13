@@ -73,47 +73,47 @@ QUnit.module('Тестируем функцию letters', function () {
 	QUnit.test('Тест на неверно переданные параметры', function (assert) {
 		assert.throws(
 			() => letters(true, false),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters(132, "fake"),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters(333, 32),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters([1, 2, 3, 4, 5], 32),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters((a, b) => a + b, "fake"),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters(1.2, true),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters(null, null),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters("null", null),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters(Symbol("input"), Symbol("flag")),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters({ a: "foo", b: 42, c: {} }, { a: "foo", b: 42, c: {} }),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.throws(
 			() => letters("aaAaBBbB", "fake"),
-			Error('Wrong input type, must be (string, boolean)')
+			TypeError('Wrong input type, must be (string, boolean)')
 		);
 		assert.strictEqual(letters("undefined", undefined), 'ufi');
 	});

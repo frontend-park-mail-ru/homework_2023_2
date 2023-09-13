@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * Функция фильтрации
  * @param {function} func - Функция сравнения
@@ -7,8 +8,12 @@
  */
 const filter = (func, str) => {
     let uniquestr = [];
-    for (let i = 0; i < str.length; i++)
-        if (func(str[i], i)) uniquestr.push(str[i]);
+    for (let i = 0; i < str.length; i++) {
+        if (func(str[i], i)) {
+            uniquestr.push(str[i]);
+        }
+    }
+        
     return uniquestr.join("");
 };
 
@@ -20,10 +25,11 @@ const filter = (func, str) => {
  */
 const letters = (input, flag) => {
     if (
-        (typeof flag !== "boolean" && typeof flag !== "undefined") ||
+        typeof flag !== "boolean" && 
+        typeof flag !== "undefined" ||
         typeof input !== "string"
     ) {
-        throw new Error('Wrong input type, must be (string, boolean)');
+        throw new TypeError('Wrong input type, must be (string, boolean)');
     }
 
     const str = input.split("");
