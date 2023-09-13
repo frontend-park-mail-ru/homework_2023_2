@@ -4,9 +4,8 @@
  * This function performs Run Length Encoding compression on the input string
  * @param {string} input 
  * @returns {string}
- * @throws {TypeError}
+ * @throws {TypeError} input wasn't of type 'string' or an instance of String
  */
-
 const rle = input => {
     if (!(typeof input === 'string' || input instanceof String)) {
         throw new TypeError(`Improper value type provided! (Must be 'string' or String, '${typeof input}' was provided instead)`);
