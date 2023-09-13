@@ -53,7 +53,7 @@ QUnit.module('Проверка работы функции filter', function () 
 
 		assert.throws( function() { filter(1234, validTags) }, error, "filter(1234, validTags)" );
 		assert.throws( function() { filter([1, 2, 3, 4], validTags) }, error, "filter([1, 2, 3, 4], validTags)" );
-		assert.throws( function() { filter({ input: '<strong>' }, validTags) }, error, "{ input: '<strong>' }" );
+		assert.throws( function() { filter({ input: '<strong>' }, validTags) }, error, "filter({ input: '<strong>' })" );
 		assert.throws( function() { filter(null, validTags) }, error, "filter(null, validTags)" );
 	});
 
@@ -63,6 +63,7 @@ QUnit.module('Проверка работы функции filter', function () 
 		const error = new TypeError('validTags must be array of string');
 
 		assert.throws( function() { filter(input, [ 'em', 'strong', null]) }, error, "filter(input, [ 'em', 'strong', null])" );
+		assert.throws( function() { filter(input, [ 'em', 'strong', 1234 ]) }, error, "filter(input, [ 'em', 'strong', 1234 ])" );
 		assert.throws( function() { filter(input, 'strong') }, error, "filter(input, 'strong')");
 		assert.throws( function() { filter(input, { validTags: 'strong' }) }, error, "filter(input, { validTags: 'strong' })" );
 		assert.throws( function() { filter(input, null) }, error, "filter(input, null)" );
