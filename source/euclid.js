@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * euclid() calculates the greatest common divisor (GCD) using the Euclid method
  * @param {...number} args - GCD is calculated for all these numbers
@@ -27,7 +25,7 @@ export const euclid = (...args) => {
  * Calculates gcd for two numbers. There is no check for an integer type, because this check in current use happens at high level in the euclid function
  * @param {number} firstNum - The first number.
  * @param {number} secondNum - The second number.
- * @returns {number} - GCD of two numbers. Returns Nan if one of the given numbers is NaN.
+ * @returns {number} - GCD of two numbers.
  */
 const calcGCD = (firstNum, secondNum) => {
     let firstNumber = firstNum;

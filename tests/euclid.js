@@ -1,5 +1,3 @@
-'use strict';
-
 import {euclid} from "../source/euclid.js";
 
 QUnit.module('Тестируем функцию euclid', function () {
