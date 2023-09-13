@@ -115,10 +115,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 	});
 
 	QUnit.test('Функция работает с пустым входным массивом', function (assert) {
-		const input = [];
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
+		assert.deepEqual(anagram([]), []);
 	});
 
 	QUnit.test('Функция работает с одним словом', function (assert) {
