@@ -121,5 +121,29 @@ QUnit.module('Тестируем функцию zip', function () {
 		}, Error('Были переданы данные, содержащие не только объекты'));
 	});
 
+	QUnit.test('Функция работает, если передаются свойства совпадающие со свойствами прототипа', function (assert) {
+		
+		const obj1 = {
+			name: 'age',
+			value: 42,
+			valueOf: "это свойство valueOf"
+		};
+
+		const obj2 = {
+			prop: false,
+			attr: null
+		};
+
+		const obj3 = {
+			name: 'age',
+			value: 42,
+			prop: false,
+			attr: null,
+			valueOf: "это свойство valueOf"
+		};
+
+		assert.deepEqual(zip(obj1, obj2), obj3);
+	});
+
 });
 
