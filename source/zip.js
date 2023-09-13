@@ -6,7 +6,7 @@ let zip = (...objects) => {
         return {};  
     }
 
-    for (let object of objects) {
+    for (const object of objects) {
         if (typeof object != 'object') {
             throw new Error('Были переданы данные, содержащие не только объекты');
         }
@@ -14,7 +14,7 @@ let zip = (...objects) => {
 
     let resObj = objects.reduce((props, object) => {
         
-        for (let key of Object.keys(object)) {
+        for (const key of Object.keys(object)) {
             if (!(props.hasOwnProperty(key)))
                 props[key] = object[key];
         }
