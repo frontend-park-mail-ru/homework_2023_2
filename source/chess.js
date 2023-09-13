@@ -11,9 +11,9 @@ const chess = (boardSize) => {
         throw new TypeError('Проверьте корректность входных данных')
     }
 
-    let firstString = '* '.repeat(boardSize / 2) + '*'.repeat(boardSize % 2) + '\n';
-    let secondString = ' *'.repeat(boardSize / 2) + ' '.repeat(boardSize % 2) + '\n';
-    let result = (firstString + secondString).repeat(boardSize / 2) + firstString.repeat(boardSize % 2);
-
+    const firstString = '* '.repeat(boardSize / 2) + '*'.repeat(boardSize % 2) + '\n';
+    const secondString = ' *'.repeat(boardSize / 2) + ' '.repeat(boardSize % 2) + '\n';
+    const result = (firstString + secondString).repeat(boardSize / 2) + firstString.repeat(boardSize % 2);
+    
     return result;
 }
