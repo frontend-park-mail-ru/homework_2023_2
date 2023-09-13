@@ -12,17 +12,17 @@ let zip = (...objects) => {
         }
     }
 
-    let resObj = {};
-
-    objects.forEach( object => {
-
+    let resObj = objects.reduce((props, object) => {
+    
         for (let key in object)
         {
-            if (!(key in resObj))
-                resObj[key] = object[key];
+            if (!(key in props))
+                props[key] = object[key];
         }
-
-    })
+    
+        return props;
+    
+    }, {});
 
     return resObj;
 
