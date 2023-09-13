@@ -10,7 +10,7 @@
  */
 const zip = (...objects) => {
 
-    if (objects.length == 0) {
+    if (objects.length === 0) {
         return {};  
     }
 
