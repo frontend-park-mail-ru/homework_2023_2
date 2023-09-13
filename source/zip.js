@@ -14,6 +14,10 @@ const zip = (...objects) => {
         return {};  
     }
 
+    if (objects.length === 1) {
+        return objects[0];
+    }
+
     for (const object of objects) {
         if (typeof object != 'object') {
             throw new Error('Были переданы данные, содержащие не только объекты');
