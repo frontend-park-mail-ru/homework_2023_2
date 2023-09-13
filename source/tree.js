@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Функция проверяет, является ли переданный аргумент не числовым значением или бесконечностью(то есть null, undefined,
@@ -7,7 +7,7 @@
  * @returns {boolean} - true, если аргумент - не числовое значение, иначе false.
  */
 const invalidNumberValue = (value) =>
-  !value || !isFinite(value) || isNaN(value);
+  !value || !isFinite(parseFloat(value));
 
 /**
  * Функция добавляет символы в начало строки до заданной длины, по сути это фукция, аналогичная методу padStart у string
@@ -16,8 +16,8 @@ const invalidNumberValue = (value) =>
  * @param {string} [symbolToAdd=' '] - символ для добавления в начало строки. По дефолту - ' '
  * @returns {string} - строка с добавленными символами в начале.
  */
-const myPadStart = (line, finalLength, symbolToAdd = " ") => {
-  if (invalidNumberValue(finalLength) || typeof line !== "string") return "";
+const myPadStart = (line, finalLength, symbolToAdd = ' ') => {
+  if (invalidNumberValue(finalLength) || typeof line !== 'string') return '';
 
   while (line.length < finalLength) {
     line = symbolToAdd + line;
@@ -33,8 +33,8 @@ const myPadStart = (line, finalLength, symbolToAdd = " ") => {
  * @param {string} [symbolToAdd=' '] - символ для добавления в конец строки. По дефолту - ' '
  * @returns {string} - строка с добавленными символами в конце.
  */
-const myPadEnd = (line, finalLength, symbolToAdd = " ") => {
-  if (invalidNumberValue(finalLength) || typeof line !== "string") return "";
+const myPadEnd = (line, finalLength, symbolToAdd = ' ') => {
+  if (invalidNumberValue(finalLength) || typeof line !== 'string') return '';
 
   while (line.length < finalLength) {
     line += symbolToAdd;
@@ -50,9 +50,9 @@ const myPadEnd = (line, finalLength, symbolToAdd = " ") => {
  * @returns {string} - строка, состоящая из повторений заданной строки.
  */
 const myRepeat = (line, repeats) => {
-  if (invalidNumberValue(repeats) || typeof line !== "string") return "";
+  if (invalidNumberValue(repeats) || typeof line !== 'string') return '';
 
-  let repeatedString = "";
+  let repeatedString = '';
   for (let i = 0; i < repeats; ++i) {
     repeatedString += line;
   }
@@ -70,15 +70,15 @@ const tree = (height) => {
 
   height = Math.floor(height);
 
-  let treeString = "";
+  let treeString = '';
   for (let i = 1; i < height; i++) {
-    let treeLevel = "";
+    let treeLevel = '';
     treeLevel = myPadStart(treeLevel, height - i - 1);
-    treeLevel = myPadEnd(treeLevel, height - 2 + i, "*");
+    treeLevel = myPadEnd(treeLevel, height - 2 + i, '*');
     treeLevel = myPadEnd(treeLevel, (height - 1) * 2 - 1);
-    treeString += treeLevel + "\n";
+    treeString += treeLevel + '\n';
   }
   treeString +=
-    myRepeat(" ", height - 2) + "|" + myRepeat(" ", height - 2) + "\n";
+    myRepeat(' ', height - 2) + '|' + myRepeat(' ', height - 2) + '\n';
   return treeString;
 };
