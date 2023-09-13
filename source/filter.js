@@ -5,14 +5,17 @@
  * @param {string} input - String whose characteres need to be escaped
  * @param {string[]} validTags - Valid HTML-tags
  * @return {string} - String with escaped special characters
+ * @throws {TypeError} - Throw TypeError for invalid arguments
  */
-const filter = (input, validTags = []) => {
+const filter = (input, validTags = [""]) => {
 
-    if (typeof input !== 'string' && !(input instanceof String)) {
+    const isString = (str) => (typeof str === 'string' || str instanceof String);
+
+    if (!isString(input)) {
         throw TypeError('input must be string');
     }
 
-    if (!Array.isArray(validTags) || validTags.some( (item) => typeof(item) !== 'string') ) {
+    if (!(Array.isArray(validTags) && validTags.every(isString))) {
         throw TypeError('validTags must be array of string');
     }
 
