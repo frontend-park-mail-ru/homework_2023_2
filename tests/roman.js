@@ -30,11 +30,18 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(1904), 'MCMIV');
 		assert.strictEqual(roman(1990), 'MCMXC');
 		assert.strictEqual(roman(2017), 'MMXVII');
+
+		assert.strictEqual(roman(''), 'Неправильный формат ввода');
+		assert.strictEqual(roman('zaba'), 'Неправильный формат ввода');
+		assert.strictEqual(roman(-666), 'Неправильный формат ввода');
 	});
 
 	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
+		assert.strictEqual(roman('2635'), 'MMDCXXXV');
+		assert.strictEqual(roman('3333'), 'MMMCCCXXXIII');
+		assert.strictEqual(roman(roman('mmxvii')), 'MMXVII');
 	});
 });
