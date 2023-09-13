@@ -46,24 +46,24 @@ QUnit.module('Тестируем функцию window.euclidGlobal', function (
     QUnit.test('Функция должна правильно работать с аргументами, которые не являются целыми числами', function (assert) {
         assert.throws(() => {
             window.euclidGlobal(2.23, 3.3);
-        }, Error, "window.euclidGlobal(2.23, 3.3) должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(2.23, 3.3) должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal(4, 4, 5, 1324, 124, NaN, 66);
-        }, Error, "window.euclidGlobal(4, 4, 5, 1324, 124, NaN, 66) должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(4, 4, 5, 1324, 124, NaN, 66) должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal(4, "asdf");
-        }, Error, "window.euclidGlobal(4, \"asdf\") должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(4, \"asdf\") должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal("1234");
-        }, Error, "window.euclidGlobal(\"1234\") должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(\"1234\") должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal(2.23, 3.3);
-        }, Error, "window.euclidGlobal(2.23, 3.3) должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(2.23, 3.3) должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal({a: "adsf"});
-        }, Error, "window.euclidGlobal({a: \"adsf\"}) должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal({a: \"adsf\"}) должна выкинуть TypeError");
         assert.throws(() => {
             window.euclidGlobal(Infinity, 2, 42);
-        }, Error, "window.euclidGlobal(Infinity, 2, 42) должна выкинуть Error");
+        }, TypeError, "window.euclidGlobal(Infinity, 2, 42) должна выкинуть TypeError");
     });
 });

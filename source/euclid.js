@@ -4,7 +4,8 @@
  * euclid() calculates the greatest common divisor (GCD) using the Euclid method
  * @param {...number} args - GCD is calculated for all these numbers
  * @returns {number} - GCD of numbers passed
- * @throws {Error} if at least one of the passed arguments is not an integer or args is empty
+ * @throws {Error|TypeError} throw TypeError if at least one of the passed arguments is not an integer and
+ * throw Error if args is empty
  */
 export const euclid = (...args) => {
     if (args.length === 0) {
@@ -13,7 +14,7 @@ export const euclid = (...args) => {
 
     args.forEach((item, i) => {
         if (!Number.isInteger(item)) {
-            throw Error(`args consist non integer element = ${item} with idx = ${i}`);
+            throw TypeError(`args consist non integer element = ${item} with idx = ${i}`);
         }
     });
 
