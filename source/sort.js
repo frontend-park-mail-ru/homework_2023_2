@@ -9,10 +9,13 @@ const sort = (str) => {
 		throw new TypeError('Аргумент должен быть строкой'); // добавил ранний выход с выбрасыванием TypeError
 	}
 
-	return str.replace(/\s+/g, ' ').trim().split(' ').map((word) => { // все впихнул в один return
-		word = word.split('').sort(localeCompare).join('');  
-		word = capitalize(word);
-		return word;
-	}).sort(localeCompare).join(' ');
+	return str.replace(/\s+/g, ' ') 
+		.trim()
+		.split(' ')
+		.map((word) => capitalize(word.split('') // теперь map без return 
+			.sort(localeCompare)
+			.join('')))
+		.sort(localeCompare)
+		.join(' ');
 }
 		
