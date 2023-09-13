@@ -64,8 +64,12 @@ QUnit.module('Тестируем функцию tree', function () {
     assert.strictEqual(tree('sdadas'), null);
     assert.strictEqual(tree(NaN), null);
     assert.strictEqual(tree(new Object()), null);
-    assert.strictEqual(tree(new Array()), null);
-	const expected =
+    assert.strictEqual(tree(new Array(1,1)), null);
+	assert.strictEqual(tree(new Array()), null);
+	assert.strictEqual(tree([1,'1',2]),null);
+	assert.strictEqual(tree([3,2,1]),null);
+
+	const expectedHeightFive =
 			'      *      \n' +
 			'     ***     \n' +
 			'    *****    \n' +
@@ -75,7 +79,7 @@ QUnit.module('Тестируем функцию tree', function () {
 			'*************\n' +
 			'      |      \n';
 
-	assert.strictEqual(tree(new String('8')),expected);
+	assert.strictEqual(tree(new String('8')),expectedHeightFive);
   });
 
   QUnit.test('Елочка дробной высоты', function (assert) {
