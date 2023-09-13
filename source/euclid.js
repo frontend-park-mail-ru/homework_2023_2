@@ -7,15 +7,17 @@
  * @throws {Error} if at least one of the passed arguments is not an integer or args is empty
  */
 export const euclid = (...args) => {
-    if (args.length === 0) throw Error("len of args should be > 0");
+    if (args.length === 0) {
+        throw Error("len of args should be > 0");
+    }
 
     args.forEach((item, i) => {
-        if (!Number.isInteger(item)) throw Error(`args consist non integer element = ${item} with idx = ${i} `)
+        if (!Number.isInteger(item)) {
+            throw Error(`args consist non integer element = ${item} with idx = ${i}`);
+        }
     });
 
-    let GCD = args.reduce((gcd, current) => {
-        return calcGCD(gcd, current);
-    });
+    const GCD = args.reduce(calcGCD);
 
     return Math.abs(GCD);
 };
