@@ -5,7 +5,7 @@
  * @returns {number[]} - массив чисел Float
  * */
 const getNumbersArr = (str) => {
-  const strs = str.split(" ");
+  const strs = str.split(' ');
   const arrToRetDirty = strs.map((el) => parseFloat(el));
   const arrToRetCleaned = arrToRetDirty.filter((el) => !isNaN(el));
   return arrToRetCleaned;
@@ -17,8 +17,8 @@ const getNumbersArr = (str) => {
  * Если строка не содержит чисел - возвращается [undefined, undefined]
  */
 const minmax = (numbers) => {
-  if (typeof numbers !== "string") {
-    return [undefined, undefined];  
+  if (!typeof numbers === "string" || numbers instanceof String) {
+    return [undefined, undefined];
   }
 
   const numbersArr = getNumbersArr(numbers);
