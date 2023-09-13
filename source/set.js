@@ -7,25 +7,38 @@
  * @returns {Object} - исходный объект с установленным значением
  */
 const set = (object, path, value) => {
-
-    if (!object || typeof object !== 'object' || typeof path !== 'string') {
-        return object;
-    }
-
-    const keys = path.split('.').filter(key => key);
-    const lastKey = keys.pop(); // Удаляем последний элемент и сохраняем его
-
-    if (!keys.length) {
-        object[lastKey] = value;
-        return object;
-    }
-
-    keys.reduce((acc, key) => {
-        if (!acc[key] || typeof acc[key] !== 'object') {
-            acc[key] = {};
+    try {
+        if (!(object instanceof Object)) {
+            throw new Error('Неверный тип объекта');
+        } else if (!object) {
+            throw new Error('Неверное значение объекта');
+        } else if (!(path instanceof String || typeof path === 'string')) {
+            throw new Error('Путь должен быть строкой');
+        } else if (!path) {
+            throw new Error('Путь должен быть')
+        } else if (value === undefined) {
+            throw new Error('Не передано значение')
         }
-        return acc[key];
-    }, object)[lastKey] = value;
 
-    return object;
+        const keys = path.split('.').filter(key => key);
+        const lastKey = keys.pop(); // Удаляем последний элемент и сохраняем его
+
+        if (!keys.length) {
+            object[lastKey] = value;
+            return object;
+        }
+
+        keys.reduce((acc, key) => {
+            if (!acc[key] || typeof acc[key] !== 'object') {
+                acc[key] = {};
+            }
+            return acc[key];
+        }, object)[lastKey] = value;
+
+        return object;
+        
+    } catch (error) {
+        console.error(error);
+        return object;
+    }
 };
