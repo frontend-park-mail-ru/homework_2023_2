@@ -2,7 +2,7 @@
 
 const zip = (...objects) => {
     objects.map((object) => {
-        if (Array.isArray(object) || typeof object === 'string' || typeof object !== 'object' || object === null)
+        if (Array.isArray(object) || typeof object !== 'object' || object === null)
             throw new TypeError('TYPE ERROR IN ARGUMENTS')
     })
     const resultObject = {}
