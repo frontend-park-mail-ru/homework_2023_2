@@ -9,16 +9,17 @@
  *
  * @param {string[]} input - The input array of strings.
  * @returns {string[][]}   - An array of anagram string groups.
+ * @throws {TypeError}     - invalid arguments
  */
 const anagram = (input) => {
-    if (!Array.isArray(input)) {
-        return [];
+    if (input === undefined || !Array.isArray(input) || !input.every(item => (typeof item === 'string' || item instanceof String))) {
+        throw new TypeError("No correct parametr's");
     }
     const anagram_groups = {};
 
     input.forEach((el) => {
 
-        if (typeof el === 'string' && el.trim() !== '') {
+        if ((typeof el === 'string' || el instanceof String) && el.trim() !== '') {
             const word_sorted = el.split('').sort().join('');
 
             (anagram_groups[word_sorted])? anagram_groups[word_sorted].push(el) : anagram_groups[word_sorted] = [el];

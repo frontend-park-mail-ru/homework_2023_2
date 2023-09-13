@@ -57,10 +57,9 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 	QUnit.test('Функция обрабатывает undefined. Тест 1', function (assert) {
 		const input = undefined
+		const err = new TypeError("No correct parametr's");
 
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
+		assert.throws(() => anagram(input), err);
 	});
 
 
@@ -69,9 +68,9 @@ QUnit.module('Тестируем функцию anagram', function () {
 			undefined, undefined
 		];
 
-		const output = [];
+		const err = new TypeError("No correct parametr's");
 
-		assert.deepEqual(anagram(input), output);
+		assert.throws(() => anagram(input), err);
 	});
 
 	QUnit.test('Функция обрабатывает undefined. Тест 3', function (assert) {
@@ -80,33 +79,39 @@ QUnit.module('Тестируем функцию anagram', function () {
 			'кот', 'ток'
 		];
 
-		const output = [['кот', 'ток']];
+		const err = new TypeError("No correct parametr's");
 
-		assert.deepEqual(anagram(input), output);
+		assert.throws(() => anagram(input), err);
 	});
 	
 	QUnit.test('Обработка функцией значений undefined и анаграмм в массиве ввода. Тест 4', function (assert) {
 		const input = ['listen', undefined, 'silent'];
-		const output = [['listen', 'silent']];
-	
-		assert.deepEqual(anagram(input), output);
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
 	});
 	
 	QUnit.test('Обработка функцией значений undefined и не-строковых элементов в массиве ввода . Тест 5', function (assert) {
 		const input = [undefined, 123, null, 'hello', undefined, true, 'world'];
-		const output = [];
-	
-		assert.deepEqual(anagram(input), output);
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
 	});
 
 	QUnit.test('Обработка функцией значений undefined и не-строковых элементов в массиве ввода . Тест 6', function (assert) {
 		const input = [undefined, 123, null, 'клоун', 'кулон', undefined, true, 'world', 'drow'];
 		
-		const output = [
-			[ "клоун", "кулон"]
-		];
-	
-		assert.deepEqual(anagram(input), output);
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
+	});
+
+	QUnit.test('Обработка функцией значений не-строковых элементов в массиве ввода . Тест 7', function (assert) {
+		const input = [true, false, false, true, true, true, true, false, true];
+		
+		const err = new TypeError("No correct parametr's");
+
+		assert.throws(() => anagram(input), err);
 	});
 
 	QUnit.test('Функция работает с пустым входным массивом', function (assert) {
