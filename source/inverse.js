@@ -4,13 +4,15 @@
  * он инвертирует массив с n-го элемента, с отрицательным -до |n|-го элемента.
  * @param {Array} array инвертируемый массив
  * @param {number} index индекс, от(до) которого идет инверсия
- * @returns {array} возвращаемый массив
+ * @returns {Array} возвращаемый массив
+ * @throws {TypeError} First parameter should be array
+ * @throws {TypeError} Second parameter should be number
  */
 const inverse = (array, index = 0) => {
     if (!Array.isArray(array)) {
         throw new TypeError('Parameter is not an array!');
     } 
-    if (typeof index !== "number") {
+    if (typeof index !== 'number') {
         throw new TypeError('Parameter is not a number!');
     }   
     const leftSubarray = array.slice(0, index);
