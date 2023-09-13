@@ -55,12 +55,19 @@ QUnit.module('Тестируем функцию euclid', function () {
 	);
 
 	QUnit.test(
+		'Функция должна правильно работать с массивом на входе',
+		function (assert) {
+			assert.strictEqual(euclid([26, 130, 104, 117]), 13);
+		}
+	);
+
+	QUnit.test(
 		'Функция должна правильно обрабатывать некорректные данные',
 		function (assert) {
 			assert.throws(() => euclid(), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при отсутствии аргументов');
 
-			assert.throws(() => euclid([1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при массиве на входе');
-			assert.throws(() => euclid(20, 30, [1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при массиве на входе');
+			assert.throws(() => euclid(20, 30, [1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку, если хотя бы один из элементов массив');
+			assert.throws(() => euclid([4, 5, 6], [1, 2, 3]), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку, если хотя бы один из элементов массив');
 
 			assert.throws(() => euclid(2.4, 24, 2), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
 			assert.throws(() => euclid(-20, 15, 10), new TypeError('expected sequence of natural numbers'), 'euclid() выбрасывает ошибку при не натуральном числе на входе');
