@@ -8,10 +8,11 @@
  * @param {boolean} parameter определяет оставить ли первое
  *      или последнее вхождение каждого неуникального символа.
  * @return {string} words, строка, из которой удалены неуникальные символы.
+ * @throws {TypeError} аргумент words должен быть строкой, а аргумент parameter типа boolean.
  */
 const letters = (words, parameter = null) => {
     if (typeof words !== 'string' && !(words instanceof String)) {
-        throw new Error('incorrect type of param words');
+        throw TypeError('incorrect type of param words');
     }
 
     const array = Array.from(words);
@@ -31,6 +32,6 @@ const letters = (words, parameter = null) => {
             return array.filter((word, index) => array.lastIndexOf(word) === index).join('')
 
         default:
-            throw new Error('incorrect type of param parameter');
+            throw new TypeError('incorrect type of param parameter');
     }
 }
