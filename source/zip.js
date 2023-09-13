@@ -2,6 +2,10 @@
 
 let zip = (...objects) => {
 
+    if (objects.length == 0) {
+        return {};  
+    }
+
     for (let object of objects) {
         if (typeof object != 'object') {
             throw new Error('Были переданы данные, содержащие не только объекты');
