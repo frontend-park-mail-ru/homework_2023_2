@@ -1,6 +1,6 @@
 'use strict'
 
-function zip(...objects) {
+let zip = (...objects) => {
 
     let resObj = {};
 
