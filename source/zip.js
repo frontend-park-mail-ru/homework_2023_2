@@ -10,17 +10,13 @@
  */
 const zip = (...objects) => {
 
-    if (objects.length === 0) {
-        return {};  
-    }
-
-    if (objects.length === 1) {
-        return objects[0];
-    }
+    if ( objects.length < 2 ) { 
+        return objects[0] || {}
+    };
 
     for (const object of objects) {
         if (typeof object !== 'object') {
-            throw new TypeError(`TypeError: expected 'object' but got ${typeof object}`);
+            throw new TypeError(`expected 'object' but got ${typeof object}`);
         }
     }
 
