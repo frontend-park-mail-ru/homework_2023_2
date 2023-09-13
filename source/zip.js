@@ -15,8 +15,11 @@ let zip = (...objects) => {
     let resObj = objects.reduce((props, object) => {
         
         for (const key of Object.keys(object)) {
-            if (!(props.hasOwnProperty(key)))
+            
+            if (!(props.hasOwnProperty(key))) {
                 props[key] = object[key];
+            }
+
         }
 
         return props;
