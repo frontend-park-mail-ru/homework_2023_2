@@ -30,3 +30,4 @@ const sort = (inputString) => {
 const customSort = (a, b) => {
     return a.localeCompare(b, 'ru')
 }
+
