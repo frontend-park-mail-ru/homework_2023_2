@@ -35,16 +35,11 @@ function roman(input) {
     const isAR = /^[1234567890]+$/.test(input);
     const isRN = /^(M{0,4})(CM|CD|D?C{0,4})(XC|XL|L?X{0,4})(IX|IV|V?I{0,4})(m{0,4})(cm|cd|d?c{0,4})(xc|xl|l?x{0,4})(ix|iv|v?i{0,4})$/i.test(input);
 
-    if (!isAR && !isRN) {
-        return 'Неправильный формат ввода';
+    if ((!isAR && !isRN) || input === '') {
+        throw new TypeError("Неправильный формат ввода");
     }
-
-    let convertedNumber = isAR ? parseInt(input) : romanToArabic(input);
-    if (isNaN(convertedNumber) || convertedNumber <= 0) {
-        return 'Неправильный формат ввода';
-    }
-
-    return isAR ? arabicToRoman(convertedNumber) : romanToArabic(input);
+    
+    return isAR ? arabicToRoman(input) : romanToArabic(input);
 }
 
 
@@ -56,20 +51,18 @@ function roman(input) {
  */
 function romanToArabic(romanNumber) {
     romanNumber = romanNumber.toLowerCase();
-    let result = 0;
-    for (let i = 0; i < romanNumber.length; i++) {
-        const currentSymbol = romanNumber[i];
+    const romanChars = romanNumber.split('');
+    return romanChars.reduce((result, currentSymbol, index, array) => {
         const currentv = ROMAN_TO_ARABIC[currentSymbol];
-        const nextSymbol = romanNumber[i + 1];
+        const nextSymbol = array[index + 1];
         const nextv = ROMAN_TO_ARABIC[nextSymbol];
 
         if (nextv && currentv < nextv) {
-            result -= currentv;
+            return result - currentv;
         } else {
-            result += currentv;
+            return result + currentv;
         }
-    }
-    return result;
+    }, 0);
 }
 
 /**
@@ -79,14 +72,13 @@ function romanToArabic(romanNumber) {
  * @returns {string} - Римское число (в виде строки).
  */
 function arabicToRoman(arabicNumber) {
-    let result = '';
-    ROMAN_NUMERAL_VALUES.forEach(romanNumeral => {
+    return ROMAN_NUMERAL_VALUES.reduce((result, romanNumeral) => {
         while (arabicNumber >= romanNumeral.v) {
             result += romanNumeral.n;
             arabicNumber -= romanNumeral.v;
         }
-    });
-    return result;
+        return result;
+    }, '');
 }
 
 

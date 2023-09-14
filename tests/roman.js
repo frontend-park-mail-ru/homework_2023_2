@@ -31,9 +31,21 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(1990), 'MCMXC');
 		assert.strictEqual(roman(2017), 'MMXVII');
 
-		assert.strictEqual(roman(''), 'Неправильный формат ввода');
-		assert.strictEqual(roman('zaba'), 'Неправильный формат ввода');
-		assert.strictEqual(roman(-666), 'Неправильный формат ввода');
+		assert.throws(function () {
+			roman('');
+		}, function (error) {
+			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
+		}, 'Неправильный формат ввода');
+		assert.throws(function () {
+			roman('яфиф');
+		}, function (error) {
+			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
+		}, 'Неправильный формат ввода');
+		assert.throws(function () {
+			roman(-666);
+		}, function (error) {
+			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
+		}, 'Неправильный формат ввода');
 	});
 
 	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
