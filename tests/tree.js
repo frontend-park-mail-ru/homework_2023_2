@@ -68,6 +68,7 @@ QUnit.module('Тестируем функцию tree', function () {
 	assert.strictEqual(tree(new Array()), null);
 	assert.strictEqual(tree([1,'1',2]),null);
 	assert.strictEqual(tree([3,2,1]),null);
+	assert.strictEqual(tree(new Array(3,4)),null);
 
 	const expectedHeightFive =
 			'      *      \n' +
