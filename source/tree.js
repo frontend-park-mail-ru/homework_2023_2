@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Функция проверяет, является ли переданный аргумент не числовым значением или бесконечностью(то есть null, undefined,
@@ -19,15 +19,15 @@ const tree = (height) => {
 
   height = Math.floor(height);
 
-  let treeString = "";
+  let treeString = '';
   for (let i = 1; i < height; i++) {
     treeString +=
-      ""
-        .padStart(height - i - 1, " ")
-        .padEnd(height - 2 + i, "*")
-        .padEnd((height - 1) * 2 - 1, " ") + "\n";
+      ''
+        .padStart(height - i - 1, ' ')
+        .padEnd(height - 2 + i, '*')
+        .padEnd((height - 1) * 2 - 1, ' ') + '\n';
   }
-  treeString += " ".repeat(height - 2) + "|" + " ".repeat(height - 2) + "\n";
+  treeString += ' '.repeat(height - 2) + '|' + ' '.repeat(height - 2) + '\n';
 
   return treeString;
 };
