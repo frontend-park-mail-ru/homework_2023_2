@@ -17,7 +17,7 @@ const getNumbersArr = (str) => {
  * Если строка не содержит чисел - возвращается [undefined, undefined]
  */
 const minmax = (numbers) => {
-  if (typeof numbers !== "string" && !(numbers instanceof String)) {
+  if (typeof numbers !== 'string' && !(numbers instanceof String)) {
     throw new Error('\'numbers\' must be a string');
   }
 
