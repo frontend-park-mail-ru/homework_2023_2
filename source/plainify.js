@@ -8,7 +8,8 @@
  */
 const buildPlainObject = (object, prefix='') => (
     Object.entries(object).reduce((object, [key, value]) => ({
-        ...object, ...(value !== null && typeof value === 'object' ? buildPlainObject(value, `${prefix}${key}.`) : {[`${prefix}${key}`]: value})
+        ...object, ...(Object.prototype.toString.call(value) === '[object Object]' || 
+        Object.prototype.toString.call(value) === '[object Array]' ? buildPlainObject(value, `${prefix}${key}.`) : {[`${prefix}${key}`]: value})
     }), {})
 )
 
@@ -18,5 +19,5 @@ const buildPlainObject = (object, prefix='') => (
  * @return {Object} Resulting plain object
  */
 const plainify = (object) => (
-    (object !== null && typeof object === 'object') ? buildPlainObject(object) : TypeError
+    Object.prototype.toString.call(object) === '[object Object]' ? buildPlainObject(object) : TypeError
 )
