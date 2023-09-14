@@ -77,7 +77,7 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 	});
 
-	QUnit.test("format работает с пустым массивом", function (assert) {
+	QUnit.test('format работает с пустым массивом', function (assert) {
 		const input = [];
 
 		const expected = '';
@@ -85,5 +85,12 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 1), expected);
 		assert.strictEqual(format(input, 2), expected);
 		assert.strictEqual(format(input, 3), expected);
+	});
+
+	QUnit.test('format кидает ошибку на невалидные данные', function (assert) {
+		assert.throws(() => format('', 0), new TypeError('numbers: Array of numbers expected'));
+		assert.throws(() => format([], ''), new TypeError('cols: Non negative number was expected'));
+		assert.throws(() => format([''], 1), new TypeError('numbers: Array of numbers expected'));
+		assert.throws(() => format([123, 123], -1), new TypeError('cols: Non negative number was expected'));
 	});
 });

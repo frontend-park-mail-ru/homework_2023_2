@@ -8,12 +8,19 @@
  * @throws {TypeError} Несоответствие типов
  */
 const format = (numbers, cols) => {
+	const numbers_error = new TypeError('numbers: Array of numbers expected');
+	const cols_error = new TypeError('cols: Non negative number was expected');
+
 	if (!Array.isArray(numbers)) {
-		throw new TypeError("numbers: Array of numbers expected");
+		throw numbers_error;
 	}
 
-	if (typeof cols !== "number") {
-		throw new TypeError("cols: Number was expected");
+	if (!numbers.every((number) => {return typeof number === 'number'})) {
+		throw numbers_error;
+	}
+
+	if (typeof cols !== 'number' || cols < 0) {
+		throw cols_error;
 	}
 
 	let widths = Array(cols).fill(0);
@@ -29,8 +36,8 @@ const format = (numbers, cols) => {
 		const strElement = element.toString();
 		let prefix = " ".repeat(widths[i % cols] - strElement.length);
 		
-		const isNotFirstElement = Boolean(i);
-		const isNotLastColumn = Boolean(i % cols);
+		const isNotFirstElement = i;
+		const isNotLastColumn = i % cols;
 
 		if (isNotLastColumn) {
 			prefix += " ";
