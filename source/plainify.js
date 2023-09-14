@@ -8,7 +8,7 @@
  */
 const buildPlainObject = (object, prefix='') => (
     Object.entries(object).reduce((object, [key, value]) => ({
-        ...object, ...(Object.prototype.toString.call(value) === '[object Object]' || 
+        ...object, ...(Object.prototype.toString.call(value) === '[object Object]' ||
         Object.prototype.toString.call(value) === '[object Array]' ? buildPlainObject(value, `${prefix}${key}.`) : {[`${prefix}${key}`]: value})
     }), {})
 )
