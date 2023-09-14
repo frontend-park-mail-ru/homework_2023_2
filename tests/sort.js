@@ -44,8 +44,14 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('      hehehehe         aboba'), 'Aabbo Eeeehhhh', 'Убирает лишние пробелы');
 		assert.strictEqual(sort('       '), '', 'Обрабатывает строчку из пробелов');
 		assert.strictEqual(sort(''), '', 'Обрабатывает пустую строку');
+	});
+
+	QUnit.test('Функция обрабатывает некорректный ввод', function (assert) {
 		assert.throws(() => {
 			sort(12345);
-		 }, TypeError, 'Обарбатывает ввод не со строкой');
+		 }, TypeError, 'Обарбатывает ввод числа');
+		assert.throws(() => {
+			sort( ['я', 'из', 'строк'] );
+		 }, TypeError, 'Обарбатывает ввод массива');
 	});
 });

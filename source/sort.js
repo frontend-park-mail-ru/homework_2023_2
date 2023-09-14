@@ -5,7 +5,7 @@ const localeCompare = (a, b) => a.localeCompare(b);
 const capitalize = (str) => str.length !== 0 ? str[0].toUpperCase() + str.slice(1).toLowerCase() : null; // первая буква прописная, остальные строчные 
 
 const sort = (str) => {  
-	if ( typeof str !== 'string' ) { // проверяем тип
+	if ( typeof str.toString() !== 'string' ) { 
 		throw new TypeError('Аргумент должен быть строкой'); // добавил ранний выход с выбрасыванием TypeError
 	}
 
@@ -18,4 +18,3 @@ const sort = (str) => {
 		.sort(localeCompare)
 		.join(' ');
 }
-		
