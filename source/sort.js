@@ -27,6 +27,6 @@ const sort = (inputString) => {
         .join(' ');
 };
 
-function customSort(a, b) {
+const customSort = (a, b) => {
     return a.localeCompare(b, 'ru')
 }
