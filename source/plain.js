@@ -6,7 +6,7 @@
  * @returns {Array} Результирующий одномерный массив, содержащий в себе все элементы вложенных
  * @throws {TypeError} Бросает исключение, если аргумент не является массивом
  */
-const plain = function (array) {
+const plain = (array) => {
     if (!Array.isArray(array)) {
         throw new TypeError("argument is not Array");
     }
