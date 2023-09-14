@@ -55,17 +55,17 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('Сохраняет порядок в вложенных массивах (другой порядок обхода)', function (assert) {
 		assert.deepEqual(plain([ [1, 2, 3, [4, 5, 6, [7, 8, 9, [10] ] ] ] ]), [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
-		assert.deepEqual(plain([ [NaN, Infinity, -Infinity, [true, false, null, [undefined, 8, 9, ["string"] ] ] ] ]), [ NaN, Infinity, -Infinity, true, false, null, undefined, 8, 9, "string" ]);
+		assert.deepEqual(plain([ [NaN, Infinity, -Infinity, [true, false, null, [undefined, 8, 9, ['string'] ] ] ] ]), [ NaN, Infinity, -Infinity, true, false, null, undefined, 8, 9, 'string' ]);
 	});
 
 	QUnit.test('Обрабатывает неправильные аргументы', function (assert) {
-		assert.throws(() => plain("string"), TypeError);
+		assert.throws(() => plain('string'), TypeError);
 		assert.throws(() => plain(NaN), TypeError);
 		assert.throws(() => plain(12.635), TypeError);
 		assert.throws(() => plain(() => NaN), TypeError);
 		assert.throws(() => plain(true), TypeError);
 		assert.throws(() => plain(false), TypeError);
-		assert.throws(() => plain("saaaaad but true"), TypeError);
-		assert.throws(() => plain({name: 1, years: "Ivanov"}), TypeError);
+		assert.throws(() => plain('saaaaad but true'), TypeError);
+		assert.throws(() => plain({name: 1, years: 'Ivanov'}), TypeError);
 	});
 });

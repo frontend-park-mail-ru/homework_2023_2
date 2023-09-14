@@ -8,17 +8,15 @@
  */
 const plain = (array) => {
     if (!Array.isArray(array)) {
-        throw new TypeError("argument is not Array");
+        throw new TypeError('argument is not Array');
     }
 
-    const res = array.reduce((cur, elm) => {
+    return array.reduce((cur, elm) => {
         if (Array.isArray(elm)) {
             return [...cur, ...plain(elm)];
         } else {
             return [...cur, elm];
         }
     }, []);
-
-    return res;
 };
 
