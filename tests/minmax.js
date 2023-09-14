@@ -50,4 +50,13 @@ QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax работает с разными знаками препинания и другими символами', function (assert) {
 		assert.deepEqual(minmax('3:-434.e2~~11 !^^Infinity()}()**24 323 40,5,64+ ,74 822||,,%%%,2229&( @@== 1.1e-5, ``|\\-.1e-5$#$'), [ -434.e2, Infinity ]);
 	});
+	
+	QUnit.test('minmax выбрасывает ошибку при неправильном типе аргументов', function (assert) {
+		assert.throws(() => minmax([]), TypeError);
+		assert.throws(() => minmax({}), TypeError);
+		assert.throws(() => minmax(1234), TypeError);
+		assert.throws(() => minmax(true), TypeError);
+		assert.throws(() => minmax(undefined), TypeError);
+		assert.throws(() => minmax(null), TypeError);
+	});
 });
