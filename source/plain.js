@@ -11,22 +11,14 @@ const plain = (array) => {
         throw new TypeError("argument is not Array");
     }
 
-    const _plain = (array) => {
-        if (!Array.isArray(array)) {
-            return array;
+    const res = array.reduce((cur, elm) => {
+        if (Array.isArray(elm)) {
+            return [...cur, ...plain(elm)];
+        } else {
+            return [...cur, elm];
         }
+    }, []);
 
-        const res = array.reduce((cur, elm) => {
-            if (Array.isArray(elm)) {
-                return [...cur, ..._plain(elm)];
-            } else {
-                return [...cur, elm];
-            }
-        }, []);
-
-        return res;
-    }
-
-    return _plain(array);
+    return res;
 };
 
