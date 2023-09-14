@@ -121,90 +121,90 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test("sorting сортирует массив вещественных чисел", function (assert) {
+	QUnit.test('sorting сортирует массив вещественных чисел', function (assert) {
 		const initial = [
-		  { name: "Tom", age: 30.5 },
-		  { name: "Dolores", age: 10.3 },
-		  { name: "John", age: 40.2 },
-		  { name: "Ann", age: 31 },
-		  { name: "Paul", age: 40.1 }
+		  { name: 'Tom', age: 30.5 },
+		  { name: 'Dolores', age: 10.3 },
+		  { name: 'John', age: 40.2 },
+		  { name: 'Ann', age: 31 },
+		  { name: 'Paul', age: 40.1 }
 		];
-		const actual = sorting(initial, ["age"]);
+		const actual = sorting(initial, ['age']);
 	
 		const expected = [
-		  { name: "Dolores", age: 10.3 },
-		  { name: "Tom", age: 30.5 },
-		  { name: "Ann", age: 31 },
-		  { name: "Paul", age: 40.1 },
-		  { name: "John", age: 40.2 }
+		  { name: 'Dolores', age: 10.3 },
+		  { name: 'Tom', age: 30.5 },
+		  { name: 'Ann', age: 31 },
+		  { name: 'Paul', age: 40.1 },
+		  { name: 'John', age: 40.2 }
 		];
 	
 		assert.deepEqual(actual, expected);
 	});
 	
-	QUnit.test( "sorting сортирует массив по нескольким полям по разным свойствам", function (assert) {
+	QUnit.test( 'sorting сортирует массив по нескольким полям по разным свойствам', function (assert) {
 		const initial = [
-		{ name: "Tom", age: 30 },
-		{ name: "Dolores", age: 10 },
-		{ name: "John", age: 40 },
-		{ name: "Ann", age: 31 },
-		{ name: "Paul", age: 40 }
+		{ name: 'Tom', age: 30 },
+		{ name: 'Dolores', age: 10 },
+		{ name: 'John', age: 40 },
+		{ name: 'Ann', age: 31 },
+		{ name: 'Paul', age: 40 }
 		];
-		const actual = sorting(initial, ["age", "name"]);
+		const actual = sorting(initial, ['age', 'name']);
 
 		const expected = [
-		{ age: 10, name: "Dolores" },
-		{ age: 30, name: "Tom" },
-		{ age: 31, name: "Ann" },
-		{ age: 40, name: "John" },
-		{ age: 40, name: "Paul" }
+		{ age: 10, name: 'Dolores' },
+		{ age: 30, name: 'Tom' },
+		{ age: 31, name: 'Ann' },
+		{ age: 40, name: 'John' },
+		{ age: 40, name: 'Paul' }
 		];
 
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test("sorting сортирует словарь, содержащий undefined значения", function (assert) {
+	QUnit.test('sorting сортирует словарь, содержащий undefined значения', function (assert) {
 		const initial = [
-		{ prop1: 3, id: "1" },
-		{ prop1: undefined, id: "2" },
-		{ prop1: 1, id: "1" },
-		{ prop1: undefined, id: "2" },
-		{ prop1: 4, id: "1" },
-		{ prop1: 4, id: "2" },
-		{ prop1: 2, id: "1" },
-		{ prop1: 2, id: "2" }
+		{ prop1: 3, id: '1' },
+		{ prop1: undefined, id: '2' },
+		{ prop1: 1, id: '1' },
+		{ prop1: undefined, id: '2' },
+		{ prop1: 4, id: '1' },
+		{ prop1: 4, id: '2' },
+		{ prop1: 2, id: '1' },
+		{ prop1: 2, id: '2' }
 		];
-		const actual = sorting(initial, ["prop1"]);
+		const actual = sorting(initial, ['prop1']);
 
 		const expected = [
-		{ prop1: 1, id: "1" },
-		{ prop1: 2, id: "1" },
-		{ prop1: 2, id: "2" },
-		{ prop1: 3, id: "1" },
-		{ prop1: 4, id: "1" },
-		{ prop1: 4, id: "2" },
-		{ prop1: undefined, id: "2" },
-		{ prop1: undefined, id: "2" }
+		{ prop1: 1, id: '1' },
+		{ prop1: 2, id: '1' },
+		{ prop1: 2, id: '2' },
+		{ prop1: 3, id: '1' },
+		{ prop1: 4, id: '1' },
+		{ prop1: 4, id: '2' },
+		{ prop1: undefined, id: '2' },
+		{ prop1: undefined, id: '2' }
 		];
 
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test("sorting выбрасывает исключение, при передаче неверного ключа", function (assert) {
+	QUnit.test('sorting выбрасывает исключение, при передаче неверного ключа', function (assert) {
 		const initial = [
-		{ id: "1" },
-		{ prop1: undefined, id: "2" },
-		{ prop1: 1, id: "1" },
-		{ prop1: undefined, id: "2" },
-		{ prop1: 4, id: "1" },
-		{ prop1: 4, id: "2" },
-		{ prop1: 2, id: "1" },
-		{ prop1: 2, id: "2" }
+		{ id: '1' },
+		{ prop1: undefined, id: '2' },
+		{ prop1: 1, id: '1' },
+		{ prop1: undefined, id: '2' },
+		{ prop1: 4, id: '1' },
+		{ prop1: 4, id: '2' },
+		{ prop1: 2, id: '1' },
+		{ prop1: 2, id: '2' }
 		];
 
 		assert.throws(
 			function() { 
-				sorting(initial, ["prop1"]); 
+				sorting(initial, ['prop1']); 
 			},
 			function (err) { 
 				return err.toString() === 'Error: the key does not exist' 

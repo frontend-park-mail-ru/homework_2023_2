@@ -11,18 +11,19 @@ const sorting = (array, fields) => {
   const arrayСp = Array.from(array);
   [...fields].reverse().forEach((field) => {
     arrayСp.sort((a, b) => {
-      if (!(field in a)) {
-        throw new Error("the key does not exist");
+      if (!(field in a)) { // если ключа field нет в словаре a
+        throw new Error('the key does not exist');
       }
-      if (!(field in b)) {
-        throw new Error("the key does not exist");
+      if (!(field in b)) { // если ключа field нет в словаре b
+        throw new Error('the key does not exist');
       }
-      if (!a[field]) {
-        return 1;
+      if (!a[field]) { // если значение ключа field в a равно undefined
+        return 1; // меняем местами
       }
-      if (!b[field]) {
-        return -1;
+      if (!b[field]) { // если значение ключа field в b равно undefined
+        return -1; // не меняем порядок
       }
+      // сравниваем ключи по значению и меняем порядок, если левый >= правого
       return a[field] >= b[field] ? 1 : -1;
     });
   });
