@@ -3,12 +3,13 @@
 
 const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
 
-let countLetters = (word) => {
+function countLetters(word) {
     if (typeof word !== "string") {
         throw new TypeError("word must be string")
     }
 
-    let letterCount = [];
+    word = word.toLowerCase()
+    let letterCount = {};
     for (let i = 0; i < word?.length; i++) {
         letterCount[word[i]] = letterCount[word[i]] + 1 || 1;
     }
@@ -16,7 +17,7 @@ let countLetters = (word) => {
     return letterCount;
 }
 
-let areAnagrams = (firstWord, secondWord) => {
+function areAnagrams(firstWord, secondWord) {
     if (firstWord === null || secondWord === null)
         return false
     if (typeof firstWord !== "string" || typeof secondWord !== "string") {
@@ -36,7 +37,7 @@ let areAnagrams = (firstWord, secondWord) => {
     return true;
 }
 
-let anagram = (inputWords) => {
+function anagram(inputWords) {
     if (inputWords === null)
         return null
 
@@ -47,7 +48,7 @@ let anagram = (inputWords) => {
     let words = clone(inputWords)
     words.sort();
     let result = [];
-    let anagramLine = [];
+    let anagramGroup = [];
 
     for (let i = 0; i < words?.length; i++) {
         if (words[i] == null) {
@@ -56,16 +57,16 @@ let anagram = (inputWords) => {
 
         for (let j = i + 1; j < words?.length; j++) {
             if (areAnagrams(words[i], words[j])) {
-                if (anagramLine.length === 0) {
-                    anagramLine.push(words[i])
+                if (anagramGroup.length === 0) {
+                    anagramGroup.push(words[i])
                 }
-                anagramLine.push(words[j]);
+                anagramGroup.push(words[j]);
                 words[j] = null;
             }
         }
-        if (anagramLine.length > 0) {
-            result.push(anagramLine);
-            anagramLine = [];
+        if (anagramGroup.length > 0) {
+            result.push(anagramGroup);
+            anagramGroup = [];
         }
         words[i] = null;
     }
