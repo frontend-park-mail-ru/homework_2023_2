@@ -48,5 +48,8 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.throws(() => { roman('UUU');}, TypeError("Неправильный формат ввода"));
 		assert.throws(() => { roman('MMA');}, TypeError("Неправильный формат ввода"));
 		assert.throws(() => { roman('zaba');}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman(-666);}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman('');}, TypeError("Неправильный формат ввода"));
+
 	});
 });
