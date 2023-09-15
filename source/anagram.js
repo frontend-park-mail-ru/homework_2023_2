@@ -1,8 +1,19 @@
 'use strict';
 
+/**
+ * Deep clones array or string
+ * @param {array|string} items
+ * @returns {array|string}
+ */
 
 const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
 
+
+/**
+ * Creates an object containing an amount of times each letter is met in a word
+ * @param {string} word
+ * @returns {Object.<string, number>}
+ */
 function countLetters(word) {
     if (typeof word !== "string") {
         throw new TypeError("word must be string")
@@ -17,6 +28,12 @@ function countLetters(word) {
     return letterCount;
 }
 
+/**
+ * Checks whether given words are anagrams
+ * @param {?string} firstWord
+ * @param {?string} secondWord
+ * @returns {boolean}
+ */
 function areAnagrams(firstWord, secondWord) {
     if (firstWord === null || secondWord === null)
         return false
@@ -37,6 +54,12 @@ function areAnagrams(firstWord, secondWord) {
     return true;
 }
 
+
+/**
+ * Groups anagrams into arrays and returns an array of those groups
+ * @param {?Array.<string>} inputWords - array of words to check for anagrams
+ * @returns {?Array.<Array.<string>>} - array of anagrams grouped into arrays
+ */
 function anagram(inputWords) {
     if (inputWords === null)
         return null
