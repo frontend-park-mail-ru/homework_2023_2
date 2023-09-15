@@ -6,7 +6,7 @@
  * @return {Number[]} массив из двух чисел, в котором нулевой элемент - минимальное число из стороки, 
  *                    первый элемент - максимальное 
  */
-function minmax(str) {
+const minmax = (str) => {
     if (!(typeof str === 'string' || str instanceof String)) {
         throw TypeError('str argument should be a String');
     }
