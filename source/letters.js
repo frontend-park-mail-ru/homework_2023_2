@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Функция фильтрации
@@ -7,13 +7,14 @@
  * @returns {string} Строка состоящая из уникальных символов
  */
 const filter = (func, str) => {
-    let uniquestr = [];
-    for (let i = 0; i < str.length; i++) {
-        if (func(str[i], i)) {
-            uniquestr.push(str[i]);
+    const uniquestr = [];
+
+    str.forEach((element, index) => {
+        if (func(element, index)) {
+            uniquestr.push(element);
         }
-    }
-        
+    });
+      
     return uniquestr.join("");
 };
 
@@ -25,14 +26,14 @@ const filter = (func, str) => {
  */
 const letters = (input, flag) => {
     if (
-        typeof flag !== "boolean" && 
-        typeof flag !== "undefined" ||
-        typeof input !== "string"
+        typeof flag !== 'boolean' && 
+        typeof flag !== 'undefined' ||
+        typeof input !== 'string'
     ) {
         throw new TypeError('Wrong input type, must be (string, boolean)');
     }
 
-    const str = input.split("");
+    const str = input.split('');
 
     if (flag) {
         return filter((item, index) => str.indexOf(item) === index, str);

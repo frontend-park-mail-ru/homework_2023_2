@@ -23,6 +23,8 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('www'), '');
 		assert.strictEqual(letters('...'), '');
 		assert.strictEqual(letters('   '), '');
+		assert.strictEqual(letters('undefined', undefined), 'ufi');
+	
 	});
 
 	QUnit.test('Оставляет первую букву, остальные удаляет', function (assert) {
@@ -115,7 +117,6 @@ QUnit.module('Тестируем функцию letters', function () {
 			() => letters("aaAaBBbB", "fake"),
 			TypeError('Wrong input type, must be (string, boolean)')
 		);
-		assert.strictEqual(letters("undefined", undefined), 'ufi');
 	});
 
 	QUnit.test('Тест на полную строку с флагом', function (assert) {
