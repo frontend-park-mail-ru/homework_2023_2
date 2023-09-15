@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * Функция get
@@ -9,13 +9,13 @@
  */
 const get = (object, pathToProperty) => {
     if (typeof object !== 'object') {
-        throw new TypeError('Неверный тип object')
+        throw new TypeError('Неверный тип object');
     }
-    
+
     if (typeof pathToProperty.toString() !== 'string') {
-        throw new TypeError('Неверный тип pathToProperty')
+        throw new TypeError('Неверный тип pathToProperty');
     }
-    
+
     if (pathToProperty === '') {
         return undefined;
     }
@@ -23,13 +23,13 @@ const get = (object, pathToProperty) => {
     if (pathToProperty === '.') {
         return object;
     }
-    
+
     let splitedPathToProperty = pathToProperty.split('.').slice(1);
     let newObject = structuredClone(object);
 
     splitedPathToProperty.map((property) => {
         if (newObject == undefined) {
-            return undefined
+            return undefined;
         }
         newObject = newObject[property];
     })
