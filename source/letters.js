@@ -27,8 +27,10 @@ const filter = (func, str) => {
 const letters = (input, flag) => {
     if (
         typeof flag !== 'boolean' && 
-        typeof flag !== 'undefined' ||
-        typeof input !== 'string'
+        typeof flag !== 'undefined' &&
+        !(flag instanceof Boolean) ||
+        typeof input !== 'string' &&
+        !(input instanceof String)
     ) {
         throw new TypeError('Wrong input type, must be (string, boolean)');
     }

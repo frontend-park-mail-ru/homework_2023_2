@@ -24,7 +24,8 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('...'), '');
 		assert.strictEqual(letters('   '), '');
 		assert.strictEqual(letters('undefined', undefined), 'ufi');
-	
+		assert.strictEqual(letters(new String('undefined')), 'ufi');
+		assert.strictEqual(letters(new String('undefined'), new Boolean(true)), 'undefi');
 	});
 
 	QUnit.test('Оставляет первую букву, остальные удаляет', function (assert) {
