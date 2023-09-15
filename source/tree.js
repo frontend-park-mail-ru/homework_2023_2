@@ -2,7 +2,7 @@
  * Функция, которая рисует ASCII-ёлочку высотой N символов из звёздочек
  *
  * @param {number} height - Высота ёлочки
- * @returns {string} - Строка с ёлочкой
+ * @returns {string, object} - Строка с ёлочкой
  */
 const tree = function (height) {
     const heightNum = Number(height);
