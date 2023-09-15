@@ -131,6 +131,16 @@ QUnit.module('Тестируем функцию plainify', function () {
  
 		assert.deepEqual(plainify(nested), plain);
 	});
+
+	QUnit.test('plainify выбрасывает TypeError, если переданный аргумент - не объект', function (assert) {
+		assert.throws(() => {plainify(null)}, new TypeError("Object expected"));
+		assert.throws(() => {plainify(NaN)}, new TypeError("Object expected"));
+		assert.throws(() => {plainify(Infinity)}, new TypeError("Object expected"));
+		assert.throws(() => {plainify(undefined)}, new TypeError("Object expected"));
+		assert.throws(() => {plainify(5)}, new TypeError("Object expected"));
+		assert.throws(() => {plainify('string')}, new TypeError("Object expected"));
+		assert.throws(() => {plainify(new String())}, new TypeError("Object expected"));
+	});
  
 	QUnit.test('plainify работает правильно с пустым объектом', function (assert) {
 		assert.deepEqual(plainify({}), {});
