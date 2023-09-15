@@ -15,4 +15,21 @@ QUnit.module('Тестируем функцию solve', function () {
 		assert.strictEqual(solve('(((x)*5)+3)*10', 3), 180);
 		assert.strictEqual(solve('x*5*2*3 + 5', 8), 245);
 	});
+// test for check error's
+	QUnit.test('Проверка типа входных данных', function (assert) {
+		const err = new TypeError('Введен некоретный тип входных данных!');
+		assert.throws(() => {solve("x + 1", "1"); }, err, 'Возникла ожидаемая ошибка');
+		assert.throws(() => {solve(); }, err, 'Возникла ожидаемая ошибка');
+		assert.throws(() => {solve(1, 1); }, err, 'Возникла ожидаемая ошибка');
+	});
+	QUnit.test('Проверка отсутсвия x', function (assert) {
+		assert.throws(() => {solve('y + 1', 1); }, new Error('Введено некоретное выражение!'), 'Возникла ожидаемая ошибка');
+	});
+	QUnit.test('Проверка некорретного выражения', function (assert) {
+		assert.throws(() => {solve('Math.pow(2, 5) * x + 2', 1); }, new Error('Введено некоретное выражение!'),  'Возникла ожидаемая ошибка');
+	});
+	QUnit.test('проверка выражения не зависящего от "x"', function (assert) {
+		assert.throws(() =>  {solve('1 + 1', 2); },  new Error('В выражениее отсутсвует x!'),  'Возникла ожидаемая ошибка');
+	});
+
 });
