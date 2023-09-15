@@ -83,22 +83,22 @@ QUnit.module('Тестируем функцию format', function () {
 	});
 
 	QUnit.test('format работает правильно c некорректными входными данными (вместо массива чисел передана строка)', function (assert) {
-		const input = "qwertyu";
+		const input = 'qwertyu';
 
-		assert.throws(()=>format(input, 3), new TypeError("A string was passed as input instead of array of numbers"));
+		assert.throws(()=>format(input, 3), new TypeError('A string was passed as input instead of array of numbers'));
 	});
 
 	QUnit.test('format работает правильно c некорректными входными данными (вместо количества столбцов передан объект)', function (assert) {
 		const inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 		const inputCol = new Object();
 
-		assert.throws(()=>format(inputArray, inputCol), new TypeError("A object was passed as input instead of number of columns"));
+		assert.throws(()=>format(inputArray, inputCol), new TypeError('A object was passed as input instead of number of columns'));
 	});
 
 	QUnit.test('format работает правильно c некорректными входными данными (вместо массива чисел передан массив строк)', function (assert) {
 		const inputArray = ['10', '2', '300', '4'];
 
-		assert.throws(()=>format(inputArray, 2), new TypeError("An array of strings was passed as input instead of array of numbers"));
+		assert.throws(()=>format(inputArray, 2), new TypeError('An array of strings was passed as input instead of array of numbers'));
 	});
 });
 
