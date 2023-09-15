@@ -22,6 +22,7 @@ const filter = (func, str) => {
  * Функция удаляющая неуникальные символы
  * @param {string} input - Подаваемая на вход строка
  * @param {boolean} flag - Флаг, влияющий на режим фильтрации
+ * @throws Функция бросит ошибку TypeError если аргументы не равны (string, boolean).
  * @returns {string} Строка состоящая из уникальных символов
  */
 const letters = (input, flag) => {
