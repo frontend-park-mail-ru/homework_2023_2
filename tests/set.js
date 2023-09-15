@@ -30,10 +30,10 @@ QUnit.module('Тестируем функцию set', function () {
 			deep: null
 		};
 
-		assert.deepEqual(set({foo: 'bar'}, '.foo', 'baz'), {foo: 'baz'});
+		assert.deepEqual(set({ foo: 'bar' }, '.foo', 'baz'), { foo: 'baz' });
 		assert.deepEqual(set(object, '.deep.hested.field', 42), object2);
 
-		assert.deepEqual(set(object, '.deep.hested', {foo: 'bar'}), object3);
+		assert.deepEqual(set(object, '.deep.hested', { foo: 'bar' }), object3);
 		assert.deepEqual(set(object, '.deep', null), object4);
 	});
 
@@ -53,30 +53,30 @@ QUnit.module('Тестируем функцию set', function () {
 
 	QUnit.test('set работает правильно c массивами', function (assert) {
 		const object1 = {
-			foo: [ 1, 2, 3 ],
+			foo: [1, 2, 3],
 			bar: [
-				{foobar: '42'}
+				{ foobar: '42' }
 			]
 		};
 
 		const object2 = {
-			foo: [ 1, 2, 3 ],
+			foo: [1, 2, 3],
 			bar: [
-				{foobar: '42'}
+				{ foobar: '42' }
 			]
 		};
 
 		const new1 = {
-			foo: [ 42, 2, 3 ],
+			foo: [42, 2, 3],
 			bar: [
-				{foobar: '42'}
+				{ foobar: '42' }
 			]
 		};
 
 		const new2 = {
-			foo: [ 1, 2, 3 ],
+			foo: [1, 2, 3],
 			bar: [
-				{foobar: 'baz'}
+				{ foobar: 'baz' }
 			]
 		};
 
@@ -127,10 +127,19 @@ QUnit.module('Тестируем функцию set', function () {
 		assert.deepEqual(newObj, expected)
 	})
 
-	QUnit.test('set и undefined', function (assert) {
-		const obj = {};
-		assert.deepEqual(set({}, '.foo.bar', undefined), obj)
-	})
+	QUnit.test('set и undefined с невалидным объектом', function (assert) {
+		const obj = null;
+		assert.throws(
+			function () {
+				set(obj, '.foo.bar', undefined);
+			},
+			function (error) {
+				return error instanceof TypeError && error.message === 'Неверный тип объекта';
+			},
+			'Ожидается выбрасывание TypeError с соответствующим сообщением'
+		);
+		assert.strictEqual(obj, null, 'Исходный объект остается невалидным');
+	});
 
 	QUnit.test('set и обьект', function (assert) {
 		let obj = {
