@@ -79,5 +79,10 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree('8'), expected);
 	});
 
+	QUnit.test('Ошибка при вводе', function (assert) {
+		const expected = null;
+		assert.strictEqual(tree('fadsfsdf'), expected);
+	});
+
 	
 });
