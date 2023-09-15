@@ -7,7 +7,7 @@
 const getNumbersArr = (str) => {
   const strs = str.split(' ');
   const arrToRetDirty = strs.map((el) => parseFloat(el));
-  const arrToRetCleaned = arrToRetDirty.filter((el) => !isNaN(el));
+  const arrToRetCleaned = arrToRetDirty.filter((el) => !Numbers.isNaN(el));
   return arrToRetCleaned;
 };
 
