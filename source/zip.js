@@ -9,16 +9,16 @@ const zip = (...objects) => {
             || object instanceof String 
             || object instanceof Number
         ) {
-            throw new TypeError('TYPE ERROR IN ARGUMENTS')
+            throw new TypeError('TYPE ERROR IN ARGUMENTS');
         }
-    })
-    const resultObject = {}
+    });
+    const resultObject = {};
     objects.map((object) => {
         Object.entries(object).forEach(([key, value]) => {
             if (!resultObject.hasOwnProperty(key)) {
-                resultObject[key] = value
+                resultObject[key] = value;
             }
-        })
-    })
-    return resultObject
+        });
+    });
+    return resultObject;
 }
