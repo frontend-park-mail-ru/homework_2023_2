@@ -52,4 +52,14 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 		assert.deepEqual(anagram(input), output);
 	});
+
+	QUnit.test('Функция выдает ошибку если передан не массив слов', function (assert) {
+		const input = 5;
+
+		try {
+			anagram(input);
+		} catch (e) {
+			assert.deepEqual(e.name, "TypeError")
+		}
+	});
 });
