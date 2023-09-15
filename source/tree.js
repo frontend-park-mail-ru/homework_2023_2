@@ -1,20 +1,24 @@
-const tree = function (N) {
-    const num = Number(N);
-    const max_width = 2 * num - 3;
+/** 
+ * Функция, которая рисует ASCII-ёлочку высотой N символов из звёздочек
+ *
+ * @param {number} height - Высота ёлочки
+ * @returns {string} - Строка с ёлочкой
+ */
+const tree = function (height) {
+    const heightNum = Number(height);
+    const maxWidth = 2 * heightNum - 3;
     let temp = 1;
-    if (max_width > 1) {
-      let sum = "";
-      while(temp <= max_width) {
-          sum += " ".repeat((max_width - temp) / 2) + "*".repeat(temp)  + 
-          " ".repeat((max_width - temp) / 2) + "\n";
-          temp += 2;
-      }
+    if (maxWidth > 1) {
+        let sumString = "";
+        while(temp <= maxWidth) {
+            sumString += `${" ".repeat((maxWidth - temp) / 2)}${ "*".repeat(temp)}${" ".repeat((maxWidth - temp) / 2)}\n`;
+            temp += 2;
+        }
       
-      sum += " ".repeat((max_width - 1) / 2) + "|" + 
-      " ".repeat((max_width - 1) / 2) + "\n";
+        sumString += `${" ".repeat((maxWidth - 1) / 2)}|${" ".repeat((maxWidth - 1) / 2)}\n`;
           
-      return sum;
-    } else {
-      return null;
-    }
+        return sumString;
+    };
+    
+    return null;
 };
