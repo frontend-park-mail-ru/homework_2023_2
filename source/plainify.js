@@ -17,7 +17,11 @@ const buildPlainObject = (object, prefix='') => (
  * @description Returns the plain version of the passed object
  * @param {Object} object The object to transform
  * @return {Object} Resulting plain object
+ * @throws {TypeError} When the parameter is not an object
  */
-const plainify = (object) => (
-    Object.prototype.toString.call(object) === '[object Object]' ? buildPlainObject(object) : TypeError
-)
+const plainify = (object) => {
+    if (Object.prototype.toString.call(object) === '[object Object]') {
+        return buildPlainObject(object);
+    }
+    throw new TypeError("Object expected");
+}
