@@ -78,4 +78,15 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree(8), expected);
 		assert.strictEqual(tree('8'), expected);
 	});
+
+	QUnit.test('Некорректный ввод', function (assert) {
+		assert.throws(() => tree('string'), TypeError);
+		assert.throws(() => tree([1, 2, 3]), TypeError);
+		assert.throws(() => tree({}), TypeError);
+		assert.throws(() => tree(NaN), TypeError);
+
+		assert.strictEqual(tree([]), null);
+		assert.strictEqual(tree(true), null);
+		assert.strictEqual(tree(false), null);
+	});
 });
