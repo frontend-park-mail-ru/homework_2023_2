@@ -32,8 +32,8 @@ const ROMAN_NUMERAL_VALUES = [
  * @throws {TypeError} - Вызывает ошибку, если входные данные неверного формата или отрицательные числа.
  */
 function roman(input) {
-    const isAR = /^[1234567890]+$/.test(input);
-    const isRN = /^(M{0,4})(CM|CD|D?C{0,4})(XC|XL|L?X{0,4})(IX|IV|V?I{0,4})(m{0,4})(cm|cd|d?c{0,4})(xc|xl|l?x{0,4})(ix|iv|v?i{0,4})$/i.test(input);
+    const isAR = /^\d+$/.test(input);
+    const isRN = /^(M{0,4})(CM|CD|D?C{0,4})(XC|XL|L?X{0,4})(IX|IV|V?I{0,4})$/i.test(input);
 
     if ((!isAR && !isRN) || input === '') {
         throw new TypeError("Неправильный формат ввода");
@@ -50,8 +50,8 @@ function roman(input) {
  * @returns {number} - Арабское число.
  */
 function romanToArabic(romanNumber) {
-    romanNumber = romanNumber.toLowerCase().split('');
-    return romanNumber.reduce((result, currentSymbol, index, array) => {
+    const romanNumberChars = romanNumber.toLocaleLowerCase().split('');
+    return romanNumberChars.reduce((result, currentSymbol, index, array) => {
         const currentv = ROMAN_TO_ARABIC[currentSymbol];
         const nextSymbol = array[index + 1];
         const nextv = ROMAN_TO_ARABIC[nextSymbol];

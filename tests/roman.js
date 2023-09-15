@@ -15,6 +15,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('MCMIV'), 1904);
 		assert.strictEqual(roman('MCMXC'), 1990);
 		assert.strictEqual(roman('mmxvii'), 2017);
+		
 	});
 
 	QUnit.test('roman правильно переводит из десятичной системы счисления', function (assert) {
@@ -32,29 +33,20 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(2017), 'MMXVII');
 		assert.strictEqual(roman(3217), 'MMMCCXVII');
 
-		assert.throws(function () {
-			roman('');
-		}, function (error) {
-			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
-		}, 'Неправильный формат ввода');
-		assert.throws(function () {
-			roman('яфиф');
-		}, function (error) {
-			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
-		}, 'Неправильный формат ввода');
-		assert.throws(function () {
-			roman(-666);
-		}, function (error) {
-			return error instanceof TypeError && error.message === 'Неправильный формат ввода';
-		}, 'Неправильный формат ввода');
-	});
-
-	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
 		assert.strictEqual(roman('2635'), 'MMDCXXXV');
 		assert.strictEqual(roman('3333'), 'MMMCCCXXXIII');
 		assert.strictEqual(roman(roman('mmxvii')), 'MMXVII');
+	});
+
+	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
+		assert.throws(() => { roman(Infinity);}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman(NaN);}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman(null);}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman('UUU');}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman('MMA');}, TypeError("Неправильный формат ввода"));
+		assert.throws(() => { roman('zaba');}, TypeError("Неправильный формат ввода"));
 	});
 });
