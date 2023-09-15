@@ -6,6 +6,10 @@
  * @returns {(string|null)} строка с ёлочкой
  */
 function tree(height) {
+    if (!isFinite(height)) {
+        throw new TypeError(`expected 'number' but got '${typeof height}'`)
+    }
+
     if (height < 3) {
         return null
     }
