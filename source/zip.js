@@ -10,23 +10,24 @@
  */
 const zip = (...objects) => {
 
-
-    if (objects.length < 2) {
-
-        if (objects[0] === null || objects[0] instanceof Function) {
-            throw new TypeError("Expected 'object' but got " + (objects[0] === null ? 'null' : 'function'));
-        }
-        
-        return objects[0] || {};
-    }
+    if (objects.length === 0)
+        return {};
 
     objects.forEach(object => {
-        if (object !== null && typeof object !== 'object') {
-            throw new TypeError (`Expected 'object' but got ${typeof object}`)
+
+        if (object === null) {
+            throw new TypeError("Expected 'object' but got 'null'")
         }
+
+        if (typeof object !== 'object') {
+            throw new TypeError (`Expected 'object' but got '${typeof object}'`)
+        }
+
     })
 
-    
+    if (objects.length === 1) {
+        return objects[0];
+    }
     
     const resObj = objects.reduce((props, object) => {
         

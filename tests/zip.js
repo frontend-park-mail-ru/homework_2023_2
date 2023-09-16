@@ -114,11 +114,11 @@ QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция выбрасывает ошибку, если передаются некорректные параметры', function (assert) {
 		assert.throws(() => {
 			zip(5, 'hello');
-		}, TypeError("Expected 'object' but got number"));
+		}, TypeError("Expected 'object' but got 'number'"));
 
 		assert.throws(() => {
 			zip('hello', false);
-		}, TypeError("Expected 'object' but got string"));
+		}, TypeError("Expected 'object' but got 'string'"));
 	});
 
 	QUnit.test('Функция работает, если передаются свойства совпадающие со свойствами прототипа', function (assert) {
@@ -149,13 +149,20 @@ QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция бросает ошибку при передаче стрелочной функции', function(assert) {
 		assert.throws(() => {
 			zip(() => {});
-		}, TypeError, "Expected 'object' but got 'function'");
+		}, TypeError("Expected 'object' but got 'function'"));
 	});
 
 	QUnit.test('Функция бросает ошибку при передаче null', function(assert) {
 		assert.throws(() => {
 			zip(null);
-		}, TypeError, "Expected 'object' but got 'null'");
+		}, TypeError("Expected 'object' but got 'null'"));
 	});
+
+	QUnit.test('Функция бросает ошибку при передаче Number', function(assert) {
+		assert.throws(() => {
+			zip(Number(1));
+		}, TypeError("Expected 'object' but got 'number'"));
+	});
+	
 });
 
