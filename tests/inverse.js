@@ -39,4 +39,12 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([], 5), []);
 		assert.deepEqual(inverse([], -5), []);
 	});
+
+	QUnit.test('Тесты, написанные студентом: функция работает с неправильными входными данными', function (assert) {
+		const err = new TypeError('Некоретный тип входных данных');
+		assert.throws(() => {inverse(12, 0); }, err);
+		assert.throws(() => {inverse("fghdh"); }, err);
+		assert.throws(() => {inverse([1, 2, 3], 'a'); }, err);
+		assert.throws(() => {inverse([1, 2, 3], true); }, err);
+	});
 });
