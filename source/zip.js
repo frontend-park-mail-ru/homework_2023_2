@@ -14,11 +14,12 @@ const zip = (...objects) => {
         return objects[0] || {};
     };
 
-    for (const object of objects) {
+
+    objects.forEach(object => {
         if (typeof object !== 'object') {
-            throw new TypeError(`expected 'object' but got ${typeof object}`);
+            throw new TypeError(`expected 'object' but got ${typeof object}`)
         }
-    }
+    })
 
     const resObj = objects.reduce((props, object) => {
         
