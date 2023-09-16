@@ -106,7 +106,7 @@ QUnit.module('Тестируем функцию set', function () {
 			}
 		};
 
-		assert.deepEqual(newObj, expected)
+		assert.deepEqual(newObj, expected);
 	})
 
 	QUnit.test('set игнорирует пустые ключи', function (assert) {
@@ -124,18 +124,16 @@ QUnit.module('Тестируем функцию set', function () {
 			}
 		};
 
-		assert.deepEqual(newObj, expected)
+		assert.deepEqual(newObj, expected);
 	})
 
 	QUnit.test('set и undefined с невалидным объектом', function (assert) {
 		const obj = null;
 		assert.throws(
-			function () {
+			() => {
 				set(obj, '.foo.bar', undefined);
 			},
-			function (error) {
-				return error instanceof TypeError && error.message === 'Неверный тип объекта';
-			},
+			new TypeError('Неверный тип объекта'),
 			'Ожидается выбрасывание TypeError с соответствующим сообщением'
 		);
 		assert.strictEqual(obj, null, 'Исходный объект остается невалидным');
@@ -152,7 +150,7 @@ QUnit.module('Тестируем функцию set', function () {
 				}
 			}
 		};
-		assert.deepEqual(obj, set({}, 'foo', obj.foo))
+		assert.deepEqual(obj, set({}, 'foo', obj.foo));
 	})
 
 	QUnit.test('set работает правильно, когда одно из вложенных свойств не объект', function (assert) {
