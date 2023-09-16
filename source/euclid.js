@@ -14,11 +14,10 @@ const euclid = (...numbers) => {
 	}
 
 	if (!(Array.isArray(numbers)
-			&& numbers.length)
-			|| numbers.some(
-				(arg) => !(Number.isInteger(arg) && arg > 0 && arg)
-		  	)
-		) {
+		&& numbers.length
+		&& numbers.every(
+			(arg) => (Number.isInteger(arg) && arg > 0 && arg)
+		))) {
 		throw new TypeError('expected sequence of natural numbers');
 	}
 
