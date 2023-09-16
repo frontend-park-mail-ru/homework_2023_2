@@ -14,7 +14,7 @@ function sorting(plainArray, nameArray) {
   for (const key of nameArray) {
     let lastType = null
     for (const item of plainArray) {
-      if (!key in item) {
+      if (!(key in item)) {
         return plainArray
       }
       if (lastType != null && lastType != typeof item[key]) {
