@@ -35,7 +35,7 @@ function roman(input) {
     const isAR = /^\d+$/.test(input);
     const isRN = /^(M{0,4})(CM|CD|D?C{0,4})(XC|XL|L?X{0,4})(IX|IV|V?I{0,4})$/i.test(input);
 
-    if ((!isAR && !isRN) || input === '') {
+    if ((!isAR && !isRN) || !input) {
         throw new TypeError("Неправильный формат ввода");
     }
     
