@@ -9,7 +9,7 @@
  * @throws {Error} Проверка выражения
  * @throws {Error} Проверка наличиия x в выражении
  */
-let calculate = function(match, equation) {
+const calculate = (match, equation) => {
     let mulDivRegExpr = /(-?[\d\.]+)\s*([\*\/])\s*(-?[\d\.]+)/g;
     let plusMinusRegExpr = /(-?[\d\.]+)\s*([\+-])\s*(-?[\d\.]+)/g;
     while(mulDivRegExpr.test(equation))
