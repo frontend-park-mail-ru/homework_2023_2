@@ -47,11 +47,21 @@ QUnit.module('Тестируем функцию anagram', function () {
 	});
 		
 		QUnit.test('Тест с анаграммами из одной буквы', function (assert) {
-		const input = ['a', 'b', 'c', 'd', 'e'];
-		const result = anagram(input);
-		const expected = [];
-		assert.deepEqual(result, expected);
-		});
+		const result = anagram(['a', 'b', 'c', 'd', 'e']);
+		assert.deepEqual(result, []);
+	  
+	});
+
+		QUnit.test('Вход - не массив', function (assert) {
+		const input = 'не массив';
+		assert.throws(() => anagram(input), TypeError, 'Параметр `words` должен быть массивом строк.');
+	});
+	  
+		QUnit.test('Вход - массив с элементами других типов', function (assert) {
+		const input = [42, true, {}, null];
+		assert.throws(() => anagram(input), TypeError, 'Все элементы массива `words` должны быть строками.');
+	});
+	  
 		
 });
 
