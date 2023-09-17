@@ -2,8 +2,8 @@
 
 /**
  * Deep clones array or string
- * @param {array|string} items
- * @returns {array|string}
+ * @param {array|string} items - variable to be deep copy
+ * @returns {array|string} - a deep copy of items
  */
 
 const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
@@ -11,8 +11,8 @@ const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : i
 
 /**
  * Creates an object containing an amount of times each letter is met in a word
- * @param {string} word
- * @returns {Object.<string, number>}
+ * @param {string} word - string that we count letters in
+ * @returns {Object.<string, number>} - object containing letter: number - amount of times letter is found in a word
  */
 function countLetters(word) {
     if (typeof word !== "string") {
@@ -20,7 +20,7 @@ function countLetters(word) {
     }
 
     word = word.toLowerCase()
-    let letterCount = {};
+    const letterCount = {};
     for (let i = 0; i < word?.length; i++) {
         letterCount[word[i]] = letterCount[word[i]] + 1 || 1;
     }
@@ -30,9 +30,9 @@ function countLetters(word) {
 
 /**
  * Checks whether given words are anagrams
- * @param {?string} firstWord
- * @param {?string} secondWord
- * @returns {boolean}
+ * @param {?string} firstWord - first word
+ * @param {?string} secondWord - second word
+ * @returns {boolean} - true of word is an anagram, false otherwise
  */
 function areAnagrams(firstWord, secondWord) {
     if (firstWord === null || secondWord === null)
@@ -43,8 +43,8 @@ function areAnagrams(firstWord, secondWord) {
     if (firstWord?.length != secondWord?.length)
         return false;
 
-    let letterCountFirst = countLetters(firstWord);
-    let letterCountSecond = countLetters(secondWord);
+    const letterCountFirst = countLetters(firstWord);
+    const letterCountSecond = countLetters(secondWord);
 
     for (let letter in letterCountFirst) {
         if (letterCountFirst[letter] != letterCountSecond[letter]) {
@@ -68,9 +68,9 @@ function anagram(inputWords) {
         throw new TypeError("argument must be an array of strings")
     }
 
-    let words = clone(inputWords)
+    const words = clone(inputWords)
     words.sort();
-    let result = [];
+    const result = [];
     let anagramGroup = [];
 
     for (let i = 0; i < words?.length; i++) {
