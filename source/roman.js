@@ -1,3 +1,5 @@
+"use strict";
+
 const ROMAN_TO_ARABIC = {
     'i': 1,
     'v': 5,
@@ -42,7 +44,6 @@ function roman(input) {
     return isAR ? arabicToRoman(input) : romanToArabic(input);
 }
 
-
 /**
  * Преобразует римское число в арабское.
  *
@@ -50,7 +51,7 @@ function roman(input) {
  * @returns {number} - Арабское число.
  */
 function romanToArabic(romanNumber) {
-    const romanNumberChars = romanNumber.toLocaleLowerCase().split('');
+    const romanNumberChars = romanNumber.toLowerCase().split('');
     return romanNumberChars.reduce((result, currentSymbol, index, array) => {
         const currentv = ROMAN_TO_ARABIC[currentSymbol];
         const nextSymbol = array[index + 1];
@@ -79,5 +80,3 @@ function arabicToRoman(arabicNumber) {
         return result;
     }, '');
 }
-
-
