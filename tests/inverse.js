@@ -42,4 +42,10 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([1], -1), [1]);
 		assert.deepEqual(inverse(['a'], -1), ['a']);
 	});
+
+	QUnit.test('Тесты на некорректные параметры', function (assert) {
+		assert.throws(function() { inverse({}); }, Error('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse('some string'); }, Error('Первый аргумент должен быть массивом'));
+  		assert.throws(function() { inverse([1], 'some string'); }, Error('Второй аргумент должен быть числом'));
+	});
 });
