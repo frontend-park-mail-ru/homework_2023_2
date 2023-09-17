@@ -26,7 +26,7 @@ function inverse(array, offset = 0) {
 	const iterations = Math.floor((right - left) / 2) + 1;
 
 	for (let i = 0; i < iterations; i++) {
-		let temp = array[left];
+		const temp = array[left];
 		array[left] = array[right];
 		array[right] = temp;
 
@@ -36,5 +36,3 @@ function inverse(array, offset = 0) {
 
 	return array;
 }
-
-console.log(inverse([]));
