@@ -44,8 +44,13 @@ QUnit.module('Тестируем функцию inverse', function () {
 	});
 
 	QUnit.test('Тесты на некорректные параметры', function (assert) {
-		assert.throws(function() { inverse({}); }, Error('Первый аргумент должен быть массивом'));
-		assert.throws(function() { inverse('some string'); }, Error('Первый аргумент должен быть массивом'));
-  		assert.throws(function() { inverse([1], 'some string'); }, Error('Второй аргумент должен быть числом'));
+		assert.throws(function() { inverse({}); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse(123); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse(null); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse(undefined); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse(function() {}); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse(NaN); }, TypeError('Первый аргумент должен быть массивом'));
+		assert.throws(function() { inverse('some string'); }, TypeError('Первый аргумент должен быть массивом'));
+  		assert.throws(function() { inverse([1], 'some string'); }, TypeError('Второй аргумент должен быть числом'));
 	});
 });

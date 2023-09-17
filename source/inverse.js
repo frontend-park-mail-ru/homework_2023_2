@@ -8,11 +8,11 @@
 
 const inverse = (arr, num = 0) => {
     if (!Array.isArray(arr)) {
-        throw new Error('Первый аргумент должен быть массивом');
+        throw new TypeError('Первый аргумент должен быть массивом');
     }
       
     if (typeof num !== 'number') {
-        throw new Error('Второй аргумент должен быть числом');
+        throw new TypeError('Второй аргумент должен быть числом');
     }    
 
     if (num >= 0) {
