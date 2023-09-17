@@ -11,9 +11,9 @@ const inverse = (arr, num = 0) => {
         throw new TypeError('Первый аргумент должен быть массивом');
     }
       
-    if (typeof num !== 'number') {
+    if (typeof num !== 'number' && !(num instanceof Number)) {
         throw new TypeError('Второй аргумент должен быть числом');
-    }    
+    }      
 
     if (num >= 0) {
         const reversed = [];
