@@ -20,13 +20,13 @@ const anagram = (words) => {
     const groups = {};
 
     for (const word of words) {
-    const sortedWord = word.split('').sort().join('');
+        const sortedWord = word.split('').sort().join('');
 
-    if (!groups[sortedWord]) {
-        groups[sortedWord] = [];
-    }
+        if (!groups[sortedWord]) {
+            groups[sortedWord] = [];
+        }
 
-    groups[sortedWord].push(word);
+        groups[sortedWord].push(word);
     }
 
     const anagramGroups = Object.values(groups).filter((group) => group.length >= 2);
