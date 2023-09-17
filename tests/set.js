@@ -95,4 +95,27 @@ QUnit.module('Тестируем функцию set', function () {
 
 		assert.deepEqual(set({}, '.deep.nested.field', null), object);
 	});
+	
+	QUnit.test('set работает с пустыми и недостаточно большими массивами', function (assert) {
+		const object = [
+			33
+		];
+		const object2 = [
+			undefined,
+			undefined,
+			undefined,
+			33
+		];
+		const object3 = [
+			1,
+			undefined,
+			undefined,
+			33
+		];
+
+		assert.deepEqual(set([], '.0', 33), object);
+		assert.deepEqual(set([], '.3', 33), object2);
+		assert.deepEqual(set([1], '.3', 33), object3);
+	});
+	
 });
