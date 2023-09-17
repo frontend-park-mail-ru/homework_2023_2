@@ -76,25 +76,22 @@ function anagram(inputWords) {
     const result = [];
     let anagramGroup = [];
 
-    for (let i = 0; i < words?.length; i++) {
-        if (words[i] == null) {
-            continue;
-        }
+    words.forEach((firstWord, i) => {
+        words.forEach((secondWord, j) => {
 
-        for (let j = i + 1; j < words?.length; j++) {
-            if (areAnagrams(words[i], words[j])) {
-                if (anagramGroup.length === 0) {
-                    anagramGroup.push(words[i])
-                }
+            if (words[j] != null && areAnagrams(words[i], words[j])) {
                 anagramGroup.push(words[j]);
-                words[j] = null;
+                if (anagramGroup.length > 1) {
+                    words[j] = null;
+                }
             }
-        }
-        if (anagramGroup.length > 0) {
+        });
+
+        if (anagramGroup.length > 1) {
             result.push(anagramGroup);
-            anagramGroup = [];
         }
+        anagramGroup = [];
         words[i] = null;
-    }
+    });
     return result;
 }
