@@ -24,7 +24,7 @@ const get = (object, pathToProperty) => {
         return object;
     }
 
-    let splitedPathToProperty = pathToProperty.split('.').slice(1);
+    const splitedPathToProperty = pathToProperty.split('.').slice(1);
     let newObject = structuredClone(object);
 
     splitedPathToProperty.map((property) => {
