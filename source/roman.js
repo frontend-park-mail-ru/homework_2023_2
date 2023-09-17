@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const ROMAN_TO_ARABIC = {
     'i': 1,
