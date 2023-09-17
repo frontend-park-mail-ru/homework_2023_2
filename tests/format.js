@@ -69,4 +69,20 @@ QUnit.module('Тестируем функцию format', function () {
 
 		assert.strictEqual(format(input, input.length), expected5);
 	})
+
+	QUnit.test('format выбрасывает исключение, если подалось число <= 0', function(assert) {
+		assert.throws(
+			function () {
+				format([], -1);
+			},
+		);
+	});
+
+	QUnit.test('format выбрасывает исключение, если мы подали в input любой тип, но не массив', function(assert) {
+		assert.throws(
+			function() {
+				format(5, 5);
+			},
+		);
+	});
 });
