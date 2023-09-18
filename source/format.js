@@ -20,6 +20,13 @@ const format = function(input, columnsNumber) {
         throw new Error('input должен быть массивом')
     }
 
+    input.sort(function(a,b) {
+        var lengthA = String(a).length;
+        var lengthB = String(b).length;
+
+        return lengthA - lengthB;
+    });
+
     let maxLengthAmongRowNumbers = new Array(columnsNumber).fill(0);
     for (let i = input.length - columnsNumber; i < input.length; i++) {
         maxLengthAmongRowNumbers[i % columnsNumber] = String(input[i]).length;
