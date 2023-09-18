@@ -3,7 +3,7 @@
  * @param {Array} arr - Массив, который нужно инвертировать.
  * @param {number} [num=0] - Индекс, с которого начинается инверсия. По умолчанию 0.
  * @returns {Array} - Инвертированный массив.
- * @throws {Error} - Если первый аргумент не является массивом или второй аргумент не является числом.
+ * @throws {TypeError} - Если первый аргумент не является массивом или второй аргумент не является числом.
  */
 
 const inverse = (arr, num = 0) => {
@@ -11,21 +11,25 @@ const inverse = (arr, num = 0) => {
         throw new TypeError('Первый аргумент должен быть массивом');
     }
       
-    if (!(typeof num === 'number' || num instanceof Number)){
-        throw new TypeError('Второй аргумент должен быть числом');
-    }      
+    if (!((typeof num === 'number' || num instanceof Number) && (num % 1 === 0 || Number.isInteger(num)))) {
+        throw new TypeError('Второй аргумент должен быть целым числом');
+    }
+
+    if (arr.every((value) => value === arr[0])) {
+        return arr
+    }
+
+    if(arr.length === 1) {
+        return arr
+    }
 
     if (num >= 0) {
-        const reversed = [];
-        for (let i = num; i < arr.length; i++) {
-            reversed.unshift(arr[i]);
-        }
-        return [...arr.slice(0, num), ...reversed];
-    } else {
-        const reversed = [];
-        for (let i = 0; i < arr.length + num; i++) {
-            reversed.unshift(arr[i]);
-        }
-        return [...reversed, ...arr.slice(num)];
+        return arr.slice(0, num).concat(arr.slice(num).reduce((accumulator, value) => {
+            return [value, ...accumulator];
+        }, []))
     }
+    
+    return arr.slice(0, arr.length + num).reduce((accumulator, value) => {
+        return [value, ...accumulator];
+    }, []).concat(arr.slice(num))
 }
