@@ -74,16 +74,27 @@ QUnit.module('Тестируем функцию format', function () {
 		const input = [1000, 0, 10, 10000000, 0, 0, 1, 1];
 
 		const expected6 = 
-		'       0\n' +
-		'       0\n' +
-		'       0\n' +
-		'       1\n' +
-		'       1\n' +
- 		'      10\n' + 
 		'    1000\n' +
-		'10000000';
+		'       0\n' +
+		'      10\n' +
+		'10000000\n' +
+		'       0\n' +
+ 		'       0\n' + 
+		'       1\n' +
+		'       1';
 
 		assert.strictEqual(format(input, 1), expected6);
+	})
+
+	QUnit.test('format работает правильно с неотсортированным массивом и тремя колонками', function(assert) {
+		const input = [1000, 0, 10, 10000000, 0, 0, 1, 1];
+
+		const expected6 = 
+		'    1000 0 10\n' +
+		'10000000 0  0\n' +
+		'       1 1';
+
+		assert.strictEqual(format(input, 3), expected6);
 	})
 
 	QUnit.test('format выбрасывает исключение, если подалось число <= 0', function(assert) {
