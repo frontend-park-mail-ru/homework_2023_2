@@ -67,9 +67,15 @@ function anagram(inputWords) {
     if (inputWords === null)
         return null
 
-    if (!Array.isArray(inputWords) || typeof inputWords[0] !== "string") {
+    if (!Array.isArray(inputWords)) {
         throw new TypeError("argument must be an array of strings")
     }
+
+    inputWords.forEach((word) => {
+        if (typeof word !== "string") {
+            throw new TypeError("argument must be an array of strings")
+        }
+    });
 
     const words = clone(inputWords)
     words.sort();
