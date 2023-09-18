@@ -6,8 +6,8 @@
  * @throws {TypeError} - Если первый аргумент не является массивом или второй аргумент не является числом.
  */
 
-const inverse = (arrNums, reverseIndex = 0) => {
-    if (!Array.isArray(arrNums)) {
+const inverse = (arr, reverseIndex = 0) => {
+    if (!Array.isArray(arr)) {
         throw new TypeError('Первый аргумент должен быть массивом');
     }
       
@@ -15,15 +15,15 @@ const inverse = (arrNums, reverseIndex = 0) => {
         throw new TypeError('Второй аргумент должен быть целым числом');
     }
 
-    if (arrNums.every((value) => value === arrNums[0])) {
-        return arrNums;
+    if (arr.every((value) => value === arr[0])) {
+        return arr;
     }
 
     if (reverseIndex >= 0) {
-        const reversed = arrNums.slice(reverseIndex).reduce((acc, number) =>  ([number, ...acc]), []);
-        return arrNums.slice(0, reverseIndex).concat(reversed);
+        const reversed = arr.slice(reverseIndex).reduce((acc, number) =>  ([number, ...acc]), []);
+        return arr.slice(0, reverseIndex).concat(reversed);
     }
 
-    const reversed = arrNums.slice(0, arrNums.length + reverseIndex).reduce((acc, number) => ([number, ...acc]), []);
-    return reversed.concat(arrNums.slice(reverseIndex));
+    const reversed = arr.slice(0, arr.length + reverseIndex).reduce((acc, number) => ([number, ...acc]), []);
+    return reversed.concat(arr.slice(reverseIndex));
 }
