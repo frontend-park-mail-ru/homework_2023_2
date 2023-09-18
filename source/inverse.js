@@ -11,7 +11,7 @@ const inverse = (arrNums, num = 0) => {
         throw new TypeError('Первый аргумент должен быть массивом');
     }
       
-    if (!((typeof num === 'number' || num instanceof Number) && Number.isInteger(num))) {
+    if (!(typeof num === 'number' && Number.isInteger(num))) {
         throw new TypeError('Второй аргумент должен быть целым числом');
     }
 
@@ -23,11 +23,11 @@ const inverse = (arrNums, num = 0) => {
         const newArrNums = arrNums.slice(0, num).concat(arrNums.slice(num).reduce((accumulator, value) => {
             return [value, ...accumulator];
         }, []));
-        return newArrNums
+        return newArrNums;
     }
 
     const newArrNums = arrNums.slice(0, arrNums.length + num).reduce((accumulator, value) => {
         return [value, ...accumulator];
     }, []).concat(arrNums.slice(num))
-    return newArrNums
+    return newArrNums;
 }
