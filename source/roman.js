@@ -33,7 +33,7 @@ const ROMAN_NUMERAL_VALUES = [
  * @returns {string|number} - Результат преобразования в зависимости от входного типа данных.
  * @throws {TypeError} - Вызывает ошибку, если входные данные неверного формата или отрицательные числа.
  */
-function roman(input) {
+const roman = (input) => {
     const isAR = /^\d+$/.test(input);
     const isRN = /^(M{0,4})(CM|CD|D?C{0,4})(XC|XL|L?X{0,4})(IX|IV|V?I{0,4})$/i.test(input);
 
@@ -42,7 +42,7 @@ function roman(input) {
     }
     
     return isAR ? arabicToRoman(input) : romanToArabic(input);
-}
+};
 
 /**
  * Преобразует римское число в арабское.
@@ -50,7 +50,7 @@ function roman(input) {
  * @param {string} romanNumber - Римское число (в виде строки).
  * @returns {number} - Арабское число.
  */
-function romanToArabic(romanNumber) {
+const romanToArabic = (romanNumber) => {
     const romanNumberChars = romanNumber.toLowerCase().split('');
     return romanNumberChars.reduce((result, currentSymbol, index, array) => {
         const currentv = ROMAN_TO_ARABIC[currentSymbol];
@@ -63,7 +63,7 @@ function romanToArabic(romanNumber) {
             return result + currentv;
         }
     }, 0);
-}
+};
 
 /**
  * Преобразует арабское число в римское.
@@ -71,7 +71,7 @@ function romanToArabic(romanNumber) {
  * @param {number} arabicNumber - Арабское число.
  * @returns {string} - Римское число (в виде строки).
  */
-function arabicToRoman(arabicNumber) {
+const arabicToRoman = (arabicNumber) => {
     return ROMAN_NUMERAL_VALUES.reduce((result, romanNumeral) => {
         while (arabicNumber >= romanNumeral.v) {
             result += romanNumeral.n;
@@ -79,4 +79,4 @@ function arabicToRoman(arabicNumber) {
         }
         return result;
     }, '');
-}
+};
