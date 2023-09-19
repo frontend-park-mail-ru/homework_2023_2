@@ -139,40 +139,50 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-  QUnit.test('sorting не изменяет массив, если у какого-то объекта остуствует переданное свойство', function (assert) {
-		const initial = [
-			{prop1: '3000'},
-			{prop2: '1000'},
-			{prop1: '4'},
-			{prop3: '200'}
-		];
-		const actual = sorting(initial, [ 'prop1' ]);
-
-    const expected = [
-			{prop1: '3000'},
-			{prop2: '1000'},
-			{prop1: '4'},
-			{prop3: '200'}
-		];
-		assert.deepEqual(actual, expected);
+  QUnit.test('sorting выбрасывает ошибку, если у какого-то объекта остуствует переданное свойство', function (assert) {
+		assert.throws(() => {
+			const initial = [
+				{prop1: '3000'},
+				{prop2: '1000'},
+				{prop1: '4'},
+				{prop3: '200'}
+			];
+			sorting(initial, [ 'prop1' ]);
+		}, TypeError("Some element of plain array 'item' hasn't name 'key' from name array"))
 	});
 
-  QUnit.test('sorting не изменяет массив, если значения одних и тех же свойств имеют различные типы', function (assert) {
-		const initial = [
-			{prop1: '3000'},
-			{prop1: 1000},
-			{prop1: '4'},
-			{prop1: true}
-		];
-		const actual = sorting(initial, [ 'prop1' ]);
+  QUnit.test('sorting выбрасывает ошибку, если значения одних и тех же свойств имеют различные типы', function (assert) {
+		assert.throws(() => {
+			const initial = [
+				{prop1: '3000'},
+				{prop1: 1000},
+				{prop1: '4'},
+				{prop1: true}
+			];
+			sorting(initial, [ 'prop1' ]);
+		}, TypeError("Plain array has different type item of same name objects"))
+	});
 
-		const expected = [
-			{prop1: '3000'},
-			{prop1: 1000},
-			{prop1: '4'},
-			{prop1: true}
-		];
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			const initial = 9
+			sorting(initial, [ 'prop1' ]);
+		}, TypeError("Wrong input"))
+	});
 
-		assert.deepEqual(actual, expected);
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			const initial = [
+				{prop1: '30'},
+				{prop1: '1000'},
+				{prop1: '4'},
+				{prop1: '200'}
+			];
+			sorting(initial, null);
+		}, TypeError("Wrong input"))
 	});
 });
+
+
+
+

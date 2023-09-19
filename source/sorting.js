@@ -6,23 +6,30 @@
  * 
  * @param {Object[]} plainArray - Массив объектов
  * @param {string[]} nameArray - Массив имен свойств
- * @returns {Object} - Отсортированный массив
+ * @returns {Object[]} - Отсортированный массив
  */
 function sorting(plainArray, nameArray) {
+  if (plainArray == null || nameArray == null || typeof plainArray != "object" || typeof nameArray != "object" || 
+    plainArray.some(item => {return typeof item != "object"}) ||
+    nameArray.some(name => {return typeof name != "string"})) {
+    throw new TypeError("Wrong input")    
+  }
   if (nameArray.length == 0 || plainArray.length == 0) return plainArray;
+  console.log(typeof plainArray, typeof nameArray)
 
-  for (const key of nameArray) {
+  nameArray.forEach((key) => {
     let lastType = null
-    for (const item of plainArray) {
+    plainArray.forEach(item => {
       if (!(key in item)) {
-        return plainArray
+        throw new TypeError("Some element of plain array 'item' hasn't name 'key' from name array")
       }
       if (lastType != null && lastType != typeof item[key]) {
-        return plainArray
+        throw new TypeError("Plain array has different type item of same name objects")
       }
       lastType = typeof item[key]
-    }
-  }
+    })
+  })
+
   return plainArray.sort((a, b) => {
     for (let name of nameArray) {
       if (a[name] > b[name]) return 1;
