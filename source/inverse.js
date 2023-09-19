@@ -5,7 +5,6 @@
  * @returns {Array} - Инвертированный массив.
  * @throws {TypeError} - Если первый аргумент не является массивом или второй аргумент не является числом.
  */
-
 const inverse = (arr, reverseIndex = 0) => {
     if (!Array.isArray(arr)) {
         throw new TypeError('Первый аргумент должен быть массивом');
