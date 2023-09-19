@@ -27,11 +27,11 @@ function countLetters(wordInput) {
         throw new TypeError('word must be string');
     }
 
-    const word = wordInput.toLowerCase();
     const letterCount = {};
-    for (const letter of word) {
-        letterCount[letter] = letterCount[letter] + 1 || 1;
-    }
+    const word = wordInput.toLowerCase();
+    [...word].forEach(letter =>
+        letterCount[letter] = letterCount[letter] + 1 || 1
+    );
 
     return letterCount;
 }
@@ -62,7 +62,7 @@ function areAnagrams(firstWord, secondWord) {
         if (value != letterCountSecond[key]) {
             res = false;
         }
-      });
+    });
 
     return res;
 }
