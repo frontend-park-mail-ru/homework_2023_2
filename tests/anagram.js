@@ -59,7 +59,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.throws(function () {
 			anagram(input);
 		},
-			TypeError
+			new TypeError('argument must be an array of strings')
 		);
 	});
 });
