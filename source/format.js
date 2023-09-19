@@ -5,25 +5,31 @@
  * 
  * @param {Array} maxLengthAmongRowNumbers - Каждый элемент означает, сколько символов занял столбец
  * @param {string} formattedString - Полученная таблица (число столбцов или отформатированная строка)
- * @throws {Error} - Если columnsNumber не является положительным числом
+ * @throws {RangeError} - Если columnsNumber не является переменной типа int
+ * @throws {RangeError} - Если columnsNumber не является положительным числом больше нуля
+ * @throws {TypeError} - Если input не является массивом
  * @returns {string} - Полученный ответ
  */
 const format = function(input, columnsNumber) {
     const separator = ' ';
-    const lineSpace = '\n'
+    const lineSpace = '\n';
 
-    if (typeof columnsNumber !== 'number' || columnsNumber <= 0) {
-        throw new Error('columnsNumber должен быть положительным числом');
+    if (typeof columnsNumber !== 'number') {
+        throw new TypeError('columnsNumber должен иметь целочисленный тип');
+    }
+
+    if (columnsNumber <= 0) {
+        throw new RangeError('columnsNumber должен быть положительным числом больше нуля')
     }
 
     if(!Array.isArray(input)) {
-        throw new Error('input должен быть массивом')
+        throw new TypeError('input должен быть массивом');
     }
 
     const maxLengthAmongRowNumbers = new Array(columnsNumber).fill(0);
     input.forEach((value, i) => {
         const numStr = String(value);
-        const index = i % columnsNumber
+        const index = i % columnsNumber;
         maxLengthAmongRowNumbers[index] = Math.max(maxLengthAmongRowNumbers[index], numStr.length);
     });
 

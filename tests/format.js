@@ -102,6 +102,9 @@ QUnit.module('Тестируем функцию format', function () {
 			function () {
 				format([], -1);
 			},
+			function (error) {
+				return error instanceof RangeError && error.message === 'columnsNumber должен быть положительным числом больше нуля';
+			},
 		);
 	});
 
@@ -109,6 +112,9 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.throws(
 			function() {
 				format(5, 5);
+			},
+			function (error) {
+				return error instanceof TypeError && error.message === 'input должен быть массивом';
 			},
 		);
 	});
