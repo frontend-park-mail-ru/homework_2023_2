@@ -10,7 +10,7 @@
  * @throws {TypeError} - Если input не является массивом
  * @returns {string} - Полученный ответ
  */
-const format = function(input, columnsNumber) {
+const format = (input, columnsNumber) => {
     const separator = ' ';
     const lineSpace = '\n';
 

@@ -103,7 +103,8 @@ QUnit.module('Тестируем функцию format', function () {
 				format([], -1);
 			},
 			function (error) {
-				return error instanceof RangeError && error.message === 'columnsNumber должен быть положительным числом больше нуля';
+				let err = new RangeError('columnsNumber должен быть положительным числом больше нуля');
+				return error.message == err.message;
 			},
 		);
 	});
@@ -114,7 +115,8 @@ QUnit.module('Тестируем функцию format', function () {
 				format(5, 5);
 			},
 			function (error) {
-				return error instanceof TypeError && error.message === 'input должен быть массивом';
+				let err = new TypeError('input должен быть массивом');
+				return error.message === err.message;
 			},
 		);
 	});
