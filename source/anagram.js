@@ -13,7 +13,7 @@ const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : i
  * @returns {boolean} true if word is string, false if not
  */
 const isString = (word) => {
-    return typeof word === "string" || word instanceof String
+    return typeof word === "string" || word instanceof String;
 }
 
 /**
@@ -24,10 +24,10 @@ const isString = (word) => {
  */
 function countLetters(wordInput) {
     if (!isString(wordInput)) {
-        throw new TypeError("word must be string")
+        throw new TypeError("word must be string");
     }
 
-    const word = wordInput.toLowerCase()
+    const word = wordInput.toLowerCase();
     const letterCount = {};
     for (let i = 0; i < word?.length; i++) {
         letterCount[word[i]] = letterCount[word[i]] + 1 || 1;
@@ -45,12 +45,13 @@ function countLetters(wordInput) {
  */
 function areAnagrams(firstWord, secondWord) {
     if (firstWord === null || secondWord === null)
-        return false
-    if (!isString(firstWord) || !isString(secondWord)) {
-        throw new TypeError("word must be string")
-    }
-    if (firstWord?.length != secondWord?.length)
         return false;
+    if (!isString(firstWord) || !isString(secondWord)) {
+        throw new TypeError("word must be string");
+    }
+    if (firstWord?.length != secondWord?.length) {
+        return false;
+    }
 
     const letterCountFirst = countLetters(firstWord);
     const letterCountSecond = countLetters(secondWord);
@@ -72,14 +73,14 @@ function areAnagrams(firstWord, secondWord) {
  */
 function anagram(inputWords) {
     if (inputWords === null)
-        return null
+        return null;
 
     if (!(Array.isArray(inputWords)
         && inputWords.every((word) => isString(word)))) {
-        throw new TypeError("argument must be an array of strings")
+        throw new TypeError("argument must be an array of strings");
     }
 
-    const words = clone(inputWords)
+    const words = clone(inputWords);
     words.sort();
     const result = [];
     let anagramGroup = [];
