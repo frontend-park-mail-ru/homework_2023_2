@@ -44,8 +44,9 @@ function countLetters(wordInput) {
  * @throws {TypeError} both arguments must be strings
  */
 function areAnagrams(firstWord, secondWord) {
-    if (firstWord === null || secondWord === null)
+    if (firstWord === null || secondWord === null) {
         return false;
+    }
     if (!isString(firstWord) || !isString(secondWord)) {
         throw new TypeError("word must be string");
     }
@@ -55,13 +56,15 @@ function areAnagrams(firstWord, secondWord) {
 
     const letterCountFirst = countLetters(firstWord);
     const letterCountSecond = countLetters(secondWord);
+    let res = true;
 
-    for (let letter in letterCountFirst) {
-        if (letterCountFirst[letter] != letterCountSecond[letter]) {
-            return false;
+    Object.entries(letterCountFirst).forEach(([key, value]) => {
+        if (value != letterCountSecond[key]) {
+            res = false;
         }
-    }
-    return true;
+      });
+
+    return res;
 }
 
 
