@@ -29,8 +29,8 @@ function countLetters(wordInput) {
 
     const word = wordInput.toLowerCase();
     const letterCount = {};
-    for (let i = 0; i < word?.length; i++) {
-        letterCount[word[i]] = letterCount[word[i]] + 1 || 1;
+    for (const letter of word) {
+        letterCount[letter] = letterCount[letter] + 1 || 1;
     }
 
     return letterCount;
