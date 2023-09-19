@@ -19,7 +19,7 @@ const format = function(input, columnsNumber) {
     }
 
     if (columnsNumber <= 0) {
-        throw new RangeError('columnsNumber должен быть положительным числом больше нуля')
+        throw new RangeError('columnsNumber должен быть положительным числом больше нуля');
     }
 
     if(!Array.isArray(input)) {
