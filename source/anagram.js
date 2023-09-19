@@ -44,7 +44,7 @@ function countLetters(wordInput) {
  * @throws {TypeError} both arguments must be strings
  */
 function areAnagrams(firstWord, secondWord) {
-    if (firstWord === null || secondWord === null) {
+    if (!firstWord || !secondWord) {
         return false;
     }
     if (!isString(firstWord) || !isString(secondWord)) {
