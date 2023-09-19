@@ -165,8 +165,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
 		assert.throws(() => {
-			const initial = 9
-			sorting(initial, [ 'prop1' ]);
+			sorting(9, [ 'prop1' ]);
 		}, TypeError("Wrong input"))
 	});
 
