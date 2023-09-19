@@ -181,6 +181,43 @@ QUnit.module('Тестируем функцию sorting', function () {
 			sorting(initial, null);
 		}, TypeError("Wrong input"))
 	});
+
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			const initial = String('Not array');
+			sorting(initial, ['null']);
+		}, TypeError("Wrong input"))
+	});
+
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			const initial = [
+				String('It is string'),
+				String('It is string'),
+				String('It is string'),
+				String('It is string')
+			];
+			sorting(initial, ['prop1']);
+		}, TypeError("Wrong input"))
+	});
+
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			const initial = [
+				{prop1: '30'},
+				{prop1: '1000'},
+				{prop1: '4'},
+				{prop1: '200'}
+			];
+			sorting(initial, String('null'));
+		}, TypeError("Wrong input"))
+	});
+
+	QUnit.test('sorting выбрасывает ошибку, если у входных параметров неправильный тип данных', function (assert) {
+		assert.throws(() => {
+			sorting(null, ['null']);
+		}, TypeError("Wrong input"))
+	});
 });
 
 
