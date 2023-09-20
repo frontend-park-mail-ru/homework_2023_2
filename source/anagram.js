@@ -22,7 +22,7 @@ const isString = (word) => {
  * @returns {Object.<string, number>} - object containing letter: number - amount of times letter is found in a word
  * @throws {TypeError} argument must be string
  */
-function countLetters(wordInput) {
+const countLetters = (wordInput) => {
     if (!isString(wordInput)) {
         throw new TypeError('word must be string');
     }
@@ -43,7 +43,7 @@ function countLetters(wordInput) {
  * @returns {boolean} - true of word is an anagram, false otherwise
  * @throws {TypeError} both arguments must be strings
  */
-function areAnagrams(firstWord, secondWord) {
+const areAnagrams = (firstWord, secondWord) => {
     if (!firstWord || !secondWord) {
         return false;
     }
@@ -74,7 +74,7 @@ function areAnagrams(firstWord, secondWord) {
  * @returns {?Array.<Array.<string>>} - array of anagrams grouped into arrays
  * @throws {TypeError} argument must be a an arrays of strings
  */
-function anagram(inputWords) {
+const anagram = (inputWords) => {
     if (inputWords === null)
         return null;
 
