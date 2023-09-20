@@ -1,88 +1,102 @@
 'use strict';
 
-const isDigit = function(ch) {
-    if ((ch >= '0') && (ch <= '9')) {
-        return true;
-    } else {
-        return false;
-    }
-}
+/**
+ * @function
+ * Checks if the symbol given is a digit
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const isDigit = ch => ((ch >= '0') && (ch <= '9'));
 
-const isVariable = function(ch) {
-    if (ch === 'x') {
-        return true;
-    } else {
-        return false;
-    }
-}
+/**
+ * @function
+ * Checks if the symbol given is a variable named 'x'
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const isVariable = ch => (ch === 'x');
 
-const isOperator = function(ch) {
-    if ((ch === '+') || (ch === '-') || (ch === '*') || (ch === '/')) {
-        return true;
-    } else {
-        return false;
-    }
-};
+/**
+ * @function
+ * Checks if the symbol given is one of the operators: '+', '-', '*' or '/'
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const isOperator = ch => ((ch === '+') || (ch === '-') || (ch === '*') || (ch === '/'));
 
-const isOperand = function(ch) {
-    if (isDigit(ch) || (ch === 'x')) {
-        return true;
-    } else {
-        return false;
-    }
-};
+/**
+ * @function
+ * Checks if the symbol given is an operand: variable or digit
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const isOperand = ch => (isDigit(ch) || (ch === 'x'));
 
-const isOpeningBracket = function(ch) {
-    if (ch === '(') {
-        return true;
-    } else {
-        return false;
-    }
-}
+/**
+ * @function
+ * Checks if the symbol given is an opening bracket
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const isOpeningBracket = ch => (ch === '(');
 
-const fullOfDigits = function(arr) {
-    let result = true;
+/**
+ * @function
+ * Checks if the array given is fully filled by digits
+ * 
+ * @param {char} ch - some symbol
+ * @returns {boolean}
+ */
+const fullOfDigits = arr => arr.every(isDigit);
 
-    for (let i = 0; i < arr.length; i++) {
-        result = result && isDigit(arr[i]);
-    }
-
-    return result;
-}
-
+/**
+ * @function
+ * Checks if the expression given meets following standards:
+ * - no operators going in a row
+ * - no variables going in a row
+ * - no variables named not as 'x'
+ * - all brackets correspond to each other
+ * - all operators are valid and allowed
+ * - all operands have respective operators
+ * - the expression is a mathematical one, not any other JS statement, etc.
+ * 
+ * @param {string} expression - mathematical expression
+ * @returns {boolean}
+ */
 const isValid = function(expression) {
-    let result = true;
+    const operandStack = [];
+    const operatorStack = [];
 
-    let operandStack = [];
-    let operatorStack = [];
+    let isPrevSymbolOperator = false;
+    let isPrevSymbolVar = false;
 
-    let isPrevSumbolOperator = false;
-    let isPrevSumbolVar = false;
-
-    for (let i = 0; i < expression.length; i++) {
-        let current =  expression.charAt(i);
-
+    for (const current of expression) {
         if (isOperand(current)) {
             operandStack.push(current);
 
-            isPrevSumbolOperator = false;
+            isPrevSymbolOperator = false;
 
-            if (isVariable(current) && isPrevSumbolVar) {
-                return false;
-            } else if (isVariable(current) && !isPrevSumbolVar) {
-                isPrevSumbolVar = true;
+            if (isVariable(current) && isPrevSymbolVar) {
+                throw new Error('Two variables are in a row');
+            } else if (isVariable(current) && !isPrevSymbolVar) {
+                isPrevSymbolVar = true;
             } else {
-                isPrevSumbolVar = false;
+                isPrevSymbolVar = false;
             }
         } else if (isOperator(current)) {
             operatorStack.push(current);
 
-            isPrevSumbolVar = false;
+            isPrevSymbolVar = false;
 
-            if (!isPrevSumbolOperator) {
-                isPrevSumbolOperator = true;
+            if (!isPrevSymbolOperator) {
+                isPrevSymbolOperator = true;
             } else {
-                return false;
+                throw new Error('Two operators are in a row');
             }
         } else {
             if (isOpeningBracket(current)) {
@@ -99,7 +113,7 @@ const isValid = function(expression) {
                     } else {
                         if (operandStack.length < 2)
                         {
-                            return false;
+                            throw new Error('Incorrect bracket sequence');
                         } else {
                             operandStack.pop();
                         }
@@ -107,35 +121,45 @@ const isValid = function(expression) {
                 }
 
                 if (!isThereCorrespBracket) {
-                    return false;
+                    throw new Error('Brackets matching is broken');
                 }
             }
         }
     }
 
     while (operatorStack.length != 0) {
-        let ch = operatorStack.pop();
+        const ch = operatorStack.pop();
 
         if (!isOperator(ch)) {
-            return false;
+            throw new Error('Invalid operator');
         }
 
         if (operandStack.length < 2) {
-            return false;
+            throw new Error('Some operands do not match operators');
         } else {
             operandStack.pop();
         }
     }
 
-    return result;
+    return true;
 };
 
+/**
+ * @function
+ * Solves the given expression but previously checks whether it is valid or not
+ * 
+ * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
+ * @param {string} expression - mathematical expression
+ * @param {number} root - value of the variable 'x' in the expression
+ * @returns {number | Error} - if the expression is correct, function will return the value of it, otherwise function will return 'Error' type
+ */
 const solve = function(expression, root) {
-    expression = expression.replaceAll(" ", "");
+    expression = expression.replaceAll(' ', '');
 
-    if (isValid(expression)) {
+    try {
+        isValid(expression);
         return eval(`const x = ${root}; ` + expression);
-    } else {
-        return null;
+    } catch (error) {
+        return error;
     }
 };
