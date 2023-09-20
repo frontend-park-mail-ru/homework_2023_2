@@ -9,7 +9,7 @@
  * @returns {Object[]} - Отсортированный массив
  * @throws {TypeError} - В случае неправильных входных данных
  */
-function sorting(plainArray, nameArray) {
+const sorting = (plainArray, nameArray) => {
   if (!Array.isArray(plainArray) || !Array.isArray(nameArray)) {
     throw new TypeError('Wrong input');
   }
