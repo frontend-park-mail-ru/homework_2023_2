@@ -118,4 +118,18 @@ QUnit.module('Тестируем функцию set', function () {
 		assert.deepEqual(set([1], '.3', 33), object3);
 	});
 	
+	QUnit.test('set throws an error when path is not a string', function (assert) {
+    assert.throws(function() {
+      set({}, 123, 'value');
+    }, Error, 'Path argument must be a string');
+    });
+	
+	QUnit.test('set throws error with the correct message', function (assert) {
+      assert.throws(function() {
+          set({}, true, 'value');
+      }, function(error) {
+      return error instanceof Error && error.message === 'Path argument must be a string';
+      }, 'Path argument must be a string');
+    });
+	
 });

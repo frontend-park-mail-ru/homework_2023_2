@@ -11,13 +11,21 @@
  * @returns {Object} - The modified object.
  */
 const set = (obj, path, value) => {
-  const parts = path.split('.');
-  let current_object = obj;
+	if (typeof path !== 'string') {
+		throw new Error('Path argument must be a string');
+	}
+	const parts = path.split('.');
+	parts.shift();
+	parts.reduce((acc, part, index) => {
+		if (index === parts.length - 1) {
+			acc[part] = value;
+		} else {
+			if (!acc[part] || typeof acc[part] !== 'object') {
+				acc[part] = {};
+			}
+		}
+		return acc[part];
+	}, obj);
   
-  for (let i = 1; i < parts.length - 1; ++i) {
-    current_object = current_object[parts[i]] ??= {};
-  }
-  
-  current_object[parts[parts.length - 1]] = value;
-  return obj;
+	return obj;
 };
