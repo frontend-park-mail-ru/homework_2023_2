@@ -7,21 +7,19 @@
  * @param {Array.<Object>} array - Исходный массив
  * @param {number} offset - Начальный сдвиг
  * @returns {Array.<Object>} Массив с измененным порядок элементов
- * @throws {TypeError} Проверка типа входных данных
+ * @throws {TypeError} Проверка типа входных данных. Исключение выбрасывается при неккоректном типе входных данных
  */
 function inverse(array, offset = 0) {
-	if (!Array.isArray(array) || typeof offset !== 'number') {
-		throw new TypeError('Некоретный тип входных данных');
+	if (!Array.isArray(array)) {
+		throw new TypeError('Некоретный тип входных данных - неверно задан массив');
 	}
 
-	let left = 0;
-	let right = array.length - 1;
-
-	if (offset > 0) {
-		left = offset;
-	} else if (offset < 0) {
-		right += offset;
+	if (typeof offset !== 'number') {
+		throw new TypeError('Некоретный тип входных данных - неверно задан сдвиг, должен быть числом');
 	}
+
+	let left = ( offset > 0 ? offset : 0);
+	let right = ( offset < 0 ? array.length - 1 + offset : array.length - 1)
 
 	const iterations = Math.floor((right - left) / 2) + 1;
 
