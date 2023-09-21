@@ -4,7 +4,7 @@
  * @function
  * Checks if the symbol given is a digit
  * 
- * @param {char} ch - some symbol
+ * @param {symbol} ch - some symbol
  * @returns {boolean}
  */
 const isDigit = ch => ((ch >= '0') && (ch <= '9'));
@@ -13,7 +13,7 @@ const isDigit = ch => ((ch >= '0') && (ch <= '9'));
  * @function
  * Checks if the symbol given is a variable named 'x'
  * 
- * @param {char} ch - some symbol
+ * @param {symbol} ch - some symbol
  * @returns {boolean}
  */
 const isVariable = ch => (ch === 'x');
@@ -22,7 +22,7 @@ const isVariable = ch => (ch === 'x');
  * @function
  * Checks if the symbol given is one of the operators: '+', '-', '*' or '/'
  * 
- * @param {char} ch - some symbol
+ * @param {symbol} ch - some symbol
  * @returns {boolean}
  */
 const isOperator = ch => ((ch === '+') || (ch === '-') || (ch === '*') || (ch === '/'));
@@ -31,7 +31,7 @@ const isOperator = ch => ((ch === '+') || (ch === '-') || (ch === '*') || (ch ==
  * @function
  * Checks if the symbol given is an operand: variable or digit
  * 
- * @param {char} ch - some symbol
+ * @param {symbol} ch - some symbol
  * @returns {boolean}
  */
 const isOperand = ch => (isDigit(ch) || (ch === 'x'));
@@ -40,19 +40,10 @@ const isOperand = ch => (isDigit(ch) || (ch === 'x'));
  * @function
  * Checks if the symbol given is an opening bracket
  * 
- * @param {char} ch - some symbol
+ * @param {symbol} ch - some symbol
  * @returns {boolean}
  */
 const isOpeningBracket = ch => (ch === '(');
-
-/**
- * @function
- * Checks if the array given is fully filled by digits
- * 
- * @param {char} ch - some symbol
- * @returns {boolean}
- */
-const fullOfDigits = arr => arr.every(isDigit);
 
 /**
  * @function
@@ -66,9 +57,9 @@ const fullOfDigits = arr => arr.every(isDigit);
  * - the expression is a mathematical one, not any other JS statement, etc.
  * 
  * @param {string} expression - mathematical expression
- * @returns {boolean}
+ * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
  */
-const isValid = function(expression) {
+const validateExpression = function(expression) {
     const operandStack = [];
     const operatorStack = [];
 
@@ -104,7 +95,7 @@ const isValid = function(expression) {
             } else {
                 let isThereCorrespBracket = false;
 
-                while (operatorStack.length != 0) {
+                while (operatorStack.length !== 0) {
                     let ch = operatorStack.pop();
 
                     if (isOpeningBracket(ch)) {
@@ -127,7 +118,7 @@ const isValid = function(expression) {
         }
     }
 
-    while (operatorStack.length != 0) {
+    while (operatorStack.length !== 0) {
         const ch = operatorStack.pop();
 
         if (!isOperator(ch)) {
@@ -140,26 +131,20 @@ const isValid = function(expression) {
             operandStack.pop();
         }
     }
-
-    return true;
 };
 
 /**
  * @function
  * Solves the given expression but previously checks whether it is valid or not
  * 
- * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
  * @param {string} expression - mathematical expression
  * @param {number} root - value of the variable 'x' in the expression
- * @returns {number | Error} - if the expression is correct, function will return the value of it, otherwise function will return 'Error' type
+ * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
+ * @returns {number} - if the expression is correct, function will return the value of it, otherwise function will throw the Error exception
  */
 const solve = function(expression, root) {
     expression = expression.replaceAll(' ', '');
+    validateExpression(expression);
 
-    try {
-        isValid(expression);
-        return eval(`const x = ${root}; ` + expression);
-    } catch (error) {
-        return error;
-    }
+    return eval(`const x = ${root}; ` + expression);
 };

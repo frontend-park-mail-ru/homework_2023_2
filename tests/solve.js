@@ -33,11 +33,11 @@ QUnit.module('Тестируем функцию solve', function () {
 	});
 
 	QUnit.test('Работает правильно с некорректным вводом', function (assert) {
-		assert.throws(solve('(2*y - 4) / 3', 1), Error);
-		assert.throws(solve('xx - 2*x + 4x', 1), Error);
-		assert.throws(solve('10x -- x + 1', 1), Error);
-		assert.throws(solve('(15 + x * 2', 9), Error);
-		assert.throws(solve('2*x*x + 15 ** x', 4), Error);
-		assert.throws(solve('let arr = [];', 100500), Error);
+		assert.throws(function() {solve('(2*y - 4) / 3', 1);}, Error);
+		assert.throws(function() {solve('xx - 2*x + 4x', 1);}, Error);
+		assert.throws(function() {solve('10x -- x + 1', 1);}, Error);
+		assert.throws(function() {solve('(15 + x * 2', 9);}, Error);
+		assert.throws(function() {solve('2*x*x + 15 ** x', 4);}, Error);
+		assert.throws(function() {solve('let arr = [];', 100500);}, Error);
 	});
 });
