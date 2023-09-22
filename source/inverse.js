@@ -18,19 +18,12 @@ function inverse(array, offset = 0) {
 		throw new TypeError('Некоретный тип входных данных - неверно задан сдвиг, должен быть числом');
 	}
 
-	let left = ( offset > 0 ? offset : 0);
-	let right = ( offset < 0 ? array.length - 1 + offset : array.length - 1)
+	const left = ( offset > 0 ? offset : 0);
+	const right = ( offset < 0 ? array.length + offset : array.length)
 
-	const iterations = Math.floor((right - left) / 2) + 1;
+	const array_start = array.slice(0, left);
+	const array_mid = array.slice(left, right).reverse();
+	const array_end = array.slice(right, array.length);
 
-	for (let i = 0; i < iterations; i++) {
-		const temp = array[left];
-		array[left] = array[right];
-		array[right] = temp;
-
-		left++;
-		right--;
-	}
-
-	return array;
+	return [].concat(array_start).concat(array_mid).concat(array_end);
 }
