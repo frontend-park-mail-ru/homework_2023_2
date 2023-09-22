@@ -119,17 +119,39 @@ QUnit.module('Тестируем функцию set', function () {
 	});
 	
 	QUnit.test('set throws an error when path is not a string', function (assert) {
-    assert.throws(function() {
-      set({}, 123, 'value');
-    }, Error, 'Path argument must be a string');
+		assert.throws(function() {
+			set({}, 123, 'value');
+		}, Error, 'Path argument must be a string');
+		
+		assert.throws(function() {
+			set({}, {}, 'value');
+		}, Error, 'Path argument must be a string');
+		
+		assert.throws(function() {
+			set({123 : 2}, {123 : 123}, 'value');
+		}, Error, 'Path argument must be a string');
+
+		assert.throws(function() {
+			set({}, true, 'value');
+		}, function(error) {
+			return error instanceof Error && error.message === 'Path argument must be a string';
+		}, 'Path argument must be a string');
     });
 	
-	QUnit.test('set throws error with the correct message', function (assert) {
-      assert.throws(function() {
-          set({}, true, 'value');
-      }, function(error) {
-      return error instanceof Error && error.message === 'Path argument must be a string';
-      }, 'Path argument must be a string');
+	QUnit.test('set throws error when obj argument is not an object', function (assert) {
+		assert.throws(function() {
+			set('not object', '.123', 'value');
+		}, function(error) {
+			return error instanceof Error && error.message === 'obj argument must be an object';
+		}, 'obj argument must be an object');
+    });
+	
+	QUnit.test('set throws error when value of type that should not be a dict value', function (assert) {
+		assert.throws(function() {
+			set({123 : 1}, '.123', function(){});
+		}, function(error) {
+			return error instanceof Error && error.message === 'value argument cannot be function, symbol or undefined';
+		}, 'value argument cannot be function, symbol or undefined');
     });
 	
 });
