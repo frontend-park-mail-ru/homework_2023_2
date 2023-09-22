@@ -4,7 +4,7 @@
  * @function
  * Checks if the symbol given is a digit
  * 
- * @param {symbol} ch - some symbol
+ * @param {string} ch - some symbol
  * @returns {boolean}
  */
 const isDigit = ch => ((ch >= '0') && (ch <= '9'));
@@ -13,7 +13,7 @@ const isDigit = ch => ((ch >= '0') && (ch <= '9'));
  * @function
  * Checks if the symbol given is a variable named 'x'
  * 
- * @param {symbol} ch - some symbol
+ * @param {string} ch - some symbol
  * @returns {boolean}
  */
 const isVariable = ch => (ch === 'x');
@@ -22,7 +22,7 @@ const isVariable = ch => (ch === 'x');
  * @function
  * Checks if the symbol given is one of the operators: '+', '-', '*' or '/'
  * 
- * @param {symbol} ch - some symbol
+ * @param {string} ch - some symbol
  * @returns {boolean}
  */
 const isOperator = ch => ((ch === '+') || (ch === '-') || (ch === '*') || (ch === '/'));
@@ -31,7 +31,7 @@ const isOperator = ch => ((ch === '+') || (ch === '-') || (ch === '*') || (ch ==
  * @function
  * Checks if the symbol given is an operand: variable or digit
  * 
- * @param {symbol} ch - some symbol
+ * @param {string} ch - some symbol
  * @returns {boolean}
  */
 const isOperand = ch => (isDigit(ch) || (ch === 'x'));
@@ -40,7 +40,7 @@ const isOperand = ch => (isDigit(ch) || (ch === 'x'));
  * @function
  * Checks if the symbol given is an opening bracket
  * 
- * @param {symbol} ch - some symbol
+ * @param {string} ch - some symbol
  * @returns {boolean}
  */
 const isOpeningBracket = ch => (ch === '(');
@@ -59,7 +59,7 @@ const isOpeningBracket = ch => (ch === '(');
  * @param {string} expression - mathematical expression
  * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
  */
-const validateExpression = function(expression) {
+const validateExpression = expression => {
     const operandStack = [];
     const operatorStack = [];
 
@@ -142,7 +142,7 @@ const validateExpression = function(expression) {
  * @throws {Error} - may throw an exception which is related to incorrect input data (the expression doesn't meet the mentioned standards)
  * @returns {number} - if the expression is correct, function will return the value of it, otherwise function will throw the Error exception
  */
-const solve = function(expression, root) {
+const solve = (expression, root) => {
     expression = expression.replaceAll(' ', '');
     validateExpression(expression);
 
