@@ -12,8 +12,8 @@ const tree = function (height) {
     let temp = 1;
     if (maxWidth > 1) {
         let sumString = "";
-        while(temp <= maxWidth) {
-            sumString += `${" ".repeat((maxWidth - temp) / 2)}${ "*".repeat(temp)}${" ".repeat((maxWidth - temp) / 2)}\n`;
+        while (temp <= maxWidth) {
+            sumString += `${" ".repeat((maxWidth - temp) / 2)}${"*".repeat(temp)}${" ".repeat((maxWidth - temp) / 2)}\n`;
             temp += 2;
         }
       
