@@ -84,5 +84,10 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree('fadsfsdf'), expected);
 	});
 
+	QUnit.test('NaN при вводе', function (assert) {
+		const expected = null;
+		assert.strictEqual(tree(NaN), expected);
+	});
+
 	
 });
