@@ -380,7 +380,7 @@ const calculatePostfix = (postfixExp, root) => {
  * @returns {number} - if the expression is correct, function will return the value of it, otherwise function will throw the Error exception
  */
 const solve = (expression, root) => {
-    if ((typeof expression !== 'string') || (typeof root !== 'number')) {
+    if (!((expression instanceof String) || (typeof expression === 'string')) || (typeof root !== 'number')) {
         throw new Error(`Invalid input types: (${typeof expression}, ${typeof root}) instead of (string, number)`);
     }
 
