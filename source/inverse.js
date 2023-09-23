@@ -9,7 +9,7 @@
  * @returns {Array.<Object>} Массив с измененным порядок элементов
  * @throws {TypeError} Проверка типа входных данных. Исключение выбрасывается при неккоректном типе входных данных
  */
-let inverse = (array, offset = 0) => {
+const inverse = (array, offset = 0) => {
 	if (!Array.isArray(array)) {
 		throw new TypeError('Некоретный тип входных данных - неверно задан массив');
 	}
