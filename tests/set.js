@@ -150,28 +150,34 @@ QUnit.module('Тестируем функцию set', function () {
 		assert.throws(function() {
 			set('not object', '.123', 'value');
 		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be an object';
-		}, 'obj argument must be an object');
+			return error instanceof Error && error.message === 'obj argument must be a valid object';
+		}, 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(null, '.123', 'value');
-		}, Error, 'obj argument must be an object');
+		}, Error, 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(undefined, '.123', 'value');
-		}, Error, 'obj argument must be an object');
+		}, Error, 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(5, '.123', 'value');
-		}, Error, 'obj argument must be an object');
+		}, Error, 'obj argument must be a valid object');
+		
+		assert.throws(function() {
+			set(new Number(), '.123', 'value');
+		}, Error, 'obj argument must be a valid object');
+		
+		assert.throws(function() {
+			set(new String(), '.123', 'value');
+		}, Error, 'obj argument must be a valid object');
     });
 	
 	QUnit.test('set throws error when value of type that should not be a dict value', function (assert) {
 		assert.throws(function() {
 			set({123 : 1}, '.123', function(){});
-		}, function(error) {
-			return error instanceof Error && error.message === 'value argument cannot be function, symbol or undefined';
-		}, 'value argument cannot be function, symbol or undefined');
+		}, Error, 'value argument cannot be function, symbol or undefined');
 		
 		assert.throws(function() {
 			set({123 : 1}, '.123', undefined);
