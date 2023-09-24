@@ -6,7 +6,7 @@
  * @param {number} height - Высота ёлочки
  * @returns {string | null} - Строка с ёлочкой
  */
-const tree = function (height) {
+const tree = (height) => {
     const heightNum = Number(height);
     const maxWidth = 2 * heightNum - 3;
     let temp = 1;
