@@ -80,12 +80,12 @@ QUnit.module('Тестируем функцию tree', function () {
 	});
 
 	QUnit.test('Ошибка при вводе', function (assert) {
-		const expected = null;
+		const expected = 'Неправильный формат ввода!';
 		assert.strictEqual(tree('fadsfsdf'), expected);
 	});
 
 	QUnit.test('NaN при вводе', function (assert) {
-		const expected = null;
+		const expected = 'Неправильный формат ввода!';
 		assert.strictEqual(tree(NaN), expected);
 	});
 

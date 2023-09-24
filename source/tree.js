@@ -8,19 +8,23 @@
  */
 const tree = (height) => {
     const heightNum = Number(height);
+    if (!heightNum) {
+        return 'Неправильный формат ввода!';
+    }
+
     const maxWidth = 2 * heightNum - 3;
     let temp = 1;
     if (maxWidth > 1) {
-        let sumString = "";
+        let sumString = '';
         while (temp <= maxWidth) {
             sumString += `${" ".repeat((maxWidth - temp) / 2)}${"*".repeat(temp)}${" ".repeat((maxWidth - temp) / 2)}\n`;
             temp += 2;
         }
-      
+
         sumString += `${" ".repeat((maxWidth - 1) / 2)}|${" ".repeat((maxWidth - 1) / 2)}\n`;
-          
+
         return sumString;
     };
-    
+
     return null;
 };
