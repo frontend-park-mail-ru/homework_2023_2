@@ -14,6 +14,9 @@
  * @throws {TypeError} - If the value argument is a function, symbol, or undefined.
  */
 const set = (obj, path, value) => {
+  if (path instanceof String) {
+	path = path.valueOf()
+  }
   if (typeof path !== 'string') {
     throw new TypeError('Path argument must be a string');
   }
