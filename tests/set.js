@@ -126,97 +126,68 @@ QUnit.module('Тестируем функцию set', function () {
 	QUnit.test('set throws an error when path is not a string', function (assert) {
 		assert.throws(function() {
 			set({}, 123, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
 		
 		assert.throws(function() {
 			set({}, {}, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
 		
 		assert.throws(function() {
 			set({123 : 2}, {123 : 123}, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
 		
 		assert.throws(function() {
 			set({123 : 2}, null, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
 		
 		assert.throws(function() {
 			set({123 : 2}, undefined, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
 
 		assert.throws(function() {
 			set({}, true, 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'Path argument must be a string';
-		}, 'Path argument must be a string');
+		}, new TypeError('Path argument must be a string'), 'Path argument must be a string');
+		
     });
 	
 	QUnit.test('set throws error when obj argument is not an object', function (assert) {
 		assert.throws(function() {
 			set('not object', '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(null, '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(undefined, '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(5, '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(new Number(), '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
 		
 		assert.throws(function() {
 			set(new String(), '.123', 'value');
-		}, function(error) {
-			return error instanceof Error && error.message === 'obj argument must be a valid object';
-		}, 'obj argument must be a valid object');
+		}, new TypeError('obj argument must be a valid object'), 'obj argument must be a valid object');
     });
 	
 	QUnit.test('set throws error when value of type that should not be a dict value', function (assert) {
 		assert.throws(function() {
 			set({123 : 1}, '.123', function(){});
-		}, function(error) {
-			return error instanceof Error && error.message === 'value argument cannot be function, symbol, or undefined';
-		}, 'value argument cannot be function, symbol, or undefined');
+		}, new TypeError('value argument cannot be function, symbol, or undefined'), 'value argument cannot be function, symbol, or undefined');
 		
 		assert.throws(function() {
 			set({123 : 1}, '.123', undefined);
-		}, function(error) {
-			return error instanceof Error && error.message === 'value argument cannot be function, symbol, or undefined';
-		}, 'value argument cannot be function, symbol, or undefined');
+		}, new TypeError('value argument cannot be function, symbol, or undefined'), 'value argument cannot be function, symbol, or undefined');
 		
 		assert.throws(function() {
 			set({123 : 1}, '.123', Symbol("mySymbol"));
-		}, function(error) {
-			return error instanceof Error && error.message === 'value argument cannot be function, symbol, or undefined';
-		}, 'value argument cannot be function, symbol, or undefined');
+		}, new TypeError('value argument cannot be function, symbol, or undefined'), 'value argument cannot be function, symbol, or undefined');
     });
 	
 });
